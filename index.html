@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michigan Computer Architecture Club</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes textReveal {
+      0% { transform: translateY(40px); opacity: 0; filter: blur(8px); }
+      100% { transform: translateY(0); opacity: 1; filter: blur(0); }
+    }
+    @keyframes badgeReveal {
+      0% { transform: scale(0.5) rotate(-45deg); opacity: 0; }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+    .anim-text {
+      animation: textReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+    }
+    .anim-badge {
+      animation: badgeReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+    }
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+    .delay-400 { animation-delay: 400ms; }
+    .delay-500 { animation-delay: 500ms; }
+  </style>
+</head>
+<body class="min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-24">
+
+  <!-- Top Header Bar -->
+  <header class="flex justify-between items-center px-4 py-2 border-b border-black text-xs font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc] z-40">
+    <div class="flex items-center gap-2">
+      <div class="w-2 h-2 bg-black rounded-full animate-pulse"></div>
+      <span>Michigan Comp. Arch.</span>
+    </div>
+    <div class="hidden md:flex gap-8 border border-black rounded-full px-4 py-1">
+      <span>Est. 2026</span>
+      <span>Ann Arbor, MI</span>
+    </div>
+    <div class="text-right">
+      <a href="#join" class="underline decoration-1 underline-offset-2 hover:text-gray-600 transition-colors">
+        Interested In Joining?
+      </a>
+    </div>
+  </header>
+
+  <main class="px-4 md:px-8 pt-16 md:pt-24 max-w-[1400px] mx-auto relative flex flex-col items-start">
+    
+    <!-- Massive Typography Hero Section -->
+    <section class="w-full text-left flex flex-col">
+      
+      <!-- Line 1: Text and Badge structurally locked together -->
+      <div class="flex flex-row items-center justify-between md:justify-start md:gap-12 w-full">
+        <h1 class="text-[12vw] lg:text-[10vw] leading-[0.85] font-black tracking-tighter uppercase anim-text delay-100">
+          MICHIGAN
+        </h1>
+        
+        <!-- Inline Circular Badge -->
+        <div class="relative flex items-center justify-center rounded-full bg-[#f4f4f0] mix-blend-multiply w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 shrink-0 mb-2 md:mb-6 anim-badge delay-400">
+          <svg viewBox="0 0 100 100" class="w-full h-full animate-[spin_12s_linear_infinite]">
+            <path
+              id="circlePath"
+              d="M 50, 50 m -32, 0 a 32,32 0 1,1 64,0 a 32,32 0 1,1 -64,0"
+              fill="none"
+            />
+            <text font-size="10" font-weight="bold" class="tracking-widest uppercase fill-black">
+              <textPath href="#circlePath" startOffset="0%">
+                Michigan Comp. Arch. Est. 2026
+              </textPath>
+            </text>
+          </svg>
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-black">
+            <!-- CPU Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Line 2 -->
+      <h1 class="text-[12vw] lg:text-[10vw] leading-[0.85] font-black tracking-tighter uppercase w-full mt-2 md:mt-4 anim-text delay-200">
+        COMPUTER
+      </h1>
+      
+      <!-- Line 3 -->
+      <h1 class="text-[12vw] lg:text-[10vw] leading-[0.85] font-black tracking-tighter uppercase w-full mt-2 md:mt-4 anim-text delay-300">
+        ARCHITECTURE.
+      </h1>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="mt-16 md:mt-24 max-w-3xl text-left anim-text delay-500">
+      <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl italic leading-[1.1] tracking-tight">
+        470 secret dlc.
+      </h2>
+      <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tighter mt-2">
+        Pipelining && <br class="hidden md:block">Exposure.
+      </h2>
+      <p class="mt-8 text-lg md:text-xl font-medium leading-relaxed max-w-2xl">
+        We are establishing the premiere computer architecture organization at UMich to build a commintu of students passionate about computer hardware design.
+        Finally answer questions like <i>"how do EDA tools actually work 💀🥀?"</i>, dig deeper into how processors and systems work and work on cool projects!
+      </p>
+    </section>
+
+    <!-- What We Do / Looking For -->
+    <section class="mt-20 md:mt-32 w-full border-t border-black pt-12 text-left">
+      <h3 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-12">
+        Membership Requirements
+      </h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
+        <!-- Column 1 -->
+        <div>
+          <h4 class="text-xl font-bold uppercase tracking-tight mb-4 flex items-center gap-2">
+            <span class="w-2 h-2 bg-black rounded-full"></span>
+            Who Should Join?
+          </h4>
+          <p class="text-base md:text-lg font-medium leading-relaxed">
+            We welcome anyone passionate about computer architecture who has completed or is currently enrolled in <strong>EECS 470 or 472+</strong>. Whether you want to gain practical experience with Verilog, engage in research projects, or assist in debugging architecture implementations, you will find a community here.
+          </p>
+        </div>
+
+        <!-- Column 2 -->
+        <div>
+          <h4 class="text-xl font-bold uppercase tracking-tight mb-4 flex items-center gap-2">
+            <span class="w-2 h-2 bg-black rounded-full"></span>
+            Our Initiatives
+          </h4>
+          <p class="text-base md:text-lg font-medium leading-relaxed mb-6">
+            Our immediate roadmap for the club includes:
+          </p>
+          <ul class="list-none text-sm font-bold uppercase tracking-widest space-y-4">
+            <li class="flex items-center gap-4">
+              <!-- CPU Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+              Architecture Projects & Research Papers
+            </li>
+            <li class="flex items-center gap-4">
+              <!-- Zap Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+              Debug Nights (Mentorship for 470/472)
+            </li>
+            <li class="flex items-center gap-4">
+              <!-- Radio Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M4.9 19.1c-3.8-3.8-3.8-10.1 0-14.2"/><path d="M19.1 4.9c3.8 3.8 3.8 10.1 0 14.2"/><path d="M7.7 16.3c-2.3-2.3-2.3-5.9 0-8.5"/><path d="M16.3 7.7c2.3 2.3 2.3 5.9 0 8.5"/></svg>
+              Hardware Competitions
+            </li>
+            <li class="flex items-center gap-4">
+              <!-- Globe Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+              Potential Industry Pipeline (Speakers & Alumni Networking)
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="join" class="mt-20 md:mt-32 w-full border-t border-black pt-12 pb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 text-left">
+      <div class="max-w-xl">
+        <h4 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4">
+          Become a Founding Member.
+        </h4>
+        <p class="text-lg font-medium mb-6">
+          Fill out the interest form below to receive communications and an invitation to our Slack workspace.
+        </p>
+        <div class="text-sm font-bold space-y-2 uppercase tracking-widest">
+          <p>Advisor: Prof. Krisztián Flautner</p>
+          <p>Contact: David Huang (<a href="mailto:davejh@umich.edu" class="hover:underline">davejh@umich.edu</a>)</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-start md:items-end gap-4">
+        <div class="flex flex-wrap gap-4 text-sm font-bold tracking-widest uppercase">
+           <a href="https://forms.gle/rQt73fwqswcwe4S16" target="_blank" rel="noopener noreferrer" class="border-2 border-black px-6 py-3 rounded-full hover:bg-black hover:text-white transition-colors flex items-center gap-2">
+             Google Form
+           </a>
+           <!-- <a href="#" class="border-2 border-black px-6 py-3 rounded-full hover:bg-black hover:text-white transition-colors flex items-center gap-2">
+             Join Slack
+           </a> -->
+        </div>
+        <p class="text-[10px] font-bold tracking-widest uppercase opacity-40 mt-4 text-left md:text-right max-w-xs">
+          Founded by EECS 470 students:<br>David, Shashwat, Aaron, Jathan, Shreyas.
+        </p>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
