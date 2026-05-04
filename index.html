@@ -1,11 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-scrollbar">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RISC-M | University of Michigan</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lenis Smooth Scroll CSS -->
   <style>
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    }
+    .lenis.lenis-smooth iframe {
+      pointer-events: none;
+    }
+
+    /* Hide Native Scrollbar Globally */
+    .no-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none; /* Chrome, Safari and Opera */
+    }
+
+    /* Initial Load Animations */
     @keyframes textReveal {
       0% { transform: translateY(40px); opacity: 0; filter: blur(8px); }
       100% { transform: translateY(0); opacity: 1; filter: blur(0); }
@@ -26,10 +54,25 @@
     .delay-200 { animation-delay: 200ms; }
     .delay-300 { animation-delay: 300ms; }
     .delay-400 { animation-delay: 400ms; }
-    .delay-500 { animation-delay: 500ms; }
+
+    /* Scroll Reveal Animations (Bottom Up) */
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(60px);
+      filter: blur(8px);
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity, filter;
+    }
+    .reveal-up.active {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+    .trans-delay-100 { transition-delay: 100ms; }
+    .trans-delay-200 { transition-delay: 200ms; }
   </style>
 </head>
-<body class="min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-24">
+<body class="min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-24 no-scrollbar">
 
   <!-- Top Header Bar -->
   <header class="flex justify-between items-center px-4 py-2 border-b border-black text-xs font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc] z-40">
@@ -42,7 +85,7 @@
       <span>Ann Arbor, MI</span>
     </div>
     <div class="text-right">
-      <a href="#join" class="underline decoration-1 underline-offset-2 hover:text-gray-600 transition-colors">
+      <a href="#join" class="anchor-link underline decoration-1 underline-offset-2 hover:text-gray-600 transition-colors">
         Interested In Joining?
       </a>
     </div>
@@ -82,7 +125,7 @@
     </section>
 
     <!-- Mission & Vision -->
-    <section class="mt-16 md:mt-24 max-w-3xl text-left anim-text delay-500">
+    <section class="mt-16 md:mt-24 max-w-3xl text-left reveal-up">
       <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl italic leading-[1.1] tracking-tight">
         a student-led community focused on
       </h2>
@@ -96,12 +139,12 @@
 
     <!-- Membership Requirements -->
     <section class="mt-20 md:mt-32 w-full border-t border-black pt-12 text-left">
-      <h3 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-12">
+      <h3 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-12 reveal-up">
         Membership Requirements
       </h3>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
-        <div>
+        <div class="reveal-up">
           <h4 class="text-xl font-bold uppercase tracking-tight mb-4 flex items-center gap-2">
             <span class="w-2 h-2 bg-black rounded-full"></span>
             Who Should Join?
@@ -111,7 +154,7 @@
           </p>
         </div>
 
-        <div>
+        <div class="reveal-up trans-delay-200">
           <h4 class="text-xl font-bold uppercase tracking-tight mb-4 flex items-center gap-2">
             <span class="w-2 h-2 bg-black rounded-full"></span>
             Our Initiatives
@@ -140,13 +183,13 @@
 
     <!-- Current Projects Section -->
     <section class="mt-20 md:mt-32 w-full border-t border-black pt-12 text-left">
-      <h3 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-8">
+      <h3 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-8 reveal-up">
         Current Research & Projects
       </h3>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- Project Card 1: Perception Preprocessor -->
-        <div class="border-2 border-black p-6 md:p-10 rounded-3xl">
+        <!-- Project Card 1 -->
+        <div class="border-2 border-black p-6 md:p-10 rounded-3xl reveal-up trans-delay-100">
           <div class="flex justify-between items-start mb-6">
             <div>
               <span class="text-[10px] font-bold uppercase tracking-widest opacity-60">UMARV Collaboration</span>
@@ -157,14 +200,13 @@
               <span class="text-[10px] font-bold uppercase tracking-tight opacity-40 block">May 2026 — Present</span>
             </div>
           </div>
-          
           <p class="text-sm md:text-base font-medium leading-relaxed opacity-80">
             Accelerating UMARV LiDAR perception on FPGA fabric to minimize latency for autonomous navigation. This dedicated signal processor implements coordinate transformation, ground plane filtering, and occupancy grid mapping to bridge the gap between sensor output and the embedded stack.
           </p>
         </div>
 
-        <!-- Project Card 2: TBD -->
-        <div class="border-2 border-black p-6 md:p-10 rounded-3xl border-dashed opacity-50">
+        <!-- Project Card 2 -->
+        <div class="border-2 border-black p-6 md:p-10 rounded-3xl border-dashed opacity-50 reveal-up trans-delay-200">
           <div class="flex justify-between items-start mb-6">
             <div>
               <span class="text-[10px] font-bold uppercase tracking-widest opacity-60">Future Initiative</span>
@@ -174,7 +216,6 @@
               <div class="px-3 py-0.5 border border-black rounded-full text-[10px] font-bold uppercase tracking-widest mb-1">Pending</div>
             </div>
           </div>
-          
           <p class="text-sm md:text-base font-medium leading-relaxed italic">
             New project documentation in progress. Check back soon for updates on our next hardware initiative, focusing on high-performance architecture research and systems design.
           </p>
@@ -184,7 +225,7 @@
 
     <!-- CTA Section -->
     <footer id="join" class="mt-20 md:mt-32 w-full border-t border-black pt-12 pb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 text-left">
-      <div class="max-w-xl">
+      <div class="max-w-xl reveal-up">
         <h4 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4">
           Interested in joining?
         </h4>
@@ -198,7 +239,7 @@
         </div>
       </div>
 
-      <div class="flex flex-col items-start md:items-end gap-4">
+      <div class="flex flex-col items-start md:items-end gap-4 reveal-up trans-delay-200">
         <div class="flex flex-wrap gap-4 text-sm font-bold tracking-widest uppercase">
            <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer" class="border-2 border-black px-6 py-3 rounded-full hover:bg-black hover:text-white transition-colors flex items-center gap-2">
              Google Form
@@ -211,5 +252,52 @@
     </footer>
   </main>
 
+  <!-- Lenis Smooth Scroll Script -->
+  <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
+  
+  <!-- Initialization Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      // 1. Initialize Smooth Scrolling (Lenis)
+      const lenis = new Lenis({
+        autoRaf: true, // Automatically run requestAnimationFrame
+        duration: 1.2, 
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+      });
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('.anchor-link').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            lenis.scrollTo(target);
+          }
+        });
+      });
+
+      // 2. Initialize Scroll Reveal Animations
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15 // Trigger when 15% of the element is visible
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target); // Only animate once
+          }
+        });
+      }, observerOptions);
+
+      // Find all elements with the 'reveal-up' class and observe them
+      const revealElements = document.querySelectorAll('.reveal-up');
+      revealElements.forEach(el => observer.observe(el));
+      
+    });
+  </script>
 </body>
 </html>
