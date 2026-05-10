@@ -6,8 +6,8 @@
   <title>RISC-M | University of Michigan</title>
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Lenis Smooth Scroll CSS -->
   <style>
+    /* Lenis Smooth Scroll CSS */
     html.lenis, html.lenis body {
       height: auto;
     }
@@ -285,20 +285,22 @@
         });
       });
 
-      // 2. Initialize Scroll Reveal Animations
+      // 2. Initialize Scroll Reveal Animations (ONCE)
       const observerOptions = {
         root: null,
         rootMargin: '0px',
         threshold: 0.15
       };
 
-      const observer = new IntersectionObserver((entries) => {
+      // Added the observer argument to unobserve targets
+      const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('active');
-          } else {
-            entry.target.classList.remove('active');
+            // Unobserve the element so the animation only happens once
+            observer.unobserve(entry.target);
           }
+          // The 'else' block has been removed so elements don't lose their 'active' state
         });
       }, observerOptions);
 
