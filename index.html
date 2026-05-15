@@ -35,21 +35,33 @@
 <body class="min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-24 no-scrollbar">
 
   <!-- Top Navigation Bar -->
+  <!-- Top Navigation Bar -->
   <header class="flex justify-between items-center px-4 py-2 border-b border-black text-xs font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc] z-40">
+    
+    <!-- Left: Logo -->
     <div class="flex items-center gap-2">
       <div class="w-2 h-2 bg-black rounded-full animate-pulse"></div>
       <a href="index.html" aria-label="Home">Michigan Comp. Arch.</a>
     </div>
+
+    <!-- Middle: Navigation -->
     <nav class="hidden md:flex gap-8 border border-black rounded-full px-6 py-1 bg-[#fcfcfc]" aria-label="Main Navigation">
       <a href="projects.html" class="hover:text-gray-500 transition-colors">Projects</a>
       <a href="members.html" class="hover:text-gray-500 transition-colors">Members</a>
       <a href="sponsors.html" class="hover:text-gray-500 transition-colors">Sponsors</a>
     </nav>
-    <div class="text-right">
-      <a href="#join" class="anchor-link underline decoration-1 underline-offset-2 hover:text-gray-600 transition-colors">
+
+    <!-- Right: Location & CTA -->
+    <div class="flex items-center gap-6 text-right">
+      <div class="hidden lg:flex gap-4 opacity-50">
+        <span>Est. 2026</span>
+        <span>Ann Arbor, MI</span>
+      </div>
+      <a href="index.html#join" class="anchor-link underline decoration-1 underline-offset-2 hover:text-gray-600 transition-colors">
         Join Us
       </a>
     </div>
+
   </header>
 
   <main class="px-4 md:px-8 pt-16 md:pt-24 max-w-[1400px] mx-auto relative flex flex-col items-start">
@@ -131,9 +143,9 @@
       <div class="max-w-xl reveal-up">
         <h3 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4">Interested in joining?</h3>
         <p class="text-lg font-medium mb-6">Fill in this form to be put on our mailing list and hear about our upcoming projects and events.</p>
-        <div class="text-sm font-bold space-y-2 uppercase tracking-widest">
+        <!-- <div class="text-sm font-bold space-y-2 uppercase tracking-widest">
           <p>Advisor: Prof. Krisztián Flautner</p>
-        </div>
+        </div> -->
       </div>
       <div class="flex flex-col items-start md:items-end gap-4 reveal-up trans-delay-200">
         <div class="flex flex-wrap gap-4 text-sm font-bold tracking-widest uppercase">
