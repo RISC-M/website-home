@@ -55,20 +55,17 @@
     .delay-300 { animation-delay: 300ms; }
     .delay-400 { animation-delay: 400ms; }
 
-    /* Scroll Reveal Animations (Bottom Up) */
+    /* Scroll Reveal Animations (Bottom Up) - Blur Removed */
     .reveal-up {
       opacity: 0;
       transform: translateY(60px);
-      filter: blur(8px);
       transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 1s cubic-bezier(0.16, 1, 0.3, 1),
-                  filter 0.3s ease-out;
-      will-change: transform, opacity, filter;
+                  transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
     }
     .reveal-up.active {
       opacity: 1;
       transform: translateY(0);
-      filter: blur(0);
     }
     .trans-delay-100 { transition-delay: 100ms; }
     .trans-delay-200 { transition-delay: 200ms; }
