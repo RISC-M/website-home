@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" class="no-scrollbar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Our Team | RISC-M Computer Architecture</title>
+  <meta name="description" content="Meet the students and faculty advising the RISC-M Computer Architecture team at the University of Michigan.">
+  <link rel="canonical" href="https://yourwebsite.com/members.html">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Paste the style block from index.html here */
+    html.lenis, html.lenis body { height: auto; } .lenis.lenis-smooth { scroll-behavior: auto !important; } .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; } .lenis.lenis-stopped { overflow: hidden; } .lenis.lenis-smooth iframe { pointer-events: none; } .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; } .no-scrollbar::-webkit-scrollbar { display: none; } @keyframes textReveal { 0% { transform: translateY(40px); opacity: 0; filter: blur(8px); } 100% { transform: translateY(0); opacity: 1; filter: blur(0); } } .anim-text { animation: textReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; } .delay-100 { animation-delay: 100ms; } .delay-200 { animation-delay: 200ms; } .reveal-up { opacity: 0; transform: translateY(60px); transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity; } .reveal-up.active { opacity: 1; transform: translateY(0); } .trans-delay-100 { transition-delay: 100ms; } .trans-delay-200 { transition-delay: 200ms; }
+  </style>
+</head>
+<body class="min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-24 no-scrollbar">
+
+  <header class="flex justify-between items-center px-4 py-2 border-b border-black text-xs font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc] z-40">
+    <div class="flex items-center gap-2">
+      <div class="w-2 h-2 bg-black rounded-full animate-pulse"></div>
+      <a href="index.html" aria-label="Home">Michigan Comp. Arch.</a>
+    </div>
+    <nav class="hidden md:flex gap-8 border border-black rounded-full px-6 py-1 bg-[#fcfcfc]">
+      <a href="projects.html" class="hover:text-gray-500 transition-colors">Projects</a>
+      <a href="members.html" class="text-black underline decoration-2 underline-offset-4">Members</a>
+      <a href="sponsors.html" class="hover:text-gray-500 transition-colors">Sponsors</a>
+    </nav>
+  </header>
+
+  <main class="px-4 md:px-8 pt-32 max-w-[1400px] mx-auto relative flex flex-col items-start">
+    <h1 class="text-[10vw] md:text-[8vw] leading-[0.85] font-black tracking-tighter uppercase anim-text delay-100 mb-16">
+      The Team
+    </h1>
+
+    <section class="w-full mb-24 reveal-up">
+      <h2 class="text-2xl font-black uppercase tracking-tight mb-8 border-b-2 border-black pb-2">Faculty Advisor</h2>
+      <div class="text-xl font-medium">
+        <p class="font-bold">Prof. Krisztián Flautner</p>
+      </div>
+    </section>
+
+    <section class="w-full reveal-up trans-delay-100">
+      <h2 class="text-2xl font-black uppercase tracking-tight mb-8 border-b-2 border-black pb-2">Founding Board</h2>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-12 gap-x-8">
+        
+        <!-- Member -->
+        <div>
+          <h3 class="text-xl font-bold uppercase tracking-tight">David Huang</h3>
+          <p class="text-sm font-bold uppercase tracking-widest opacity-60 mb-2">Co-President</p>
+          <a href="mailto:davejh@umich.edu" class="text-sm underline hover:text-gray-500">davejh@umich.edu</a>
+        </div>
+
+        <!-- Member -->
+        <div>
+          <h3 class="text-xl font-bold uppercase tracking-tight">Shashwat Jaguri</h3>
+          <p class="text-sm font-bold uppercase tracking-widest opacity-60 mb-2">Co-President</p>
+          <a href="mailto:sjaguri@umich.edu" class="text-sm underline hover:text-gray-500">sjaguri@umich.edu</a>
+        </div>
+
+        <!-- Member -->
+        <div>
+          <h3 class="text-xl font-bold uppercase tracking-tight">Bangyan Huang</h3>
+          <p class="text-sm font-bold uppercase tracking-widest opacity-60 mb-2">Executive</p>
+        </div>
+
+        <!-- Member -->
+        <div>
+          <h3 class="text-xl font-bold uppercase tracking-tight">Shreyas Narayanan</h3>
+          <p class="text-sm font-bold uppercase tracking-widest opacity-60 mb-2">Executive</p>
+        </div>
+
+        <!-- Member -->
+        <div>
+          <h3 class="text-xl font-bold uppercase tracking-tight">Aaron Xiong</h3>
+          <p class="text-sm font-bold uppercase tracking-widest opacity-60 mb-2">Executive</p>
+        </div>
+
+        <!-- Member -->
+        <div>
+          <h3 class="text-xl font-bold uppercase tracking-tight">Jathan Yao</h3>
+          <p class="text-sm font-bold uppercase tracking-widest opacity-60 mb-2">Executive</p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
+  <script>
+    // Paste script from index.html here
+    document.addEventListener("DOMContentLoaded", () => {
+      const lenis = new Lenis({ duration: 0.7, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); } requestAnimationFrame(raf);
+      const observer = new IntersectionObserver((entries, observer) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); } }); }, { root: null, rootMargin: '0px', threshold: 0.15 });
+      document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
