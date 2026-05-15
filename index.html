@@ -3,307 +3,170 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RISC-M | University of Michigan</title>
+  
+  <!-- SEO Optimization -->
+  <title>RISC-M | UMICH Computer Architecture & Silicon Design Team</title>
+  <meta name="description" content="RISC-M is the University of Michigan's premier student-led team focused on computer hardware, silicon design, and advanced processor architecture.">
+  <link rel="canonical" href="https://yourwebsite.com/">
+  <meta property="og:title" content="RISC-M | UMICH Computer Architecture">
+  <meta property="og:description" content="A student-led community bridging the gap between classroom theory and industrial hardware application.">
+  <meta property="og:type" content="website">
+  
   <script src="https://cdn.tailwindcss.com"></script>
   
   <style>
-    /* Lenis Smooth Scroll CSS */
-    html.lenis, html.lenis body {
-      height: auto;
-    }
-    .lenis.lenis-smooth {
-      scroll-behavior: auto !important;
-    }
-    .lenis.lenis-smooth [data-lenis-prevent] {
-      overscroll-behavior: contain;
-    }
-    .lenis.lenis-stopped {
-      overflow: hidden;
-    }
-    .lenis.lenis-smooth iframe {
-      pointer-events: none;
-    }
-
-    /* Hide Native Scrollbar Globally */
-    .no-scrollbar {
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
-    }
-    .no-scrollbar::-webkit-scrollbar {
-      display: none; /* Chrome, Safari and Opera */
-    }
-
-    /* Initial Load Animations */
-    @keyframes textReveal {
-      0% { transform: translateY(40px); opacity: 0; filter: blur(8px); }
-      100% { transform: translateY(0); opacity: 1; filter: blur(0); }
-    }
-    @keyframes badgeReveal {
-      0% { transform: scale(0.5) rotate(-45deg); opacity: 0; }
-      100% { transform: scale(1) rotate(0deg); opacity: 1; }
-    }
-    .anim-text {
-      animation: textReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      opacity: 0;
-    }
-    .anim-badge {
-      animation: badgeReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      opacity: 0;
-    }
-    .delay-100 { animation-delay: 100ms; }
-    .delay-200 { animation-delay: 200ms; }
-    .delay-300 { animation-delay: 300ms; }
-    .delay-400 { animation-delay: 400ms; }
-
-    /* Scroll Reveal Animations (Bottom Up) - Blur Removed */
-    .reveal-up {
-      opacity: 0;
-      transform: translateY(60px);
-      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: transform, opacity;
-    }
-    .reveal-up.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .trans-delay-100 { transition-delay: 100ms; }
-    .trans-delay-200 { transition-delay: 200ms; }
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+    .lenis.lenis-smooth iframe { pointer-events: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    @keyframes textReveal { 0% { transform: translateY(40px); opacity: 0; filter: blur(8px); } 100% { transform: translateY(0); opacity: 1; filter: blur(0); } }
+    @keyframes badgeReveal { 0% { transform: scale(0.5) rotate(-45deg); opacity: 0; } 100% { transform: scale(1) rotate(0deg); opacity: 1; } }
+    .anim-text { animation: textReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+    .anim-badge { animation: badgeReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+    .delay-100 { animation-delay: 100ms; } .delay-200 { animation-delay: 200ms; } .delay-300 { animation-delay: 300ms; } .delay-400 { animation-delay: 400ms; }
+    .reveal-up { opacity: 0; transform: translateY(60px); transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity; }
+    .reveal-up.active { opacity: 1; transform: translateY(0); }
+    .trans-delay-100 { transition-delay: 100ms; } .trans-delay-200 { transition-delay: 200ms; }
   </style>
 </head>
 <body class="min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-24 no-scrollbar">
 
-  <!-- Top Header Bar -->
+  <!-- Top Navigation Bar -->
   <header class="flex justify-between items-center px-4 py-2 border-b border-black text-xs font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc] z-40">
     <div class="flex items-center gap-2">
       <div class="w-2 h-2 bg-black rounded-full animate-pulse"></div>
-      <span>Michigan Comp. Arch.</span>
+      <a href="index.html" aria-label="Home">Michigan Comp. Arch.</a>
     </div>
-    <div class="hidden md:flex gap-8 border border-black rounded-full px-4 py-1">
-      <span>Est. 2026</span>
-      <span>Ann Arbor, MI</span>
-    </div>
+    <nav class="hidden md:flex gap-8 border border-black rounded-full px-6 py-1 bg-[#fcfcfc]" aria-label="Main Navigation">
+      <a href="projects.html" class="hover:text-gray-500 transition-colors">Projects</a>
+      <a href="members.html" class="hover:text-gray-500 transition-colors">Members</a>
+      <a href="sponsors.html" class="hover:text-gray-500 transition-colors">Sponsors</a>
+    </nav>
     <div class="text-right">
       <a href="#join" class="anchor-link underline decoration-1 underline-offset-2 hover:text-gray-600 transition-colors">
-        Interested In Joining?
+        Join Us
       </a>
     </div>
   </header>
 
   <main class="px-4 md:px-8 pt-16 md:pt-24 max-w-[1400px] mx-auto relative flex flex-col items-start">
     
-    <!-- Massive Typography Hero Section -->
     <section class="w-full text-left flex flex-col">
       <div class="flex flex-row items-center justify-between md:justify-start md:gap-12 w-full">
+        <!-- H1: Primary keyword focus -->
         <h1 class="text-[14vw] lg:text-[12vw] leading-[0.85] font-black tracking-tighter uppercase anim-text delay-100">
           RISC-M
         </h1>
         
-        <div class="relative flex items-center justify-center rounded-full bg-[#f4f4f0] mix-blend-multiply w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 shrink-0 mb-2 md:mb-6 anim-badge delay-400">
+        <div aria-hidden="true" class="relative flex items-center justify-center rounded-full bg-[#f4f4f0] mix-blend-multiply w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 shrink-0 mb-2 md:mb-6 anim-badge delay-400">
           <svg viewBox="0 0 100 100" class="w-full h-full animate-[spin_12s_linear_infinite]">
-            <path
-              id="circlePath"
-              d="M 50, 50 m -32, 0 a 32,32 0 1,1 64,0 a 32,32 0 1,1 -64,0"
-              fill="none"
-            />
+            <path id="circlePath" d="M 50, 50 m -32, 0 a 32,32 0 1,1 64,0 a 32,32 0 1,1 -64,0" fill="none"/>
             <text font-size="10" font-weight="bold" class="tracking-widest uppercase fill-black">
-              <textPath href="#circlePath" startOffset="0%">
-                RISC-M Comp. Arch. Est. 2026
-              </textPath>
+              <textPath href="#circlePath" startOffset="0%">RISC-M Comp. Arch. Est. 2026</textPath>
             </text>
           </svg>
           <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-black">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
           </div>
         </div>
       </div>
-
-      <!-- Font color updated to #b3b3af -->
-      <h1 class="text-[11vw] lg:text-[9vw] leading-[0.85] font-black tracking-tighter uppercase text-[#404040] w-full mt-2 md:mt-4 anim-text delay-200">
+      <!-- H2: Subheading -->
+      <h2 class="text-[11vw] lg:text-[9vw] leading-[0.85] font-black tracking-tighter uppercase text-[#404040] w-full mt-2 md:mt-4 anim-text delay-200">
         A UMICH COMPUTER ARCHITECTURE TEAM
-      </h1>
+      </h2>
     </section>
 
-    <!-- Mission & Vision -->
     <section class="mt-16 md:mt-24 max-w-3xl text-left reveal-up">
-      <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl italic leading-[1.1] tracking-tight">
+      <h3 class="font-serif text-4xl md:text-5xl lg:text-6xl italic leading-[1.1] tracking-tight">
         a student-led community focused on
-      </h2>
-      <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tighter mt-2">
+      </h3>
+      <h3 class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tighter mt-2">
         Computer Hardware && Silicon Design.
-      </h2>
+      </h3>
       <p class="mt-8 text-lg md:text-xl font-medium leading-relaxed max-w-2xl">
         Michigan’s first dedicated organization for hardware systems. We bridge the gap between classroom theory and industrial application, fostering a community focused on advanced processor design and hardware-software co-design.
       </p>
     </section>
 
-    <!-- Membership Requirements -->
     <section class="mt-20 md:mt-32 w-full border-t border-black pt-12 text-left">
-      <h3 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-12 reveal-up">
-        Membership Requirements
-      </h3>
-
+      <h3 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-12 reveal-up">Membership Requirements</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
         <div class="reveal-up">
           <h4 class="text-xl font-bold uppercase tracking-tight mb-4 flex items-center gap-2">
-            <span class="w-2 h-2 bg-black rounded-full"></span>
-            Who Should Join?
+            <span class="w-2 h-2 bg-black rounded-full"></span>Who Should Join?
           </h4>
           <p class="text-base md:text-lg font-medium leading-relaxed">
             We welcome anyone passionate about computer architecture who has completed or is currently enrolled in <strong>EECS 470 or 472+</strong>. Whether you want to gain practical experience with Verilog or engage in research, you will find a community here.
           </p>
         </div>
-
         <div class="reveal-up trans-delay-200">
           <h4 class="text-xl font-bold uppercase tracking-tight mb-4 flex items-center gap-2">
-            <span class="w-2 h-2 bg-black rounded-full"></span>
-            Our Initiatives
+            <span class="w-2 h-2 bg-black rounded-full"></span>Our Initiatives
           </h4>
           <ul class="list-none text-sm font-bold uppercase tracking-widest space-y-4">
-            <li class="flex items-center gap-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
-              Architecture Research Papers
-            </li>
-            <li class="flex items-center gap-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
-              Debug Nights (470/472 Mentorship)
-            </li>
-            <li class="flex items-center gap-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M4.9 19.1c-3.8-3.8-3.8-10.1 0-14.2"/><path d="M19.1 4.9c3.8 3.8 3.8 10.1 0 14.2"/><path d="M7.7 16.3c-2.3-2.3-2.3-5.9 0-8.5"/><path d="M16.3 7.7c2.3 2.3 2.3 5.9 0 8.5"/></svg>
-              Hardware Competitions
-            </li>
-            <li class="flex items-center gap-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-              Industry Speaker Pipeline
-            </li>
+            <li class="flex items-center gap-4"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg> Architecture Research Papers</li>
+            <li class="flex items-center gap-4"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg> Debug Nights (470/472 Mentorship)</li>
+            <li class="flex items-center gap-4"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M4.9 19.1c-3.8-3.8-3.8-10.1 0-14.2"/><path d="M19.1 4.9c3.8 3.8 3.8 10.1 0 14.2"/><path d="M7.7 16.3c-2.3-2.3-2.3-5.9 0-8.5"/><path d="M16.3 7.7c2.3 2.3 2.3 5.9 0 8.5"/></svg> Hardware Competitions</li>
+            <li class="flex items-center gap-4"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg> Industry Speaker Pipeline</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- Current Projects Section -->
-    <section class="mt-20 md:mt-32 w-full border-t border-black pt-12 text-left">
-      <h3 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-8 reveal-up">
-        Current Research & Projects
-      </h3>
-
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- Project Card 1 -->
-        <div class="border-2 border-black p-6 md:p-10 rounded-3xl reveal-up trans-delay-100">
-          <div class="flex justify-between items-start mb-6">
-            <div>
-              <span class="text-[10px] font-bold uppercase tracking-widest opacity-60">UMARV Collaboration</span>
-              <h4 class="text-2xl md:text-3xl font-black uppercase tracking-tighter mt-1 leading-none">Perception Preprocessor</h4>
-            </div>
-            <div class="text-right">
-              <div class="px-3 py-0.5 border border-black rounded-full text-[10px] font-bold uppercase tracking-widest mb-1">Active</div>
-              <span class="text-[10px] font-bold uppercase tracking-tight opacity-40 block">May 2026 — Present</span>
-            </div>
-          </div>
-          <p class="text-sm md:text-base font-medium leading-relaxed opacity-80">
-            Accelerating UMARV LiDAR perception on FPGA fabric to minimize latency for autonomous navigation. This dedicated signal processor implements coordinate transformation, ground plane filtering, and occupancy grid mapping to bridge the gap between sensor output and the embedded stack.
-          </p>
-        </div>
-
-        <!-- Project Card 2 -->
-        <div class="border-2 border-black p-6 md:p-10 rounded-3xl border-dashed opacity-50 reveal-up trans-delay-200">
-          <div class="flex justify-between items-start mb-6">
-            <div>
-              <span class="text-[10px] font-bold uppercase tracking-widest opacity-60">Future Initiative</span>
-              <h4 class="text-2xl md:text-3xl font-black uppercase tracking-tighter mt-1 leading-none">TBD..</h4>
-            </div>
-            <div class="text-right">
-              <div class="px-3 py-0.5 border border-black rounded-full text-[10px] font-bold uppercase tracking-widest mb-1">Pending</div>
-            </div>
-          </div>
-          <p class="text-sm md:text-base font-medium leading-relaxed italic">
-            New project documentation in progress. Check back soon for updates on our next hardware initiative, focusing on high-performance architecture research and systems design.
-          </p>
-        </div>
-      </div>
+    <!-- Call to action points to projects page instead of displaying them all here -->
+    <section class="mt-20 md:mt-32 w-full border-t border-black pt-12 pb-8 flex flex-col md:flex-row justify-between items-center gap-8 reveal-up">
+       <div>
+         <h3 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">See What We're Building</h3>
+         <p class="text-base font-medium opacity-80">FPGA perception pipelines, custom processors, and more.</p>
+       </div>
+       <a href="projects.html" class="border-2 border-black px-6 py-3 rounded-full hover:bg-black hover:text-white transition-colors text-sm font-bold uppercase tracking-widest whitespace-nowrap">
+         View Projects
+       </a>
     </section>
 
-    <!-- CTA Section -->
-    <footer id="join" class="mt-20 md:mt-32 w-full border-t border-black pt-12 pb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 text-left">
+    <footer id="join" class="mt-12 w-full border-t border-black pt-12 pb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 text-left">
       <div class="max-w-xl reveal-up">
-        <h4 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4">
-          Interested in joining?
-        </h4>
-        <p class="text-lg font-medium mb-6">
-          Fill in this form to be put on our mailing list and hear about our upcoming projects and events.
-        </p>
+        <h3 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4">Interested in joining?</h3>
+        <p class="text-lg font-medium mb-6">Fill in this form to be put on our mailing list and hear about our upcoming projects and events.</p>
         <div class="text-sm font-bold space-y-2 uppercase tracking-widest">
           <p>Advisor: Prof. Krisztián Flautner</p>
-          <p>Club Exec: David Huang (<a href="mailto:davejh@umich.edu" class="hover:underline">davejh@umich.edu</a>)</p>
-          <p>Club Exec: Shashwat Jaguri (<a href="mailto:sjaguri@umich.edu" class="hover:underline">sjaguri@umich.edu</a>)</p>
         </div>
       </div>
-
       <div class="flex flex-col items-start md:items-end gap-4 reveal-up trans-delay-200">
         <div class="flex flex-wrap gap-4 text-sm font-bold tracking-widest uppercase">
            <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer" class="border-2 border-black px-6 py-3 rounded-full hover:bg-black hover:text-white transition-colors flex items-center gap-2">
              Google Form
            </a>
         </div>
-        <p class="text-[10px] font-bold tracking-widest uppercase opacity-40 mt-4 text-left md:text-right max-w-xs">
-          Founded by: David Huang, Shashwat Jaguri, Bangyan Huang, Shreyas Narayanan, Aaron Xiong, Jathan Yao.
-        </p>
       </div>
     </footer>
   </main>
 
-  <!-- Lenis Smooth Scroll Script -->
   <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
-  
-  <!-- Initialization Script -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      
-      // 1. Initialize Smooth Scrolling (Lenis)
-      const lenis = new Lenis({
-        duration: 0.7, 
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-      });
-
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
+      const lenis = new Lenis({ duration: 0.7, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
       requestAnimationFrame(raf);
-
-      // Smooth scroll for anchor links
       document.querySelectorAll('.anchor-link').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
           const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            lenis.scrollTo(target);
-          }
+          if (target) { lenis.scrollTo(target); }
         });
       });
-
-      // 2. Initialize Scroll Reveal Animations (ONCE)
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15
-      };
-
-      // Added the observer argument to unobserve targets
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('active');
-            // Unobserve the element so the animation only happens once
             observer.unobserve(entry.target);
           }
-          // The 'else' block has been removed so elements don't lose their 'active' state
         });
-      }, observerOptions);
-
-      const revealElements = document.querySelectorAll('.reveal-up');
-      revealElements.forEach(el => observer.observe(el));
-      
+      }, { root: null, rootMargin: '0px', threshold: 0.15 });
+      document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
     });
   </script>
 </body>
