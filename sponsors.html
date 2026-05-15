@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" class="no-scrollbar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Sponsor Us | RISC-M Computer Architecture</title>
+  <meta name="description" content="Partner with RISC-M to recruit top hardware engineering talent at the University of Michigan and support cutting-edge student silicon research.">
+  <link rel="canonical" href="https://yourwebsite.com/sponsors.html">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Paste the style block from index.html here */
+    html.lenis, html.lenis body { height: auto; } .lenis.lenis-smooth { scroll-behavior: auto !important; } .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; } .lenis.lenis-stopped { overflow: hidden; } .lenis.lenis-smooth iframe { pointer-events: none; } .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; } .no-scrollbar::-webkit-scrollbar { display: none; } @keyframes textReveal { 0% { transform: translateY(40px); opacity: 0; filter: blur(8px); } 100% { transform: translateY(0); opacity: 1; filter: blur(0); } } .anim-text { animation: textReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; } .delay-100 { animation-delay: 100ms; } .delay-200 { animation-delay: 200ms; } .reveal-up { opacity: 0; transform: translateY(60px); transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity; } .reveal-up.active { opacity: 1; transform: translateY(0); } .trans-delay-100 { transition-delay: 100ms; } .trans-delay-200 { transition-delay: 200ms; }
+  </style>
+</head>
+<body class="min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-24 no-scrollbar">
+
+  <header class="flex justify-between items-center px-4 py-2 border-b border-black text-xs font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc] z-40">
+    <div class="flex items-center gap-2">
+      <div class="w-2 h-2 bg-black rounded-full animate-pulse"></div>
+      <a href="index.html" aria-label="Home">Michigan Comp. Arch.</a>
+    </div>
+    <nav class="hidden md:flex gap-8 border border-black rounded-full px-6 py-1 bg-[#fcfcfc]">
+      <a href="projects.html" class="hover:text-gray-500 transition-colors">Projects</a>
+      <a href="members.html" class="hover:text-gray-500 transition-colors">Members</a>
+      <a href="sponsors.html" class="text-black underline decoration-2 underline-offset-4">Sponsors</a>
+    </nav>
+  </header>
+
+  <main class="px-4 md:px-8 pt-32 max-w-[1400px] mx-auto relative flex flex-col items-start">
+    <h1 class="text-[10vw] md:text-[8vw] leading-[0.85] font-black tracking-tighter uppercase anim-text delay-100 mb-8">
+      Partner With Us
+    </h1>
+
+    <section class="max-w-4xl mb-24 reveal-up text-lg md:text-xl font-medium leading-relaxed">
+      <p class="mb-6">
+        As Michigan’s only dedicated undergraduate and graduate organization for hardware systems, RISC-M represents the top silicon talent at the university. 
+      </p>
+      <p>
+        Partnering with us gives your company direct access to highly motivated students excelling in Verilog, SystemVerilog, FPGA design, and computer architecture research. 
+      </p>
+    </section>
+
+    <section class="w-full reveal-up trans-delay-100">
+      <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-12 border-b-2 border-black pb-4">Why Sponsor?</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-8 border-2 border-black rounded-3xl">
+          <h3 class="text-xl font-bold uppercase tracking-tight mb-4">Talent Pipeline</h3>
+          <p class="text-sm font-medium opacity-80">Host exclusive recruiting events, resume drops, and tech talks with students specifically interested in hardware engineering.</p>
+        </div>
+        <div class="p-8 border-2 border-black rounded-3xl">
+          <h3 class="text-xl font-bold uppercase tracking-tight mb-4">Project Funding</h3>
+          <p class="text-sm font-medium opacity-80">Support student-led tapeouts, FPGA acquisitions, and research papers, getting your brand associated with cutting-edge academic work.</p>
+        </div>
+        <div class="p-8 border-2 border-black rounded-3xl">
+          <h3 class="text-xl font-bold uppercase tracking-tight mb-4">Brand Visibility</h3>
+          <p class="text-sm font-medium opacity-80">Feature your logo on our website, project repositories, and competition apparel worn by our members.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-24 w-full text-center p-12 bg-black text-white rounded-[3rem] reveal-up">
+      <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4">Get the Sponsorship Packet</h2>
+      <p class="text-lg font-medium mb-8 max-w-2xl mx-auto opacity-80">Contact our executive board to learn more about our sponsorship tiers (Silicon, Gold, Blue) and how we can collaborate.</p>
+      <a href="mailto:davejh@umich.edu,sjaguri@umich.edu?subject=RISC-M%20Sponsorship%20Inquiry" class="inline-block bg-white text-black px-8 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors">
+        Email Executive Board
+      </a>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
+  <script>
+    // Paste script from index.html here
+    document.addEventListener("DOMContentLoaded", () => {
+      const lenis = new Lenis({ duration: 0.7, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); } requestAnimationFrame(raf);
+      const observer = new IntersectionObserver((entries, observer) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); } }); }, { root: null, rootMargin: '0px', threshold: 0.15 });
+      document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
