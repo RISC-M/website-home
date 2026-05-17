@@ -13,7 +13,7 @@
 </head>
 <body class="min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-24 no-scrollbar">
 
-  <header class="flex justify-between md:grid md:grid-cols-3 items-center px-4 md:px-8 py-4 border-b border-black text-[11px] md:text-xs font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc] z-50 anim-element d-1">
+  <header class="flex justify-between items-center px-4 md:px-8 py-4 border-b border-black text-[11px] md:text-xs font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc] z-50 anim-element d-1">
     
     <div class="flex items-center gap-4 lg:gap-8">
       <div class="flex items-center gap-2">
@@ -27,11 +27,10 @@
       </nav>
     </div>
 
-    <div class="hidden md:flex justify-center text-black text-center whitespace-nowrap">
-      <span>Est. 2026 &nbsp;&bull;&nbsp; Ann Arbor, MI</span>
-    </div>
-
-    <div class="flex justify-end items-center gap-4">
+    <div class="flex justify-end items-center gap-4 md:gap-6">
+      <div class="hidden md:block border border-black rounded-full px-3 py-1 text-black whitespace-nowrap">
+        <span>Est. 2026 &nbsp;&bull;&nbsp; Ann Arbor, MI</span>
+      </div>
       <nav class="flex md:hidden gap-3" aria-label="Mobile Navigation">
          <a href="projects.html" class="hover:text-gray-500 transition-colors">Projects</a>
          <a href="members.html" class="underline decoration-2 underline-offset-4">Menu</a>

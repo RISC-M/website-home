@@ -16,7 +16,7 @@
 </head>
 <body class="min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-24 no-scrollbar">
 
-  <header class="flex justify-between md:grid md:grid-cols-3 items-center px-4 md:px-8 py-4 border-b border-black text-[11px] md:text-xs font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc] z-50 anim-element d-1">
+  <header class="flex justify-between items-center px-4 md:px-8 py-4 border-b border-black text-[11px] md:text-xs font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc] z-50 anim-element d-1">
     
     <div class="flex items-center gap-4 lg:gap-8">
       <div class="flex items-center gap-2">
@@ -30,11 +30,10 @@
       </nav>
     </div>
 
-    <div class="hidden md:flex justify-center text-black text-center whitespace-nowrap">
-      <span>Est. 2026 &nbsp;&bull;&nbsp; Ann Arbor, MI</span>
-    </div>
-
-    <div class="flex justify-end items-center gap-4">
+    <div class="flex justify-end items-center gap-4 md:gap-6">
+      <div class="hidden md:block border border-black rounded-full px-3 py-1 text-black whitespace-nowrap">
+        <span>Est. 2026 &nbsp;&bull;&nbsp; Ann Arbor, MI</span>
+      </div>
       <nav class="flex md:hidden gap-3" aria-label="Mobile Navigation">
          <a href="projects.html" class="hover:text-gray-500 transition-colors">Projects</a>
          <a href="members.html" class="hover:text-gray-500 transition-colors">Menu</a>
@@ -44,6 +43,7 @@
       </a>
     </div>
   </header>
+    
 
   <main class="px-4 md:px-8 pt-24 md:pt-28 max-w-[1400px] mx-auto relative flex flex-col items-start">
     
@@ -52,19 +52,7 @@
         <h1 class="text-[14vw] lg:text-[12vw] leading-[0.85] font-black tracking-tighter uppercase">
           RISC-M
         </h1>
-        
-        <div aria-hidden="true" class="relative flex items-center justify-center rounded-full bg-[#f4f4f0] mix-blend-multiply w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 shrink-0 mb-2 md:mb-6">
-          <svg viewBox="0 0 100 100" class="w-full h-full animate-[spin_12s_linear_infinite]">
-            <path id="circlePath" d="M 50, 50 m -32, 0 a 32,32 0 1,1 64,0 a 32,32 0 1,1 -64,0" fill="none"/>
-            <text font-size="10" font-weight="bold" class="tracking-widest uppercase fill-black">
-              <textPath href="#circlePath" startOffset="0%">RISC-M Comp. Arch. Est. 2026</textPath>
-            </text>
-          </svg>
-          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-black">
-             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
-          </div>
         </div>
-      </div>
       <h2 class="text-[10vw] lg:text-[8.5vw] leading-[0.85] font-black tracking-tighter uppercase text-[#404040] w-full mt-2 md:mt-4 anim-element d-3">
         The U-M<br>Computer Architecture Team
       </h2>
