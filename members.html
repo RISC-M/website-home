@@ -9,7 +9,44 @@
   <link rel="canonical" href="https://yourwebsite.com/members.html">
   
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Smooth Scrolling via Lenis */
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+    .lenis.lenis-smooth iframe { pointer-events: none; }
+
+    /* Scrollbar Hiding */
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+
+    /* Cinematic On-Load Animations */
+    @keyframes blurFadeIn {
+      0% { opacity: 0; filter: blur(12px); transform: translateY(30px) scale(0.98); }
+      100% { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
+    }
+
+    .anim-element {
+      opacity: 0; 
+      animation: blurFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      will-change: transform, opacity, filter;
+    }
+
+    /* Staggered Animation Delays */
+    .d-1 { animation-delay: 0.1s; }
+    .d-2 { animation-delay: 0.2s; }
+    .d-3 { animation-delay: 0.3s; }
+    .d-4 { animation-delay: 0.4s; }
+    .d-5 { animation-delay: 0.5s; }
+    .d-6 { animation-delay: 0.6s; }
+    .d-7 { animation-delay: 0.7s; }
+
+    /* Global Serif Font for All Headings */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    }
+  </style>
 </head>
 <body class="min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-24 no-scrollbar">
 
@@ -31,15 +68,29 @@
       <div class="hidden md:block border border-black rounded-full px-3 py-1 text-black whitespace-nowrap">
         <span>Est. 2026 &nbsp;&bull;&nbsp; Ann Arbor, MI</span>
       </div>
-      <nav class="flex md:hidden gap-3" aria-label="Mobile Navigation">
-         <a href="projects.html" class="hover:text-gray-500 transition-colors">Projects</a>
-         <a href="members.html" class="underline decoration-2 underline-offset-4">Menu</a>
-      </nav>
-      <a href="index.html#join" class="anchor-link hover:text-gray-600 transition-colors whitespace-nowrap">
+      <button id="mobile-menu-button" aria-label="Toggle Menu" class="block md:hidden text-black focus:outline-none py-1">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      <a href="index.html#join" class="hidden md:inline-block hover:text-gray-600 transition-colors whitespace-nowrap">
         Join Us
       </a>
     </div>
   </header>
+
+  <div id="mobile-menu" class="fixed inset-0 bg-[#fcfcfc] z-50 flex flex-col items-center justify-center gap-8 text-lg font-bold uppercase tracking-widest transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+    <button id="close-menu-button" aria-label="Close Menu" class="absolute top-4 right-4 text-black focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    <a href="index.html" class="mobile-nav-link hover:text-gray-500 transition-colors">Home</a>
+    <a href="projects.html" class="mobile-nav-link hover:text-gray-500 transition-colors">Projects</a>
+    <a href="members.html" class="mobile-nav-link hover:text-gray-500 transition-colors">Members</a>
+    <a href="sponsors.html" class="mobile-nav-link hover:text-gray-500 transition-colors">Sponsors</a>
+    <a href="index.html#join" class="mobile-nav-link mt-4 bg-black text-white px-8 py-4 rounded-full hover:bg-gray-800 transition-colors">Join Us</a>
+  </div>
 
   <main class="px-4 md:px-8 pt-32 md:pt-40 max-w-[1400px] mx-auto relative flex flex-col items-start">
     <h1 class="text-[10vw] md:text-[8vw] leading-[0.85] font-black tracking-tighter uppercase anim-element d-2 mb-16">
@@ -105,6 +156,38 @@
   </main>
 
   <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
-  <script src="scripts.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const menuButton = document.getElementById("mobile-menu-button");
+      const closeButton = document.getElementById("close-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+
+      if (menuButton && mobileMenu) {
+        menuButton.addEventListener("click", () => {
+          mobileMenu.classList.remove("translate-x-full");
+        });
+      }
+
+      if (closeButton && mobileMenu) {
+        closeButton.addEventListener("click", () => {
+          mobileMenu.classList.add("translate-x-full");
+        });
+      }
+
+      mobileLinks.forEach(link => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("translate-x-full");
+        });
+      });
+
+      const lenis = new Lenis({ duration: 0.9, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+      function raf(time) { 
+        lenis.raf(time); 
+        requestAnimationFrame(raf); 
+      }
+      requestAnimationFrame(raf);
+    });
+  </script>
 </body>
 </html>
