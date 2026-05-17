@@ -160,9 +160,12 @@
   <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      // Initialize Smooth Scrolling (Lenis) ONLY
       const lenis = new Lenis({ duration: 0.7, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
       function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
       requestAnimationFrame(raf);
+      
+      // Smooth scroll for anchor links
       document.querySelectorAll('.anchor-link').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
@@ -170,15 +173,6 @@
           if (target) { lenis.scrollTo(target); }
         });
       });
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { root: null, rootMargin: '0px', threshold: 0.15 });
-      document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
     });
   </script>
 </body>
