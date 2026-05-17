@@ -1,0 +1,36 @@
+/* Smooth Scrolling via Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* Scrollbar Hiding */
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Cinematic On-Load Animations */
+@keyframes blurFadeIn {
+  0% { opacity: 0; filter: blur(12px); transform: translateY(30px) scale(0.98); }
+  100% { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
+}
+
+.anim-element {
+  opacity: 0; 
+  animation: blurFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity, filter;
+}
+
+/* Staggered Animation Delays */
+.d-1 { animation-delay: 0.1s; }
+.d-2 { animation-delay: 0.2s; }
+.d-3 { animation-delay: 0.3s; }
+.d-4 { animation-delay: 0.4s; }
+.d-5 { animation-delay: 0.5s; }
+.d-6 { animation-delay: 0.6s; }
+.d-7 { animation-delay: 0.7s; }
+
+/* Global Serif Font for All Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
