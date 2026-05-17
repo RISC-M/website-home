@@ -31,7 +31,6 @@ html.lenis, html.lenis body { height: auto; }
 .d-7 { animation-delay: 0.7s; }
 
 /* Global Serif Font for All Headings */
-/* Global Serif Font for All Headings */
 h1, h2, h3, h4, h5, h6 {
   font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
