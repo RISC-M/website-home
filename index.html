@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- SEO Optimization -->
   <title>RISC-M | UMICH Computer Architecture & Silicon Design Team</title>
   <meta name="description" content="RISC-M is the University of Michigan's premier student-led team focused on computer hardware, silicon design, and advanced processor architecture.">
   <link rel="canonical" href="https://yourwebsite.com/">
@@ -15,65 +14,79 @@
   <script src="https://cdn.tailwindcss.com"></script>
   
   <style>
+    /* Smooth Scrolling via Lenis */
     html.lenis, html.lenis body { height: auto; }
     .lenis.lenis-smooth { scroll-behavior: auto !important; }
     .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
     .lenis.lenis-stopped { overflow: hidden; }
     .lenis.lenis-smooth iframe { pointer-events: none; }
+    
+    /* Scrollbar Hiding */
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     .no-scrollbar::-webkit-scrollbar { display: none; }
-    @keyframes textReveal { 0% { transform: translateY(40px); opacity: 0; filter: blur(8px); } 100% { transform: translateY(0); opacity: 1; filter: blur(0); } }
-    @keyframes badgeReveal { 0% { transform: scale(0.5) rotate(-45deg); opacity: 0; } 100% { transform: scale(1) rotate(0deg); opacity: 1; } }
-    .anim-text { animation: textReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
-    .anim-badge { animation: badgeReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
-    .delay-100 { animation-delay: 100ms; } .delay-200 { animation-delay: 200ms; } .delay-300 { animation-delay: 300ms; } .delay-400 { animation-delay: 400ms; }
-    .reveal-up { opacity: 0; transform: translateY(60px); transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity; }
-    .reveal-up.active { opacity: 1; transform: translateY(0); }
-    .trans-delay-100 { transition-delay: 100ms; } .trans-delay-200 { transition-delay: 200ms; }
+    
+    /* Cinematic On-Load Animations */
+    @keyframes blurFadeIn {
+      0% { opacity: 0; filter: blur(12px); transform: translateY(30px) scale(0.98); }
+      100% { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
+    }
+    
+    .anim-element {
+      opacity: 0; /* Hidden before load */
+      animation: blurFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      will-change: transform, opacity, filter;
+    }
+
+    /* Staggered Animation Delays */
+    .d-1 { animation-delay: 0.1s; }
+    .d-2 { animation-delay: 0.2s; }
+    .d-3 { animation-delay: 0.3s; }
+    .d-4 { animation-delay: 0.4s; }
+    .d-5 { animation-delay: 0.5s; }
+    .d-6 { animation-delay: 0.6s; }
+    .d-7 { animation-delay: 0.7s; }
   </style>
 </head>
 <body class="min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-24 no-scrollbar">
 
-  <!-- Top Navigation Bar -->
-  <!-- Top Navigation Bar -->
-  <header class="flex justify-between items-center px-4 py-2 border-b border-black text-xs font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc] z-40">
+  <header class="flex justify-between md:grid md:grid-cols-3 items-center px-4 md:px-8 py-4 border-b border-black text-[11px] md:text-xs font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc] z-50 anim-element d-1">
     
-    <!-- Left: Logo -->
-    <div class="flex items-center gap-2">
-      <div class="w-2 h-2 bg-black rounded-full animate-pulse"></div>
-      <a href="index.html" aria-label="Home">Michigan Comp. Arch.</a>
+    <div class="flex items-center gap-4 lg:gap-8">
+      <div class="flex items-center gap-2">
+        <div class="w-2 h-2 bg-black rounded-full animate-pulse"></div>
+        <a href="index.html" aria-label="Home" class="whitespace-nowrap hover:opacity-70 transition-opacity">RISC-M</a>
+      </div>
+      <nav class="hidden md:flex gap-4 lg:gap-6 border-l border-black pl-4 lg:pl-6" aria-label="Main Navigation">
+        <a href="projects.html" class="hover:text-gray-500 transition-colors">Projects</a>
+        <a href="members.html" class="hover:text-gray-500 transition-colors">Members</a>
+        <a href="sponsors.html" class="hover:text-gray-500 transition-colors">Sponsors</a>
+      </nav>
     </div>
 
-    <!-- Middle: Navigation -->
-    <nav class="hidden md:flex gap-8 border border-black rounded-full px-6 py-1 bg-[#fcfcfc]" aria-label="Main Navigation">
-      <a href="projects.html" class="hover:text-gray-500 transition-colors">Projects</a>
-      <a href="members.html" class="hover:text-gray-500 transition-colors">Members</a>
-      <a href="sponsors.html" class="hover:text-gray-500 transition-colors">Sponsors</a>
-    </nav>
+    <div class="hidden md:flex justify-center text-black text-center whitespace-nowrap">
+      <span>Est. 2026 &nbsp;&bull;&nbsp; Ann Arbor, MI</span>
+    </div>
 
-    <!-- Right: Location & CTA -->
-    <div class="flex items-center gap-6 text-right">
-      <div class="hidden lg:flex gap-4 opacity-50">
-        <span>Est. 2026</span>
-        <span>Ann Arbor, MI</span>
-      </div>
-      <a href="index.html#join" class="anchor-link underline decoration-1 underline-offset-2 hover:text-gray-600 transition-colors">
+    <div class="flex justify-end items-center gap-4">
+      <nav class="flex md:hidden gap-3" aria-label="Mobile Navigation">
+         <a href="projects.html" class="hover:text-gray-500 transition-colors">Projects</a>
+         <a href="members.html" class="hover:text-gray-500 transition-colors">Menu</a>
+      </nav>
+      <a href="index.html#join" class="anchor-link underline decoration-2 underline-offset-4 hover:text-gray-600 transition-colors whitespace-nowrap">
         Join Us
       </a>
     </div>
-
   </header>
 
-  <main class="px-4 md:px-8 pt-16 md:pt-24 max-w-[1400px] mx-auto relative flex flex-col items-start">
+  <main class="px-4 md:px-8 pt-32 md:pt-40 max-w-[1400px] mx-auto relative flex flex-col items-start">
     
     <section class="w-full text-left flex flex-col">
-      <div class="flex flex-row items-center justify-between md:justify-start md:gap-12 w-full">
-        <!-- H1: Primary keyword focus -->
-        <h1 class="text-[14vw] lg:text-[12vw] leading-[0.85] font-black tracking-tighter uppercase anim-text delay-100">
+      <div class="flex flex-row items-center justify-between md:justify-start md:gap-12 w-full anim-element d-2">
+        <h1 class="text-[14vw] lg:text-[12vw] leading-[0.85] font-black tracking-tighter uppercase">
           RISC-M
         </h1>
         
-        <div aria-hidden="true" class="relative flex items-center justify-center rounded-full bg-[#f4f4f0] mix-blend-multiply w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 shrink-0 mb-2 md:mb-6 anim-badge delay-400">
+        <div aria-hidden="true" class="relative flex items-center justify-center rounded-full bg-[#f4f4f0] mix-blend-multiply w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 shrink-0 mb-2 md:mb-6">
           <svg viewBox="0 0 100 100" class="w-full h-full animate-[spin_12s_linear_infinite]">
             <path id="circlePath" d="M 50, 50 m -32, 0 a 32,32 0 1,1 64,0 a 32,32 0 1,1 -64,0" fill="none"/>
             <text font-size="10" font-weight="bold" class="tracking-widest uppercase fill-black">
@@ -85,36 +98,35 @@
           </div>
         </div>
       </div>
-      <!-- H2: Subheading -->
-      <h2 class="text-[11vw] lg:text-[9vw] leading-[0.85] font-black tracking-tighter uppercase text-[#404040] w-full mt-2 md:mt-4 anim-text delay-200">
-        A UMICH COMPUTER ARCHITECTURE TEAM
+      <h2 class="text-[10vw] lg:text-[8.5vw] leading-[0.85] font-black tracking-tighter uppercase text-[#404040] w-full mt-2 md:mt-4 anim-element d-3">
+        The University of Michigan<br>Computer Architecture Team
       </h2>
     </section>
 
-    <section class="mt-16 md:mt-24 max-w-3xl text-left reveal-up">
+    <section class="mt-16 md:mt-24 max-w-4xl text-left anim-element d-4">
       <h3 class="font-serif text-4xl md:text-5xl lg:text-6xl italic leading-[1.1] tracking-tight">
-        a student-led community focused on
+        A student-led community dedicated to
       </h3>
       <h3 class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tighter mt-2">
-        Computer Hardware && Silicon Design.
+        Computer Hardware & Silicon Design.
       </h3>
-      <p class="mt-8 text-lg md:text-xl font-medium leading-relaxed max-w-2xl">
-        Michigan’s first dedicated organization for hardware systems. We bridge the gap between classroom theory and industrial application, fostering a community focused on advanced processor design and hardware-software co-design.
+      <p class="mt-8 text-lg md:text-xl font-medium leading-relaxed max-w-3xl">
+        Michigan’s premier organization for hardware systems. We bridge the gap between classroom theory and industrial applications, fostering a collaborative environment focused on advanced processor design and hardware-software co-design.
       </p>
     </section>
 
-    <section class="mt-20 md:mt-32 w-full border-t border-black pt-12 text-left">
-      <h3 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-12 reveal-up">Membership Requirements</h3>
+    <section class="mt-20 md:mt-32 w-full border-t border-black pt-12 text-left anim-element d-5">
+      <h3 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-12">Membership Requirements</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
-        <div class="reveal-up">
+        <div>
           <h4 class="text-xl font-bold uppercase tracking-tight mb-4 flex items-center gap-2">
             <span class="w-2 h-2 bg-black rounded-full"></span>Who Should Join?
           </h4>
           <p class="text-base md:text-lg font-medium leading-relaxed">
-            We welcome anyone passionate about computer architecture who has completed or is currently enrolled in <strong>EECS 470 or 472+</strong>. Whether you want to gain practical experience with Verilog or engage in research, you will find a community here.
+            We welcome anyone passionate about computer architecture who has completed or is currently enrolled in <strong>EECS 470 or 472+</strong>. Whether your goal is to gain practical experience with Verilog or engage in academic research, you will find a supportive community here.
           </p>
         </div>
-        <div class="reveal-up trans-delay-200">
+        <div>
           <h4 class="text-xl font-bold uppercase tracking-tight mb-4 flex items-center gap-2">
             <span class="w-2 h-2 bg-black rounded-full"></span>Our Initiatives
           </h4>
@@ -128,8 +140,7 @@
       </div>
     </section>
 
-    <!-- Call to action points to projects page instead of displaying them all here -->
-    <section class="mt-20 md:mt-32 w-full border-t border-black pt-12 pb-8 flex flex-col md:flex-row justify-between items-center gap-8 reveal-up">
+    <section class="mt-20 md:mt-32 w-full border-t border-black pt-12 pb-8 flex flex-col md:flex-row justify-between items-center gap-8 anim-element d-6">
        <div>
          <h3 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">See What We're Building</h3>
          <p class="text-base font-medium opacity-80">FPGA perception pipelines, custom processors, and more.</p>
@@ -139,17 +150,14 @@
        </a>
     </section>
 
-    <footer id="join" class="mt-12 w-full border-t border-black pt-12 pb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 text-left">
-      <div class="max-w-xl reveal-up">
+    <footer id="join" class="mt-12 w-full border-t border-black pt-12 pb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 text-left anim-element d-7">
+      <div class="max-w-xl">
         <h3 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4">Interested in joining?</h3>
-        <p class="text-lg font-medium mb-6">Fill in this form to be put on our mailing list and hear about our upcoming projects and events.</p>
-        <!-- <div class="text-sm font-bold space-y-2 uppercase tracking-widest">
-          <p>Advisor: Prof. Krisztián Flautner</p>
-        </div> -->
+        <p class="text-lg font-medium mb-6">Fill out this form to join our mailing list and receive updates on upcoming projects and events.</p>
       </div>
-      <div class="flex flex-col items-start md:items-end gap-4 reveal-up trans-delay-200">
+      <div class="flex flex-col items-start md:items-end gap-4">
         <div class="flex flex-wrap gap-4 text-sm font-bold tracking-widest uppercase">
-           <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer" class="border-2 border-black px-6 py-3 rounded-full hover:bg-black hover:text-white transition-colors flex items-center gap-2">
+           <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer" class="border-2 border-black px-8 py-4 rounded-full hover:bg-black hover:text-white transition-colors flex items-center gap-2">
              Google Form
            </a>
         </div>
@@ -160,8 +168,8 @@
   <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Initialize Smooth Scrolling (Lenis) ONLY
-      const lenis = new Lenis({ duration: 0.7, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+      // Initialize Smooth Scrolling (Lenis)
+      const lenis = new Lenis({ duration: 0.9, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
       function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
       requestAnimationFrame(raf);
       
