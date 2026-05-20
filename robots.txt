@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://risc-m.github.io/website-home/sitemap.xml
