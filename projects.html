@@ -1,3 +1,6 @@
+Here is the updated `projects.html` code. I've replaced the circular spinner with a responsive skeleton loading animation that mimics the shape and layout of the actual project cards, making the loading experience feel much smoother and more modern.
+
+```html
 <!DOCTYPE html>
 <html lang="en" class="no-scrollbar">
 <head>
@@ -5,31 +8,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Projects & Research | RISC-M Computer Architecture</title>
-  <meta name="description" content="Explore RISC-M's active hardware projects, including FPGA perception accelerators, custom processor design, and hardware-software co-design at UMICH.">
+  <meta name="description" content="Explore RISC-M's active hardware projects directly from our GitHub repositories.">
   <link rel="canonical" href="https://risc-m.github.io/website-home/projects.html">
   
   <link rel="icon" href="logo.png" type="image/png">
 
   <meta property="og:title" content="Projects & Research | RISC-M Computer Architecture">
-  <meta property="og:description" content="Explore RISC-M's active hardware projects, including FPGA perception accelerators, custom processor design, and hardware-software co-design at UMICH.">
+  <meta property="og:description" content="Explore RISC-M's active hardware projects directly from our GitHub repositories.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://risc-m.github.io/website-home/projects.html">
   <meta property="og:image" content="https://risc-m.github.io/website-home/logo.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Projects & Research | RISC-M Computer Architecture">
-  <meta name="twitter:description" content="Explore RISC-M's active hardware projects, including FPGA perception accelerators, custom processor design, and hardware-software co-design at UMICH.">
+  <meta name="twitter:description" content="Explore RISC-M's active hardware projects directly from our GitHub repositories.">
   <meta name="twitter:image" content="https://risc-m.github.io/website-home/logo.png">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* ... (Keep your existing styles here) ... */
+    /* Smooth Scrolling via Lenis */
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+    .lenis.lenis-smooth iframe { pointer-events: none; }
+
+    /* Scrollbar Hiding */
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+
+    /* Cinematic On-Load Animations */
+    @keyframes blurFadeIn {
+      0% { opacity: 0; filter: blur(12px); transform: translateY(30px) scale(0.98); }
+      100% { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
+    }
+
+    .anim-element {
+      opacity: 0; 
+      animation: blurFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      will-change: transform, opacity, filter;
+    }
+
+    /* Staggered Animation Delays */
+    .d-1 { animation-delay: 0.1s; }
+    .d-2 { animation-delay: 0.2s; }
+    .d-3 { animation-delay: 0.3s; }
+    .d-4 { animation-delay: 0.4s; }
+    .d-5 { animation-delay: 0.5s; }
   </style>
 </head>
 <body class="min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-24 no-scrollbar">
 
   <header class="flex justify-between items-center px-4 md:px-8 py-4 border-b border-black text-[11px] md:text-xs font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc] z-50">
-    
     <div class="flex items-center gap-4 lg:gap-8">
       <div class="flex items-center gap-2">
         <div class="w-2 h-2 bg-black rounded-full animate-pulse"></div>
@@ -70,58 +100,68 @@
     <a href="index.html#join" class="mobile-nav-link mt-4 bg-black text-white px-8 py-4 rounded-full hover:bg-gray-800 transition-colors">Join Us</a>
   </div>
 
-  <main class="px-4 md:px-8 pt-32 md:pt-40 max-w-[1400px] mx-auto relative flex flex-col items-start">
+  <main class="px-4 md:px-8 pt-32 md:pt-40 max-w-[1400px] mx-auto relative flex flex-col items-center text-center">
     <h1 class="text-[10vw] md:text-[8vw] leading-[0.85] font-black tracking-tighter uppercase anim-element d-2 mb-16">
       Research & Projects
     </h1>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
-      <article class="border-2 border-black p-8 md:p-12 rounded-[2rem] anim-element d-3">
-        <div class="flex justify-between items-start mb-6 border-b border-black pb-4">
-          <div>
-            <span class="text-xs font-bold uppercase tracking-widest opacity-60">UMARV Collaboration</span>
-            <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter mt-2 leading-none">Perception Preprocessor</h2>
+    <div id="projects-container" class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full anim-element d-3 justify-items-center">
+      
+      <div class="border-2 border-gray-200 p-8 md:p-12 rounded-[2rem] w-full max-w-2xl flex flex-col justify-between animate-pulse">
+        <div>
+          <div class="flex flex-col items-center mb-6 border-b border-gray-200 pb-6 gap-4">
+            <div class="h-10 bg-gray-200 rounded-lg w-3/4 mb-2"></div>
+            <div class="flex flex-col items-center gap-2">
+              <div class="h-5 bg-gray-200 rounded-full w-24"></div>
+              <div class="h-3 bg-gray-200 rounded w-32"></div>
+            </div>
           </div>
-          <div class="text-right shrink-0">
-            <div class="px-4 py-1 border border-black bg-black text-white rounded-full text-[10px] font-bold uppercase tracking-widest mb-2 inline-block">Active</div>
-            <span class="text-[10px] font-bold uppercase tracking-tight opacity-40 block">May 2026 — Present</span>
-          </div>
-        </div>
-        <div class="space-y-4">
-          <p class="text-base md:text-lg font-medium leading-relaxed">
-            Accelerating UMARV LiDAR perception on an FPGA fabric to minimize latency for autonomous navigation. 
-          </p>
-          <p class="text-sm md:text-base font-medium leading-relaxed opacity-80">
-            This dedicated signal processor implements coordinate transformations, ground plane filtering, and occupancy grid mapping in Verilog to bridge the gap between raw sensor outputs and the embedded software stack.
-          </p>
-          <div class="flex flex-wrap gap-2 pt-4">
-            <span class="px-3 py-1 bg-gray-200 rounded-full text-xs font-bold uppercase">FPGA</span>
-            <span class="px-3 py-1 bg-gray-200 rounded-full text-xs font-bold uppercase">Verilog</span>
-            <span class="px-3 py-1 bg-gray-200 rounded-full text-xs font-bold uppercase">DSP</span>
+          <div class="space-y-4 w-full flex flex-col items-center">
+            <div class="h-4 bg-gray-200 rounded w-full"></div>
+            <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+            <div class="h-4 bg-gray-200 rounded w-4/6"></div>
+            <div class="flex flex-wrap justify-center gap-2 pt-4 w-full">
+              <div class="h-6 bg-gray-200 rounded-full w-16"></div>
+              <div class="h-6 bg-gray-200 rounded-full w-20"></div>
+              <div class="h-6 bg-gray-200 rounded-full w-14"></div>
+            </div>
           </div>
         </div>
-      </article>
+        <div class="mt-8 pt-6 border-t border-gray-200 border-dashed flex justify-center">
+           <div class="h-4 bg-gray-200 rounded w-32"></div>
+        </div>
+      </div>
 
-      <!-- <article class="border-2 border-black p-8 md:p-12 rounded-[2rem] border-dashed opacity-70 anim-element d-4">
-        <div class="flex justify-between items-start mb-6 border-b border-black pb-4 border-dashed">
-          <div>
-            <span class="text-xs font-bold uppercase tracking-widest opacity-60">Core Architecture</span>
-            <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter mt-2 leading-none">Next-Gen LC2k Processor</h2>
+      <div class="border-2 border-gray-200 p-8 md:p-12 rounded-[2rem] w-full max-w-2xl flex flex-col justify-between animate-pulse">
+        <div>
+          <div class="flex flex-col items-center mb-6 border-b border-gray-200 pb-6 gap-4">
+            <div class="h-10 bg-gray-200 rounded-lg w-2/3 mb-2"></div>
+            <div class="flex flex-col items-center gap-2">
+              <div class="h-5 bg-gray-200 rounded-full w-24"></div>
+              <div class="h-3 bg-gray-200 rounded w-32"></div>
+            </div>
           </div>
-          <div class="text-right shrink-0">
-            <div class="px-4 py-1 border border-black rounded-full text-[10px] font-bold uppercase tracking-widest mb-2 inline-block">Pending Proposal</div>
+          <div class="space-y-4 w-full flex flex-col items-center">
+            <div class="h-4 bg-gray-200 rounded w-full"></div>
+            <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+            <div class="flex flex-wrap justify-center gap-2 pt-4 w-full">
+              <div class="h-6 bg-gray-200 rounded-full w-24"></div>
+              <div class="h-6 bg-gray-200 rounded-full w-16"></div>
+            </div>
           </div>
         </div>
-        <p class="text-base md:text-lg font-medium leading-relaxed italic">
-          New project documentation is currently in progress. Check back soon for updates on our next hardware initiative, which will focus on physical design.
-        </p>
-      </article> -->
+        <div class="mt-8 pt-6 border-t border-gray-200 border-dashed flex justify-center">
+           <div class="h-4 bg-gray-200 rounded w-32"></div>
+        </div>
+      </div>
+
     </div>
   </main>
 
   <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      // Mobile Menu Logic
       const menuButton = document.getElementById("mobile-menu-button");
       const closeButton = document.getElementById("close-menu-button");
       const mobileMenu = document.getElementById("mobile-menu");
@@ -145,6 +185,96 @@
         });
       });
 
+      // Fetch GitHub Projects Logic
+      async function fetchGitHubProjects() {
+        const container = document.getElementById('projects-container');
+        
+        try {
+          // Fetch repositories sorted by most recently updated
+          const response = await fetch('https://api.github.com/orgs/RISC-M/repos?sort=updated&direction=desc');
+          
+          if (!response.ok) {
+            throw new Error(`GitHub API error: ${response.status}`);
+          }
+          
+          const repos = await response.json();
+          
+          // Filter out specific repos
+          const filteredRepos = repos.filter(repo => repo.name !== 'website-home');
+          
+          container.innerHTML = ''; // Clear loading skeleton
+
+          if (filteredRepos.length === 0) {
+            container.innerHTML = '<p class="col-span-1 lg:col-span-2 text-lg font-bold uppercase opacity-60 mt-8">No public project repositories found.</p>';
+            return;
+          }
+
+          filteredRepos.forEach(repo => {
+            const date = new Date(repo.updated_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+            
+            // Build Tags HTML (Language + Topics)
+            let tagsHtml = '';
+            if (repo.language) {
+              tagsHtml += `<span class="px-3 py-1 bg-gray-200 rounded-full text-xs font-bold uppercase">${repo.language}</span>`;
+            }
+            if (repo.topics && repo.topics.length > 0) {
+              repo.topics.forEach(topic => {
+                tagsHtml += `<span class="px-3 py-1 bg-gray-200 rounded-full text-xs font-bold uppercase">${topic}</span>`;
+              });
+            }
+
+            // Create Card Element
+            const article = document.createElement('article');
+            article.className = 'border-2 border-black p-8 md:p-12 rounded-[2rem] w-full max-w-2xl flex flex-col justify-between';
+            article.innerHTML = `
+              <div>
+                <div class="flex flex-col items-center mb-6 border-b border-black pb-6 gap-4">
+                  <div class="text-center w-full">
+                    <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="hover:opacity-70 transition-opacity">
+                      <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter mt-2 leading-none">${repo.name.replace(/-/g, ' ')}</h2>
+                    </a>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <div class="px-4 py-1 border border-black bg-black text-white rounded-full text-[10px] font-bold uppercase tracking-widest mb-2 inline-block">Active Repo</div>
+                    <span class="text-[10px] font-bold uppercase tracking-tight opacity-40 block">Updated: ${date}</span>
+                  </div>
+                </div>
+                <div class="space-y-4">
+                  <p class="text-base md:text-lg font-medium leading-relaxed">
+                    ${repo.description || 'No description provided for this repository.'}
+                  </p>
+                  <div class="flex flex-wrap justify-center gap-2 pt-4">
+                    ${tagsHtml}
+                  </div>
+                </div>
+              </div>
+              <div class="mt-8 pt-6 border-t border-black border-dashed flex justify-center">
+                <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="text-sm font-bold uppercase tracking-widest hover:underline flex items-center gap-2">
+                  View on GitHub 
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                  </svg>
+                </a>
+              </div>
+            `;
+            container.appendChild(article);
+          });
+
+        } catch (error) {
+          console.error(error);
+          container.innerHTML = `
+            <div class="col-span-1 lg:col-span-2 py-12 flex flex-col items-center text-center">
+              <p class="text-lg font-bold uppercase tracking-widest text-red-600 mb-4">Error loading projects.</p>
+              <p class="text-sm font-medium opacity-80">Please check back later or visit our <a href="https://github.com/RISC-M" target="_blank" class="underline">GitHub profile directly</a>.</p>
+            </div>
+          `;
+        }
+      }
+
+      // Execute fetch
+      fetchGitHubProjects();
+
+      // Smooth Scrolling init
       const lenis = new Lenis({ duration: 0.9, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
       function raf(time) { 
         lenis.raf(time); 
@@ -155,3 +285,5 @@
   </script>
 </body>
 </html>
+
+```

@@ -23,13 +23,40 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* ... (Keep your existing styles here) ... */
+    /* Smooth Scrolling via Lenis */
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+    .lenis.lenis-smooth iframe { pointer-events: none; }
+
+    /* Scrollbar Hiding */
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+
+    /* Cinematic On-Load Animations */
+    @keyframes blurFadeIn {
+      0% { opacity: 0; filter: blur(12px); transform: translateY(30px) scale(0.98); }
+      100% { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
+    }
+
+    .anim-element {
+      opacity: 0; 
+      animation: blurFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      will-change: transform, opacity, filter;
+    }
+
+    /* Staggered Animation Delays */
+    .d-1 { animation-delay: 0.1s; }
+    .d-2 { animation-delay: 0.2s; }
+    .d-3 { animation-delay: 0.3s; }
+    .d-4 { animation-delay: 0.4s; }
+    .d-5 { animation-delay: 0.5s; }
   </style>
 </head>
 <body class="min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-24 no-scrollbar">
 
   <header class="flex justify-between items-center px-4 md:px-8 py-4 border-b border-black text-[11px] md:text-xs font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc] z-50">
-    
     <div class="flex items-center gap-4 lg:gap-8">
       <div class="flex items-center gap-2">
         <div class="w-2 h-2 bg-black rounded-full animate-pulse"></div>
@@ -70,50 +97,38 @@
     <a href="index.html#join" class="mobile-nav-link mt-4 bg-black text-white px-8 py-4 rounded-full hover:bg-gray-800 transition-colors">Join Us</a>
   </div>
 
-  <main class="px-4 md:px-8 pt-32 md:pt-40 max-w-[1400px] mx-auto relative flex flex-col items-start">
+  <main class="px-4 md:px-8 pt-32 md:pt-40 max-w-[1400px] mx-auto relative flex flex-col items-center text-center">
     <h1 class="text-[10vw] md:text-[8vw] leading-[0.85] font-black tracking-tighter uppercase anim-element d-2 mb-8">
       Partner With Us
     </h1>
 
     <section class="max-w-4xl mb-24 anim-element d-3 text-lg md:text-xl font-medium leading-relaxed">
       <p class="mb-6">
-        As the University of Michigan's first dedicated undergraduate and graduate organization for students exploring computer architecture, RISC-M represents the top silicon talent at the university. 
+        As Michigan's first student organization dedicated to computer architecture, we are building a collaborative community that explores hardware design beyond the classroom.
       </p>
       <p>
-        Partnering with us provides your company with direct access to highly motivated students excelling in Computer Architecture, SystemVerilog and FPGA Programming. 
+        By partnering with RISC-M, your company gains direct access to a dedicated group of students who are actively building hands-on projects, sharing engineering knowledge, and preparing for careers in the silicon industry. Your sponsorship directly supports our mission to help our fellow students succeed through project funding and industry networking.
       </p>
     </section>
 
-    <section class="w-full anim-element d-4">
-      <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-12 border-b-2 border-black pb-4">Why Sponsor?</h2>
+    <section class="w-full anim-element d-4 flex flex-col items-center">
+      <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-12 border-b-2 border-black pb-4 inline-block">Why Sponsor?</h2>
       
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="p-8 border-2 border-black rounded-3xl">
-          <h3 class="text-xl font-bold uppercase tracking-tight mb-4">Talent Pipeline</h3>
-          <p class="text-sm font-medium opacity-80">Host exclusive recruiting events, resume drops, and tech talks with students specifically interested in hardware engineering.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div class="p-8 border-2 border-black rounded-3xl flex flex-col items-center">
+          <h3 class="text-xl font-bold uppercase tracking-tight mb-4">Community Connections</h3>
+          <p class="text-sm font-medium opacity-80">Host exclusive tech talks, debugging workshops, and recruiting events with students deeply passionate about hardware and silicon design.</p>
         </div>
-        <div class="p-8 border-2 border-black rounded-3xl">
+        <div class="p-8 border-2 border-black rounded-3xl flex flex-col items-center">
           <h3 class="text-xl font-bold uppercase tracking-tight mb-4">Project Funding</h3>
-          <p class="text-sm font-medium opacity-80">Support student-led tapeouts, FPGA acquisitions, and research papers, directly associating your brand with cutting-edge academic work.</p>
+          <p class="text-sm font-medium opacity-80">Support hands-on learning by funding FPGA acquisitions, student-led designs, and our overarching mission to provide practical engineering experience.</p>
         </div>
-        <div class="p-8 border-2 border-black rounded-3xl">
+        <div class="p-8 border-2 border-black rounded-3xl flex flex-col items-center">
           <h3 class="text-xl font-bold uppercase tracking-tight mb-4">Brand Visibility</h3>
-          <p class="text-sm font-medium opacity-80">Feature your company logo prominently on our website, project repositories, and competition apparel worn by our members.</p>
+          <p class="text-sm font-medium opacity-80">Feature your company logo prominently on our website, project repositories, and our community apparel.</p>
         </div>
       </div>
     </section>
-
-    <!-- <section class="mt-24 w-full text-center p-12 bg-black text-white rounded-[3rem] anim-element d-5">
-      <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4">Get the Sponsorship Packet</h2>
-      <p class="text-lg font-medium mb-8 max-w-2xl mx-auto opacity-80">Contact our executive board to learn more about our sponsorship tiers and how we can best collaborate.</p>
-      <a href="mailto:riscm-exec@umich.edu?subject=RISC-M%20Sponsorship%20Inquiry" class="inline-block bg-white text-black px-8 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors">
-        Email Executive Board
-      </a>
-      <p class="text-sm font-medium mt-6 opacity-60">
-        Button not working? Email us directly at: <br>
-        <span class="font-bold select-all">riscm-exec@umich.edu</span>
-      </p>
-    </section> -->
 
     <section class="mt-24 w-full text-center p-12 border-2 border-black rounded-[3rem] anim-element d-5">
       <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4">Get in Touch</h2>
@@ -125,10 +140,7 @@
         <span class="font-bold select-all">riscm-exec@umich.edu</span>
       </p>
     </section>
-
   </main>
-
-
 
   <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
   <script>

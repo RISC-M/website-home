@@ -1,35 +1,113 @@
 <!DOCTYPE html>
 <html lang="en" class="no-scrollbar">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <title>Our Team | RISC-M Computer Architecture</title>
-  <meta name="description" content="Meet the students and faculty advising the RISC-M Computer Architecture team at the University of Michigan.">
+  <meta name="description"
+    content="Meet the students and faculty advising the RISC-M Computer Architecture team at the University of Michigan.">
   <link rel="canonical" href="https://risc-m.github.io/website-home/members.html">
 
   <link rel="icon" href="logo.png" type="image/png">
 
   <meta property="og:title" content="Our Team | RISC-M Computer Architecture">
-  <meta property="og:description" content="Meet the students and faculty advising the RISC-M Computer Architecture team at the University of Michigan.">
+  <meta property="og:description"
+    content="Meet the students and faculty advising the RISC-M Computer Architecture team at the University of Michigan.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://risc-m.github.io/website-home/members.html">
   <meta property="og:image" content="https://risc-m.github.io/website-home/logo.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Our Team | RISC-M Computer Architecture">
-  <meta name="twitter:description" content="Meet the students and faculty advising the RISC-M Computer Architecture team at the University of Michigan.">
+  <meta name="twitter:description"
+    content="Meet the students and faculty advising the RISC-M Computer Architecture team at the University of Michigan.">
   <meta name="twitter:image" content="https://risc-m.github.io/website-home/logo.png">
-  
+
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* ... (Keep your existing styles here) ... */
+    /* Smooth Scrolling via Lenis */
+    html.lenis,
+    html.lenis body {
+      height: auto;
+    }
+
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    }
+
+    .lenis.lenis-smooth iframe {
+      pointer-events: none;
+    }
+
+    /* Scrollbar Hiding */
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Cinematic On-Load Animations */
+    @keyframes blurFadeIn {
+      0% {
+        opacity: 0;
+        filter: blur(12px);
+        transform: translateY(30px) scale(0.98);
+      }
+
+      100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .anim-element {
+      opacity: 0;
+      animation: blurFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      will-change: transform, opacity, filter;
+    }
+
+    /* Staggered Animation Delays */
+    .d-1 {
+      animation-delay: 0.1s;
+    }
+
+    .d-2 {
+      animation-delay: 0.2s;
+    }
+
+    .d-3 {
+      animation-delay: 0.3s;
+    }
+
+    .d-4 {
+      animation-delay: 0.4s;
+    }
+
+    .d-5 {
+      animation-delay: 0.5s;
+    }
   </style>
 </head>
-<body class="min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-24 no-scrollbar">
 
-  <header class="flex justify-between items-center px-4 md:px-8 py-4 border-b border-black text-[11px] md:text-xs font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc] z-50">
-    
+<body
+  class="min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-24 no-scrollbar">
+
+  <header
+    class="flex justify-between items-center px-4 md:px-8 py-4 border-b border-black text-[11px] md:text-xs font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc] z-50">
     <div class="flex items-center gap-4 lg:gap-8">
       <div class="flex items-center gap-2">
         <div class="w-2 h-2 bg-black rounded-full animate-pulse"></div>
@@ -46,7 +124,8 @@
       <div class="hidden md:block border border-black rounded-full px-3 py-1 text-black whitespace-nowrap">
         <span>Est. 2026 &nbsp;&bull;&nbsp; Ann Arbor, MI</span>
       </div>
-      <button id="mobile-menu-button" aria-label="Toggle Menu" class="block md:hidden text-black focus:outline-none py-1">
+      <button id="mobile-menu-button" aria-label="Toggle Menu"
+        class="block md:hidden text-black focus:outline-none py-1">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
@@ -57,7 +136,8 @@
     </div>
   </header>
 
-  <div id="mobile-menu" class="fixed inset-0 bg-[#fcfcfc] z-50 flex flex-col items-center justify-center gap-8 text-lg font-bold uppercase tracking-widest transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+  <div id="mobile-menu"
+    class="fixed inset-0 bg-[#fcfcfc] z-50 flex flex-col items-center justify-center gap-8 text-lg font-bold uppercase tracking-widest transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
     <button id="close-menu-button" aria-label="Close Menu" class="absolute top-4 right-4 text-black focus:outline-none">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -67,54 +147,62 @@
     <a href="projects.html" class="mobile-nav-link hover:text-gray-500 transition-colors">Projects</a>
     <a href="members.html" class="mobile-nav-link hover:text-gray-500 transition-colors">Members</a>
     <a href="sponsors.html" class="mobile-nav-link hover:text-gray-500 transition-colors">Sponsors</a>
-    <a href="index.html#join" class="mobile-nav-link mt-4 bg-black text-white px-8 py-4 rounded-full hover:bg-gray-800 transition-colors">Join Us</a>
+    <a href="index.html#join"
+      class="mobile-nav-link mt-4 bg-black text-white px-8 py-4 rounded-full hover:bg-gray-800 transition-colors">Join
+      Us</a>
   </div>
 
-  <main class="px-4 md:px-8 pt-32 md:pt-40 max-w-[1400px] mx-auto relative flex flex-col items-start">
+  <main class="px-4 md:px-8 pt-32 md:pt-40 max-w-[1400px] mx-auto relative flex flex-col items-center text-center">
     <h1 class="text-[10vw] md:text-[8vw] leading-[0.85] font-black tracking-tighter uppercase anim-element d-2 mb-16">
       The Team
     </h1>
 
-    <section class="w-full mb-24 anim-element d-3">
-      <h2 class="text-2xl font-black uppercase tracking-tight mb-8 border-b-2 border-black pb-2">Faculty Advisor</h2>
-      <div class="text-xl font-medium">
-        <p class="font-bold">Prof. Krisztián Flautner</p>
-      </div>
-    </section>
+    <section class="w-full mb-24 anim-element d-3 flex flex-col items-center">
+      <div class="flex flex-wrap justify-center gap-y-12 gap-x-8 w-full">
 
-    <section class="w-full anim-element d-4">
-      <h2 class="text-2xl font-black uppercase tracking-tight mb-8 border-b-2 border-black pb-2">Founding Board</h2>
-      
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-12 gap-x-8">
-        
-        <div>
+        <div class="flex flex-col items-center w-full sm:w-[45%] md:w-[30%]">
           <h3 class="text-xl font-bold uppercase tracking-tight">David Huang</h3>
-          <p class="text-sm font-bold uppercase tracking-widest opacity-60 mb-2">Executive Board</p>
+          <p class="text-sm font-bold uppercase tracking-widest opacity-60 mb-1">Executive Board</p>
+          <a href="mailto:david@umich.edu" class="text-sm font-medium hover:underline opacity-80">xxx@umich.edu</a>
         </div>
 
-        <div>
+        <div class="flex flex-col items-center w-full sm:w-[45%] md:w-[30%]">
           <h3 class="text-xl font-bold uppercase tracking-tight">Shashwat Jaguri</h3>
-          <p class="text-sm font-bold uppercase tracking-widest opacity-60 mb-2">Executive Board</p>
+          <p class="text-sm font-bold uppercase tracking-widest opacity-60 mb-1">Executive Board</p>
+          <a href="mailto:shashwat@umich.edu"
+            class="text-sm font-medium hover:underline opacity-80">xxx@umich.edu</a>
         </div>
 
-        <div>
+        <div class="flex flex-col items-center w-full sm:w-[45%] md:w-[30%]">
           <h3 class="text-xl font-bold uppercase tracking-tight">Bangyan Huang</h3>
-          <p class="text-sm font-bold uppercase tracking-widest opacity-60 mb-2">Executive Board</p>
+          <p class="text-sm font-bold uppercase tracking-widest opacity-60 mb-1">Executive Board</p>
+          <a href="mailto:bangyan@umich.edu"
+            class="text-sm font-medium hover:underline opacity-80">xxx@umich.edu</a>
         </div>
 
-        <div>
+        <div class="flex flex-col items-center w-full sm:w-[45%] md:w-[30%]">
           <h3 class="text-xl font-bold uppercase tracking-tight">Shreyas Narayanan</h3>
-          <p class="text-sm font-bold uppercase tracking-widest opacity-60 mb-2">Executive Board</p>
+          <p class="text-sm font-bold uppercase tracking-widest opacity-60 mb-1">Executive Board</p>
+          <a href="mailto:shreyas@umich.edu"
+            class="text-sm font-medium hover:underline opacity-80">xxx@umich.edu</a>
         </div>
 
-        <div>
+        <div class="flex flex-col items-center w-full sm:w-[45%] md:w-[30%]">
           <h3 class="text-xl font-bold uppercase tracking-tight">Aaron Xiong</h3>
-          <p class="text-sm font-bold uppercase tracking-widest opacity-60 mb-2">Executive Board</p>
+          <p class="text-sm font-bold uppercase tracking-widest opacity-60 mb-1">Executive Board</p>
+          <a href="mailto:aaron@umich.edu" class="text-sm font-medium hover:underline opacity-80">xxx@umich.edu</a>
         </div>
 
-        <div>
+        <div class="flex flex-col items-center w-full sm:w-[45%] md:w-[30%]">
           <h3 class="text-xl font-bold uppercase tracking-tight">Jathan Yao</h3>
-          <p class="text-sm font-bold uppercase tracking-widest opacity-60 mb-2">Executive Board</p>
+          <p class="text-sm font-bold uppercase tracking-widest opacity-60 mb-1">Executive Board</p>
+          <a href="mailto:jathan@umich.edu" class="text-sm font-medium hover:underline opacity-80">xxx@umich.edu</a>
+        </div>
+
+        <div class="flex flex-col items-center w-full sm:w-[45%] md:w-[30%]">
+          <h3 class="text-xl font-bold uppercase tracking-tight">Prof. Krisztián Flautner</h3>
+          <p class="text-sm font-bold uppercase tracking-widest opacity-60 mb-1">Faculty Advisor</p>
+          <a href="mailto:jathan@umich.edu" class="text-sm font-medium hover:underline opacity-80">xxx@umich.edu</a>
         </div>
 
       </div>
@@ -122,8 +210,10 @@
 
     <section class="mt-24 w-full text-center p-12 border-2 border-black rounded-[3rem] anim-element d-5">
       <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4">Get in Touch</h2>
-      <p class="text-lg font-medium mb-8 max-w-2xl mx-auto opacity-80">Have questions about joining, our projects, or hardware architecture? Reach out to the executive board directly.</p>
-      <a href="mailto:riscm-exec@umich.edu" class="inline-block bg-black text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-gray-800 transition-colors">
+      <p class="text-lg font-medium mb-8 max-w-2xl mx-auto opacity-80">Have questions about joining, our projects, or
+        hardware architecture? Reach out to the executive board directly.</p>
+      <a href="mailto:riscm-exec@umich.edu"
+        class="inline-block bg-black text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-gray-800 transition-colors">
         Email The Board
       </a>
       <p class="text-sm font-medium mt-6 opacity-60">
@@ -160,12 +250,13 @@
       });
 
       const lenis = new Lenis({ duration: 0.9, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-      function raf(time) { 
-        lenis.raf(time); 
-        requestAnimationFrame(raf); 
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
       }
       requestAnimationFrame(raf);
     });
   </script>
 </body>
+
 </html>

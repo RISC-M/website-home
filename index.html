@@ -21,22 +21,6 @@
   <meta name="twitter:description" content="A student-led community exploring computer architecture and hardware design beyond the classroom.">
   <meta name="twitter:image" content="https://risc-m.github.io/website-home/logo.png">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "name": "RISC-M",
-    "url": "https://risc-m.github.io/website-home/",
-    "logo": "https://risc-m.github.io/website-home/logo.png",
-    "description": "The University of Michigan's first student-led club focused on computer hardware, silicon design, and advanced processor architecture.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Ann Arbor",
-      "addressRegion": "MI"
-    }
-  }
-  </script>
-
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* Smooth Scrolling via Lenis */
@@ -75,7 +59,6 @@
 <body class="min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-24 no-scrollbar">
 
   <header class="flex justify-between items-center px-4 md:px-8 py-4 border-b border-black text-[11px] md:text-xs font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc] z-50">
-    
     <div class="flex items-center gap-4 lg:gap-8">
       <div class="flex items-center gap-2">
         <div class="w-2 h-2 bg-black rounded-full animate-pulse"></div>
@@ -116,10 +99,10 @@
     <a href="#join" class="mobile-nav-link anchor-link mt-4 bg-black text-white px-8 py-4 rounded-full hover:bg-gray-800 transition-colors">Join Us</a>
   </div>
 
-  <main class="px-4 md:px-8 pt-24 md:pt-28 max-w-[1400px] mx-auto relative flex flex-col items-start">
+  <main class="px-4 md:px-8 pt-24 md:pt-28 max-w-[1400px] mx-auto relative flex flex-col items-center">
     
-    <section class="w-full text-left flex flex-col">
-      <div class="flex flex-row items-center justify-between md:justify-start md:gap-12 w-full anim-element d-2">
+    <section class="w-full text-center flex flex-col items-center">
+      <div class="flex flex-col items-center justify-center md:gap-12 w-full anim-element d-2">
         <h1 class="text-[14vw] lg:text-[12vw] leading-[0.85] font-black tracking-tighter uppercase">
           RISC-M
         </h1>
@@ -129,42 +112,42 @@
       </h2>
     </section>
 
-    <section class="mt-16 md:mt-24 max-w-4xl text-left anim-element d-4">
+    <section class="mt-16 md:mt-24 max-w-4xl text-center flex flex-col items-center anim-element d-4">
       <h3 class="font-serif text-4xl md:text-5xl lg:text-6xl italic leading-[1.1] tracking-tight">
         A student-led community dedicated to computer hardware & silicon design.
       </h3>
       <p class="mt-8 text-lg md:text-xl font-medium leading-relaxed max-w-3xl">
-        As Michigan’s first student organization for computer architecture, we provide a collaborative space to explore hardware beyond the classroom. We work on exciting projects, invite industry guest speakers, and host events. Beyond our own projects, we are dedicated to helping our fellow students succeed by sharing knowledge and resources, assisting with debugging, and providing guidance for students intersed in the hardware industry.
+        As Michigan’s first student organization for computer architecture, we provide a collaborative space to explore hardware beyond the classroom. We work on exciting projects, invite industry guest speakers, and host events. Beyond our own projects, we are dedicated to helping our fellow students succeed by sharing knowledge and resources, assisting with debugging, and providing guidance for students interested in the hardware industry.
       </p>
     </section>
 
-    <section class="mt-20 md:mt-32 w-full border-t border-black pt-12 text-left anim-element d-5">
+    <section class="mt-20 md:mt-32 w-full border-t border-black pt-12 text-center flex flex-col items-center anim-element d-5">
       <h3 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-12">Membership</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
-        <div>
-          <h4 class="text-xl font-bold uppercase tracking-tight mb-4 flex items-center gap-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 w-full">
+        <div class="flex flex-col items-center text-center">
+          <h4 class="text-xl font-bold uppercase tracking-tight mb-4 flex justify-center items-center gap-2">
             <span class="w-2 h-2 bg-black rounded-full"></span>Who Should Join?
           </h4>
           <p class="text-base md:text-lg font-medium leading-relaxed">
             We welcome anyone passionate about computer architecture who has completed or is currently enrolled in <strong>EECS 470 or 472+</strong>. Whether you want to gain practical experience building projects in Verilog, need some help debugging a tough lab, want to hear from professionals, or are looking for recruiting advice, you will find a supportive community here.
           </p>
         </div>
-        <div>
-          <h4 class="text-xl font-bold uppercase tracking-tight mb-4 flex items-center gap-2">
+        <div class="flex flex-col items-center text-center">
+          <h4 class="text-xl font-bold uppercase tracking-tight mb-4 flex justify-center items-center gap-2">
             <span class="w-2 h-2 bg-black rounded-full"></span>Our Initiatives
           </h4>
-          <ul class="list-none text-sm font-bold uppercase tracking-widest space-y-4">
-            <li class="flex items-center gap-4"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg> Debug Nights & Course Help</li>
-            <li class="flex items-center gap-4"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Recruiting & Career Support</li>
-            <li class="flex items-center gap-4"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Resource & Knowledge Sharing</li>
-            <li class="flex items-center gap-4"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M4.9 19.1c-3.8-3.8-3.8-10.1 0-14.2"/><path d="M19.1 4.9c3.8 3.8 3.8 10.1 0 14.2"/><path d="M7.7 16.3c-2.3-2.3-2.3-5.9 0-8.5"/><path d="M16.3 7.7c2.3 2.3 2.3 5.9 0 8.5"/></svg> Hands-On Hardware Projects</li>
-            <li class="flex items-center gap-4"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg> Industry Guest Speakers</li>
+          <ul class="list-none text-sm font-bold uppercase tracking-widest space-y-4 flex flex-col items-center">
+            <li class="flex justify-center items-center gap-4"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg> Debug Nights & Course Help</li>
+            <li class="flex justify-center items-center gap-4"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Recruiting & Career Support</li>
+            <li class="flex justify-center items-center gap-4"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Resource & Knowledge Sharing</li>
+            <li class="flex justify-center items-center gap-4"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M4.9 19.1c-3.8-3.8-3.8-10.1 0-14.2"/><path d="M19.1 4.9c3.8 3.8 3.8 10.1 0 14.2"/><path d="M7.7 16.3c-2.3-2.3-2.3-5.9 0-8.5"/><path d="M16.3 7.7c2.3 2.3 2.3 5.9 0 8.5"/></svg> Hands-On Hardware Projects</li>
+            <li class="flex justify-center items-center gap-4"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg> Industry Guest Speakers</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section class="mt-20 md:mt-32 w-full border-t border-black pt-12 pb-8 flex flex-col md:flex-row justify-between items-center gap-8 anim-element d-6">
+    <section class="mt-20 md:mt-32 w-full border-t border-black pt-12 pb-8 flex flex-col items-center gap-6 anim-element d-6 text-center">
        <div>
          <h3 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">See What We're Building</h3>
          <p class="text-base font-medium opacity-80">FPGA perception pipelines, custom processors, and more.</p>
@@ -174,13 +157,13 @@
        </a>
     </section>
 
-    <footer id="join" class="mt-12 w-full border-t border-black pt-12 pb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 text-left anim-element d-7">
+    <footer id="join" class="mt-12 w-full border-t border-black pt-12 pb-12 flex flex-col items-center gap-8 text-center anim-element d-7">
       <div class="max-w-xl">
         <h3 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4">Interested in joining?</h3>
         <p class="text-lg font-medium mb-6">Fill out this form to join our mailing list and receive updates on upcoming projects, meetings, and events.</p>
       </div>
-      <div class="flex flex-col items-start md:items-end gap-4">
-        <div class="flex flex-wrap gap-4 text-sm font-bold tracking-widest uppercase">
+      <div class="flex flex-col items-center gap-4">
+        <div class="flex justify-center gap-4 text-sm font-bold tracking-widest uppercase">
            <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer" class="border-2 border-black px-8 py-4 rounded-full hover:bg-black hover:text-white transition-colors flex items-center gap-2">
              Google Form
            </a>
