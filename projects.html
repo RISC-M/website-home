@@ -1,6 +1,3 @@
-Here is the updated `projects.html` code. I've replaced the circular spinner with a responsive skeleton loading animation that mimics the shape and layout of the actual project cards, making the loading experience feel much smoother and more modern.
-
-```html
 <!DOCTYPE html>
 <html lang="en" class="no-scrollbar">
 <head>
@@ -185,12 +182,19 @@ Here is the updated `projects.html` code. I've replaced the circular spinner wit
         });
       });
 
+      // Smooth Scrolling init
+      const lenis = new Lenis({ duration: 0.9, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+      function raf(time) { 
+        lenis.raf(time); 
+        requestAnimationFrame(raf); 
+      }
+      requestAnimationFrame(raf);
+
       // Fetch GitHub Projects Logic
       async function fetchGitHubProjects() {
         const container = document.getElementById('projects-container');
         
         try {
-          // Fetch repositories sorted by most recently updated
           const response = await fetch('https://api.github.com/orgs/RISC-M/repos?sort=updated&direction=desc');
           
           if (!response.ok) {
@@ -198,21 +202,20 @@ Here is the updated `projects.html` code. I've replaced the circular spinner wit
           }
           
           const repos = await response.json();
-          
-          // Filter out specific repos
           const filteredRepos = repos.filter(repo => repo.name !== 'website-home');
           
           container.innerHTML = ''; // Clear loading skeleton
 
           if (filteredRepos.length === 0) {
             container.innerHTML = '<p class="col-span-1 lg:col-span-2 text-lg font-bold uppercase opacity-60 mt-8">No public project repositories found.</p>';
+            // Force Lenis to recalculate height
+            if (lenis) lenis.resize();
             return;
           }
 
           filteredRepos.forEach(repo => {
             const date = new Date(repo.updated_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
             
-            // Build Tags HTML (Language + Topics)
             let tagsHtml = '';
             if (repo.language) {
               tagsHtml += `<span class="px-3 py-1 bg-gray-200 rounded-full text-xs font-bold uppercase">${repo.language}</span>`;
@@ -223,7 +226,6 @@ Here is the updated `projects.html` code. I've replaced the circular spinner wit
               });
             }
 
-            // Create Card Element
             const article = document.createElement('article');
             article.className = 'border-2 border-black p-8 md:p-12 rounded-[2rem] w-full max-w-2xl flex flex-col justify-between';
             article.innerHTML = `
@@ -260,6 +262,11 @@ Here is the updated `projects.html` code. I've replaced the circular spinner wit
             container.appendChild(article);
           });
 
+          // Wait a tiny bit for the DOM to render the new elements, then tell Lenis to update
+          setTimeout(() => {
+            if (lenis) lenis.resize();
+          }, 100);
+
         } catch (error) {
           console.error(error);
           container.innerHTML = `
@@ -268,22 +275,13 @@ Here is the updated `projects.html` code. I've replaced the circular spinner wit
               <p class="text-sm font-medium opacity-80">Please check back later or visit our <a href="https://github.com/RISC-M" target="_blank" class="underline">GitHub profile directly</a>.</p>
             </div>
           `;
+          if (lenis) lenis.resize();
         }
       }
 
       // Execute fetch
       fetchGitHubProjects();
-
-      // Smooth Scrolling init
-      const lenis = new Lenis({ duration: 0.9, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-      function raf(time) { 
-        lenis.raf(time); 
-        requestAnimationFrame(raf); 
-      }
-      requestAnimationFrame(raf);
     });
   </script>
 </body>
 </html>
-
-```
