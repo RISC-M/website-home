@@ -56,7 +56,7 @@
     .d-7 { animation-delay: 0.7s; }
   </style>
 </head>
-<body class="min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-24 no-scrollbar">
+<body class="min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-6 no-scrollbar">
 
   <header class="flex justify-between items-center px-4 md:px-8 py-4 border-b border-black text-[11px] md:text-xs font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc] z-50">
     <div class="flex items-center gap-4 lg:gap-8">
@@ -101,14 +101,14 @@
 
   <main class="px-4 md:px-8 pt-24 md:pt-28 max-w-[1400px] mx-auto relative flex flex-col items-center">
     
-    <section class="w-full text-center flex flex-col items-center">
+    <section class="w-full min-h-[60vh] text-center flex flex-col items-center justify-center mt-8 md:mt-0">
       <div class="flex flex-col items-center justify-center md:gap-12 w-full anim-element d-2">
         <h1 class="text-[14vw] lg:text-[12vw] leading-[0.85] font-black tracking-tighter uppercase">
           RISC-M
         </h1>
       </div>
-      <h2 class="text-[10vw] lg:text-[8.5vw] leading-[0.85] font-black tracking-tighter uppercase text-[#404040] w-full mt-2 md:mt-4 anim-element d-3">
-        The U-M<br>Computer Architecture Club
+      <h2 class="text-[8vw] lg:text-[6.5vw] leading-[0.85] font-black tracking-tighter uppercase text-[#404040] max-w-4xl mx-auto mt-4 md:mt-6 anim-element d-3">
+        The U-M<br>Computer Architecture<br>Club
       </h2>
     </section>
 
@@ -157,7 +157,7 @@
        </a>
     </section>
 
-    <footer id="join" class="mt-12 w-full border-t border-black pt-12 pb-12 flex flex-col items-center gap-8 text-center anim-element d-7">
+    <section id="join" class="mt-12 w-full border-t border-black pt-12 pb-12 flex flex-col items-center gap-8 text-center anim-element d-7">
       <div class="max-w-xl">
         <h3 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4">Interested in joining?</h3>
         <p class="text-lg font-medium mb-6">Fill out this form to join our mailing list and receive updates on upcoming projects, meetings, and events.</p>
@@ -168,6 +168,15 @@
              Google Form
            </a>
         </div>
+      </div>
+    </section>
+
+    <footer class="w-full border-t border-black pt-6 pb-2 mt-4 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] md:text-[11px] font-bold uppercase tracking-widest anim-element d-7">
+      <p>&copy; 2026 RISC-M University of Michigan</p>
+      <div class="flex gap-6">
+        <a href="riscm-exec@umich.edu" class="hover:text-gray-500 transition-colors">email</a>
+        <a href="https://github.com/RISC-M" class="hover:text-gray-500 transition-colors">github</a>
+        <a href="https://www.linkedin.com/company/risc-m/" class="hover:text-gray-500 transition-colors">linkedin</a>
       </div>
     </footer>
   </main>
