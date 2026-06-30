@@ -17,8 +17,43 @@ html.lenis, html.lenis body { height: auto; }
 
 .anim-element {
   opacity: 0; 
-  animation: blurFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: blurFadeIn 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   will-change: transform, opacity, filter;
+}
+
+/* Dramatic floating slide-up animation */
+@keyframes floatUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(80px);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.float-up-hero {
+  opacity: 0;
+  animation: floatUpFade 2.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity, filter;
+}
+
+/* Scroll Animation Fade-In for Section Headers & Blocks */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  filter: blur(8px);
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter;
+}
+
+.reveal-on-scroll.active {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
 }
 
 /* Staggered Animation Delays */
@@ -30,7 +65,21 @@ html.lenis, html.lenis body { height: auto; }
 .d-6 { animation-delay: 0.6s; }
 .d-7 { animation-delay: 0.7s; }
 
-/* Global Serif Font for All Headings */
-h1, h2, h3, h4, h5, h6 {
-  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+
+/* Scroll progress bar */
+#scroll-progress {
+  transition: width 0.1s ease-out;
+}
+
+/* Custom interactive ring / outline adjustments */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid black;
+  outline-offset: 4px;
+}
+
+/* Custom font class for Yeseva One */
+.font-yeseva {
+  font-family: 'Yeseva One', serif !important;
+  font-weight: 400 !important;
 }
