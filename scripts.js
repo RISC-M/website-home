@@ -63,23 +63,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const mobileMenu = document.getElementById("mobile-menu");
   const mobileLinks = document.querySelectorAll(".mobile-nav-link");
 
-  if (menuButton && mobileMenu) {
-    menuButton.addEventListener("click", () => {
-      mobileMenu.classList.remove("translate-x-full");
+  if (mobileMenu) {
+    if (menuButton) {
+      menuButton.addEventListener("click", () => {
+        mobileMenu.classList.remove("translate-x-full");
+      });
+    }
+
+    if (closeButton) {
+      closeButton.addEventListener("click", () => {
+        mobileMenu.classList.add("translate-x-full");
+      });
+    }
+
+    mobileLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("translate-x-full");
+      });
     });
   }
-
-  if (closeButton && mobileMenu) {
-    closeButton.addEventListener("click", () => {
-      mobileMenu.classList.add("translate-x-full");
-    });
-  }
-
-  mobileLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      mobileMenu.classList.add("translate-x-full");
-    });
-  });
 
   // Scrollspy: Highlight Active Nav Link
   const sections = document.querySelectorAll("section[id]");
@@ -201,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const article = document.createElement('article');
-      article.className = 'border-2 border-black p-8 md:p-12 rounded-[2rem] w-full max-w-2xl flex flex-col justify-between transition-all duration-300 bg-white hover:-translate-y-1 hover-rainbow-card';
+      article.className = 'border-2 border-black p-5 md:p-12 rounded-[2rem] w-full max-w-2xl flex flex-col justify-between transition-all duration-300 bg-white hover:-translate-y-1 hover-rainbow-card';
       article.innerHTML = `
         <div>
           <div class="flex flex-col items-center mb-6 border-b border-black pb-6 gap-4">

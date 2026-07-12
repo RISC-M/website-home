@@ -65,11 +65,11 @@
 
   <!-- Header / Navbar -->
   <header
-    class="flex justify-between items-center px-4 md:px-8 py-4 border-b border-black text-xs md:text-sm font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc]/90 backdrop-blur-md z-50">
+    class="flex justify-between items-center px-4 md:px-8 py-3 md:py-4 border-b border-black text-xs md:text-sm font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc]/90 backdrop-blur-md z-50">
     <div class="flex items-center gap-4 lg:gap-8">
       <div class="flex items-center gap-2">
         <div class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
-        <a href="#about" class="anchor-link whitespace-nowrap hover:opacity-70 transition-opacity text-sm md:text-base font-black tracking-tighter uppercase">RISC-M</a>
+        <a href="#about" class="anchor-link whitespace-nowrap hover:opacity-70 transition-opacity text-xl md:text-base font-black tracking-tighter uppercase">RISC-M</a>
       </div>
       <nav class="hidden md:flex gap-4 lg:gap-6 border-l border-black pl-4 lg:pl-6 text-xs md:text-sm"
         aria-label="Main Navigation">
@@ -85,12 +85,9 @@
       <div class="hidden lg:block border border-black rounded-full px-3 py-1 text-black whitespace-nowrap text-xs">
         <span>Est. 2026 &nbsp;&bull;&nbsp; Ann Arbor, MI</span>
       </div>
-      <button id="mobile-menu-button" aria-label="Toggle Menu"
-        class="block md:hidden text-black focus:outline-none py-1">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </button>
+      <div class="lg:hidden border border-black rounded-full px-3 py-1 text-black whitespace-nowrap text-xs">
+        <span>est. 2026</span>
+      </div>
       <a href="#join"
         class="anchor-link hidden md:inline-block underline decoration-2 underline-offset-4 hover:text-gray-600 transition-colors whitespace-nowrap text-xs md:text-sm">
         Join Us
@@ -98,28 +95,13 @@
     </div>
   </header>
 
-  <!-- Mobile Navigation Drawer -->
-  <div id="mobile-menu"
-    class="fixed inset-0 bg-[#fcfcfc] z-50 flex flex-col items-center justify-center gap-8 text-xl font-bold uppercase tracking-widest transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
-    <button id="close-menu-button" aria-label="Close Menu" class="absolute top-4 right-4 text-black focus:outline-none">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-      </svg>
-    </button>
-    <a href="#about" class="mobile-nav-link anchor-link hover:text-gray-500 transition-colors">About</a>
-    <a href="#projects" class="mobile-nav-link anchor-link hover:text-gray-500 transition-colors">Projects</a>
-    <a href="#join" class="mobile-nav-link anchor-link hover:text-gray-500 transition-colors">Join Us</a>
-    <a href="#team" class="mobile-nav-link anchor-link hover:text-gray-500 transition-colors">Team</a>
-    <a href="#sponsors" class="mobile-nav-link anchor-link hover:text-gray-500 transition-colors">Sponsors</a>
-  </div>
-
-  <main class="px-4 md:px-8 pt-24 md:pt-28 max-w-[1400px] mx-auto relative flex flex-col items-center">
+  <main class="px-4 md:px-8 pt-20 md:pt-28 max-w-[1400px] mx-auto relative flex flex-col items-center">
     <!-- 1. ABOUT THE CLUB (Hero and Info) -->
     <section id="about"
       class="w-full min-h-[85vh] flex flex-col items-center justify-center text-center py-12 md:py-20">
       <div class="flex flex-col items-center justify-center w-full float-up-hero px-4">
         <h1 id="hero-title"
-          class="text-center text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] xl:text-[13rem] leading-none font-black tracking-tighter uppercase mb-4 w-full text-black">
+          class="text-center text-7xl sm:text-8xl md:text-9xl lg:text-[11rem] xl:text-[13rem] leading-none font-black tracking-tighter uppercase mb-4 w-full text-black">
           RISC-M
         </h1>
         <div class="flex justify-center gap-4 mb-6">
@@ -168,7 +150,7 @@
           class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-6xl justify-items-center">
           <!-- Loading Skeleton Card 1 -->
           <div
-            class="border-2 border-neutral-200 p-8 md:p-12 rounded-[2rem] w-full max-w-2xl flex flex-col justify-between animate-pulse">
+            class="border-2 border-neutral-200 p-5 md:p-12 rounded-[2rem] w-full max-w-2xl flex flex-col justify-between animate-pulse">
             <div>
               <div class="flex flex-col items-center mb-6 border-b border-neutral-200 pb-6 gap-4">
                 <div class="h-10 bg-neutral-200 rounded-lg w-3/4 mb-2"></div>
@@ -194,7 +176,7 @@
 
           <!-- Loading Skeleton Card 2 -->
           <div
-            class="border-2 border-neutral-200 p-8 md:p-12 rounded-[2rem] w-full max-w-2xl flex flex-col justify-between animate-pulse">
+            class="border-2 border-neutral-200 p-5 md:p-12 rounded-[2rem] w-full max-w-2xl flex flex-col justify-between animate-pulse">
             <div>
               <div class="flex flex-col items-center mb-6 border-b border-neutral-200 pb-6 gap-4">
                 <div class="h-10 bg-neutral-200 rounded-lg w-2/3 mb-2"></div>
@@ -449,7 +431,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-5xl">
           <div
-            class="p-8 border-2 border-black rounded-[2rem] flex flex-col items-center bg-white hover:-translate-y-1 hover-rainbow-card transition-all duration-300">
+            class="p-5 md:p-8 border-2 border-black rounded-[2rem] flex flex-col items-center bg-white hover:-translate-y-1 hover-rainbow-card transition-all duration-300">
             <h5 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black mb-4">
               Community Connections
             </h5>
@@ -460,7 +442,7 @@
             </p>
           </div>
           <div
-            class="p-8 border-2 border-black rounded-[2rem] flex flex-col items-center bg-white hover:-translate-y-1 hover-rainbow-card transition-all duration-300">
+            class="p-5 md:p-8 border-2 border-black rounded-[2rem] flex flex-col items-center bg-white hover:-translate-y-1 hover-rainbow-card transition-all duration-300">
             <h5 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black mb-4">
               Project Funding
             </h5>
@@ -471,7 +453,7 @@
             </p>
           </div>
           <div
-            class="p-8 border-2 border-black rounded-[2rem] flex flex-col items-center bg-white hover:-translate-y-1 hover-rainbow-card transition-all duration-300">
+            class="p-5 md:p-8 border-2 border-black rounded-[2rem] flex flex-col items-center bg-white hover:-translate-y-1 hover-rainbow-card transition-all duration-300">
             <h5 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black mb-4">
               Brand Visibility
             </h5>
@@ -484,7 +466,7 @@
       </div>
 
       <div
-        class="mt-20 w-full text-center p-8 md:p-12 border-2 border-black rounded-[2rem] bg-white">
+        class="mt-20 w-full text-center p-5 md:p-12 border-2 border-black rounded-[2rem] bg-white">
         <h4 class="text-2xl md:text-4xl font-black uppercase tracking-tighter text-black mb-4">
           Get in Touch
         </h4>
