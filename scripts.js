@@ -1,30 +1,46 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Prevent browser scroll restoration jumps on page reload
-  if (window.history && 'scrollRestoration' in window.history) {
-    window.history.scrollRestoration = 'manual';
-  }
+  // Initialize Smooth Scrolling (Lenis) - Desktop only for performance
+  let lenisInstance = null;
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   
-  // Initialize Smooth Scrolling (Lenis)
-  const lenis = new Lenis({ 
-    duration: 0.9, 
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) 
-  });
-  
-  function raf(time) { 
-    lenis.raf(time); 
-    requestAnimationFrame(raf); 
+  if (!isTouchDevice && typeof Lenis !== 'undefined') {
+    // Prevent browser scroll restoration jumps on page reload for desktop Lenis
+    if (window.history && 'scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    lenisInstance = new Lenis({ 
+      duration: 1.0, 
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      syncTouch: false
+    });
+    
+    function raf(time) { 
+      if (lenisInstance) {
+        lenisInstance.raf(time); 
+        requestAnimationFrame(raf); 
+      }
+    }
+    requestAnimationFrame(raf);
+  } else {
+    // Restore default scroll restoration behavior for mobile native scrolling
+    if (window.history && 'scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'auto';
+    }
   }
-  requestAnimationFrame(raf);
   
   // Smooth scroll for anchor links
   document.querySelectorAll('.anchor-link').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
       if (href.startsWith('#')) {
-        e.preventDefault();
         const target = document.querySelector(href);
         if (target) { 
-          lenis.scrollTo(target); 
+          if (lenisInstance) {
+            e.preventDefault();
+            lenisInstance.scrollTo(target); 
+          }
         }
       }
     });
@@ -158,34 +174,34 @@ document.addEventListener("DOMContentLoaded", () => {
       const repos = await response.json();
       const filteredRepos = repos.filter(repo => repo.name !== 'website-home');
       
-      renderRepos(filteredRepos.length > 0 ? filteredRepos : fallbackRepos, lenis);
+      renderRepos(filteredRepos.length > 0 ? filteredRepos : fallbackRepos);
     } catch (error) {
       console.warn("Using fallback repositories due to GitHub API rate limit or network error:", error.message);
-      renderRepos(fallbackRepos, lenis);
+      renderRepos(fallbackRepos);
     }
   }
 
-  function renderRepos(repos, lenisInstance) {
+  function renderRepos(repos) {
     const container = document.getElementById('projects-container');
     if (!container) return;
     
     container.innerHTML = ''; // Clear loading skeleton
 
-    repos.forEach(repo => {
+    repos.forEach((repo, index) => {
       const date = new Date(repo.updated_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
       
       let tagsHtml = '';
       if (repo.language) {
-        tagsHtml += `<span class="px-3 py-1 bg-gray-100 border border-black rounded-full text-xs font-bold uppercase tracking-wider">${repo.language}</span>`;
+        tagsHtml += `<span class="px-3 py-1 bg-neutral-100 border border-black rounded-full text-xs font-bold uppercase tracking-wider">${repo.language}</span>`;
       }
       if (repo.topics && repo.topics.length > 0) {
         repo.topics.forEach(topic => {
-          tagsHtml += `<span class="px-3 py-1 bg-gray-100 border border-gray-300 rounded-full text-xs font-semibold uppercase text-gray-600 tracking-wider">${topic}</span>`;
+          tagsHtml += `<span class="px-3 py-1 bg-neutral-100 border border-neutral-300 rounded-full text-xs font-semibold uppercase text-neutral-600 tracking-wider">${topic}</span>`;
         });
       }
 
       const article = document.createElement('article');
-      article.className = 'border-2 border-black p-8 md:p-12 rounded-[2rem] w-full max-w-2xl flex flex-col justify-between hover:shadow-xl transition-all duration-300 bg-white hover:-translate-y-1';
+      article.className = 'border-2 border-black p-8 md:p-12 rounded-[2rem] w-full max-w-2xl flex flex-col justify-between transition-all duration-300 bg-white hover:-translate-y-1 hover-rainbow-card';
       article.innerHTML = `
         <div>
           <div class="flex flex-col items-center mb-6 border-b border-black pb-6 gap-4">
@@ -196,11 +212,11 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             <div class="flex flex-col items-center">
               <div class="px-4 py-1 border border-black bg-black text-white rounded-full text-xs font-bold uppercase tracking-widest mb-2 inline-block">Active Repo</div>
-              <span class="text-xs font-bold uppercase tracking-tight opacity-40 block">Updated: ${date}</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-neutral-400 block">Updated: ${date}</span>
             </div>
           </div>
           <div class="space-y-4 text-center">
-            <p class="text-base md:text-lg font-medium leading-relaxed">
+            <p class="text-base md:text-lg font-normal text-neutral-700 leading-relaxed">
               ${repo.description || 'No description provided for this repository.'}
             </p>
             <div class="flex flex-wrap justify-center gap-2 pt-4">
@@ -220,17 +236,18 @@ document.addEventListener("DOMContentLoaded", () => {
       container.appendChild(article);
     });
 
-    // Recalculate scroll height for Lenis smooth scrolling
-    setTimeout(() => {
-      if (lenisInstance) lenisInstance.resize();
-    }, 120);
+    // Recalculate scroll height for Lenis smooth scrolling if active
+    if (lenisInstance) {
+      setTimeout(() => {
+        if (lenisInstance) lenisInstance.resize();
+      }, 120);
+    }
   }
 
   // Text Scramble Cryptography Effect
   class TextScrambler {
     constructor(el) {
       this.el = el;
-      this.chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789X#?@$';
       this.update = this.update.bind(this);
     }
     setText(newText, maxFrames = 150) {
@@ -261,7 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
           output += to;
         } else if (this.frame >= start) {
           if (!char || Math.random() < 0.12) {
-            char = this.randomChar();
+            char = this.randomChar(to);
             this.queue[i].char = char;
           }
           output += char;
@@ -277,23 +294,36 @@ document.addEventListener("DOMContentLoaded", () => {
         this.frame++;
       }
     }
-    randomChar() {
-      return this.chars[Math.floor(Math.random() * this.chars.length)];
+    randomChar(targetChar) {
+      if (targetChar === ' ') return ' ';
+      if (targetChar === '-') return '-';
+      
+      // Keep lowercase letters lowercase
+      if (/[a-z]/.test(targetChar)) {
+        const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+        return lowercaseChars[Math.floor(Math.random() * lowercaseChars.length)];
+      }
+      // Keep uppercase letters uppercase
+      if (/[A-Z]/.test(targetChar)) {
+        const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        return uppercaseChars[Math.floor(Math.random() * uppercaseChars.length)];
+      }
+      // Keep numbers numeric
+      if (/[0-9]/.test(targetChar)) {
+        const digitChars = '0123456789';
+        return digitChars[Math.floor(Math.random() * digitChars.length)];
+      }
+      
+      return targetChar;
     }
   }
 
-  // Scramble the Hero elements
-  const titleEl = document.getElementById('hero-title');
+  // Scramble the Hero subtitle element only, leaving the main title static
   const subtitleEl = document.getElementById('hero-subtitle');
-  if (titleEl) {
-    const titleText = titleEl.textContent.trim();
-    const scrambler = new TextScrambler(titleEl);
-    scrambler.setText(titleText, 220); // Much slower, highly eased-out timeline
-  }
   if (subtitleEl) {
     const subtitleText = subtitleEl.textContent.trim();
     const scrambler = new TextScrambler(subtitleEl);
-    scrambler.setText(subtitleText, 280); // Subheading settles even slower
+    scrambler.setText(subtitleText, 80); // Fast, energetic scramble duration
   }
 
   // Run GitHub fetching

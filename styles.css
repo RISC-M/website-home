@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 /* Smooth Scrolling via Lenis */
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
@@ -78,8 +82,74 @@ a:focus-visible, button:focus-visible {
   outline-offset: 4px;
 }
 
-/* Custom font class for Yeseva One */
-.font-yeseva {
-  font-family: 'Yeseva One', serif !important;
-  font-weight: 400 !important;
+/* Rainbow hover animation for cards (keeps black outline, fades shadow) */
+@keyframes rainbowCardShadow {
+  0% { box-shadow: 8px 8px 0px 0px rgba(239, 68, 68, 1); }
+  25% { box-shadow: 8px 8px 0px 0px rgba(234, 179, 8, 1); }
+  50% { box-shadow: 8px 8px 0px 0px rgba(34, 197, 94, 1); }
+  75% { box-shadow: 8px 8px 0px 0px rgba(59, 130, 246, 1); }
+  100% { box-shadow: 8px 8px 0px 0px rgba(239, 68, 68, 1); }
+}
+
+.hover-rainbow-card {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.hover-rainbow-card::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: rainbowCardShadow 2.5s linear infinite;
+  pointer-events: none;
+}
+
+.hover-rainbow-card:hover::after {
+  opacity: 1;
+}
+
+.hover-rainbow-card:hover {
+  border-color: #000000 !important;
+}
+
+/* Rainbow hover animation for buttons (keeps black outline, fades shadow) */
+@keyframes rainbowButtonShadow {
+  0% { box-shadow: 6px 6px 0px 0px rgba(239, 68, 68, 1); }
+  25% { box-shadow: 6px 6px 0px 0px rgba(234, 179, 8, 1); }
+  50% { box-shadow: 6px 6px 0px 0px rgba(34, 197, 94, 1); }
+  75% { box-shadow: 6px 6px 0px 0px rgba(59, 130, 246, 1); }
+  100% { box-shadow: 6px 6px 0px 0px rgba(239, 68, 68, 1); }
+}
+
+.hover-rainbow-button {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.hover-rainbow-button::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: rainbowButtonShadow 2.5s linear infinite;
+  pointer-events: none;
+}
+
+.hover-rainbow-button:hover::after {
+  opacity: 1;
+}
+
+.hover-rainbow-button:hover {
+  border-color: #000000 !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
 }

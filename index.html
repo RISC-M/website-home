@@ -27,7 +27,24 @@
     content="A student-led community exploring computer architecture and hardware design beyond the classroom." />
   <meta name="twitter:image" content="https://risc-m.github.io/website-home/logo.png" />
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
   <link rel="stylesheet" href="styles.css" />
   <noscript>
     <style>
@@ -43,7 +60,7 @@
 <body
   class="min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-6 no-scrollbar">
   <!-- Scroll Progress Bar -->
-  <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-black z-50 transition-all duration-100" style="width: 0%">
+  <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-red-500 via-yellow-400 via-green-500 to-blue-500 z-50 transition-all duration-100" style="width: 0%">
   </div>
 
   <!-- Header / Navbar -->
@@ -51,8 +68,8 @@
     class="flex justify-between items-center px-4 md:px-8 py-4 border-b border-black text-xs md:text-sm font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc]/90 backdrop-blur-md z-50">
     <div class="flex items-center gap-4 lg:gap-8">
       <div class="flex items-center gap-2">
-        <div class="w-2.5 h-2.5 bg-black rounded-full animate-pulse"></div>
-        <a href="#about" class="anchor-link whitespace-nowrap hover:opacity-70 transition-opacity">RISC-M</a>
+        <div class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
+        <a href="#about" class="anchor-link whitespace-nowrap hover:opacity-70 transition-opacity text-sm md:text-base font-black tracking-tighter uppercase">RISC-M</a>
       </div>
       <nav class="hidden md:flex gap-4 lg:gap-6 border-l border-black pl-4 lg:pl-6 text-xs md:text-sm"
         aria-label="Main Navigation">
@@ -102,21 +119,26 @@
       class="w-full min-h-[85vh] flex flex-col items-center justify-center text-center py-12 md:py-20">
       <div class="flex flex-col items-center justify-center w-full float-up-hero px-4">
         <h1 id="hero-title"
-          class="text-center text-[clamp(3.5rem,14vw,10.5rem)] leading-none font-black tracking-tighter uppercase mb-1 md:mb-2 w-full">
+          class="text-center text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] xl:text-[13rem] leading-none font-black tracking-tighter uppercase mb-4 w-full text-black">
           RISC-M
         </h1>
+        <div class="flex justify-center gap-4 mb-6">
+          <span class="w-3.5 h-3.5 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.4)] hover:scale-125 transition-transform cursor-pointer"></span>
+          <span class="w-3.5 h-3.5 rounded-full bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.4)] hover:scale-125 transition-transform cursor-pointer"></span>
+          <span class="w-3.5 h-3.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.4)] hover:scale-125 transition-transform cursor-pointer"></span>
+          <span class="w-3.5 h-3.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.4)] hover:scale-125 transition-transform cursor-pointer"></span>
+        </div>
         <h2 id="hero-subtitle"
-          class="text-center text-[clamp(1.1rem,4.5vw,2.25rem)] leading-tight font-extrabold tracking-tight uppercase text-[#404040] max-w-[65vw] mx-auto w-full">
+          class="text-center text-2xl sm:text-4xl md:text-5xl leading-tight font-black tracking-tighter uppercase text-neutral-600 max-w-[65vw] mx-auto w-full">
           The U-M Computer Architecture Club
         </h2>
       </div>
 
       <div class="mt-16 md:mt-24 max-w-4xl text-center flex flex-col items-center float-up-hero d-3">
-        <h3 class="font-serif text-2xl sm:text-3xl md:text-5xl lg:text-6xl italic leading-[1.1] tracking-tight">
-          A student-led community dedicated to computer hardware & silicon
-          design.
+        <h3 class="font-serif text-2xl sm:text-3xl md:text-4xl italic leading-relaxed text-neutral-900 font-medium max-w-3xl">
+          A student-led community dedicated to computer hardware & silicon design.
         </h3>
-        <p class="mt-8 text-base sm:text-lg md:text-xl font-medium leading-relaxed max-w-3xl text-gray-800">
+        <p class="mt-6 text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-3xl text-neutral-700">
           As Michigan’s first student organization for computer architecture,
           we provide a collaborative space to explore hardware beyond the
           classroom. We work on exciting projects, invite industry guest
@@ -132,10 +154,10 @@
     <section id="projects"
       class="w-full border-t border-black pt-16 md:pt-24 pb-12 reveal-on-scroll flex flex-col items-center">
         <div class="text-center mb-12">
-          <h3 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4">
+          <h3 class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-black mb-4">
             Research & Projects
           </h3>
-          <p class="text-base sm:text-lg font-medium opacity-80 max-w-2xl mx-auto">
+          <p class="text-lg sm:text-xl font-normal text-neutral-600 max-w-2xl mx-auto">
             FPGA perception pipelines, custom processors, and hardware
             acceleration designs built directly by our team.
           </p>
@@ -146,52 +168,52 @@
           class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-6xl justify-items-center">
           <!-- Loading Skeleton Card 1 -->
           <div
-            class="border-2 border-gray-200 p-8 md:p-12 rounded-[2rem] w-full max-w-2xl flex flex-col justify-between animate-pulse">
+            class="border-2 border-neutral-200 p-8 md:p-12 rounded-[2rem] w-full max-w-2xl flex flex-col justify-between animate-pulse">
             <div>
-              <div class="flex flex-col items-center mb-6 border-b border-gray-200 pb-6 gap-4">
-                <div class="h-10 bg-gray-200 rounded-lg w-3/4 mb-2"></div>
+              <div class="flex flex-col items-center mb-6 border-b border-neutral-200 pb-6 gap-4">
+                <div class="h-10 bg-neutral-200 rounded-lg w-3/4 mb-2"></div>
                 <div class="flex flex-col items-center gap-2">
-                  <div class="h-5 bg-gray-200 rounded-full w-24"></div>
-                  <div class="h-3 bg-gray-200 rounded w-32"></div>
+                  <div class="h-5 bg-neutral-200 rounded-full w-24"></div>
+                  <div class="h-3 bg-neutral-200 rounded w-32"></div>
                 </div>
               </div>
               <div class="space-y-4 w-full flex flex-col items-center">
-                <div class="h-4 bg-gray-200 rounded w-full"></div>
-                <div class="h-4 bg-gray-200 rounded w-5/6"></div>
-                <div class="h-4 bg-gray-200 rounded w-4/6"></div>
+                <div class="h-4 bg-neutral-200 rounded w-full"></div>
+                <div class="h-4 bg-neutral-200 rounded w-5/6"></div>
+                <div class="h-4 bg-neutral-200 rounded w-4/6"></div>
                 <div class="flex flex-wrap justify-center gap-2 pt-4 w-full">
-                  <div class="h-6 bg-gray-200 rounded-full w-16"></div>
-                  <div class="h-6 bg-gray-200 rounded-full w-20"></div>
+                  <div class="h-6 bg-neutral-200 rounded-full w-16"></div>
+                  <div class="h-6 bg-neutral-200 rounded-full w-20"></div>
                 </div>
               </div>
             </div>
-            <div class="mt-8 pt-6 border-t border-gray-200 border-dashed flex justify-center">
-              <div class="h-4 bg-gray-200 rounded w-32"></div>
+            <div class="mt-8 pt-6 border-t border-neutral-200 border-dashed flex justify-center">
+              <div class="h-4 bg-neutral-200 rounded w-32"></div>
             </div>
           </div>
 
           <!-- Loading Skeleton Card 2 -->
           <div
-            class="border-2 border-gray-200 p-8 md:p-12 rounded-[2rem] w-full max-w-2xl flex flex-col justify-between animate-pulse">
+            class="border-2 border-neutral-200 p-8 md:p-12 rounded-[2rem] w-full max-w-2xl flex flex-col justify-between animate-pulse">
             <div>
-              <div class="flex flex-col items-center mb-6 border-b border-gray-200 pb-6 gap-4">
-                <div class="h-10 bg-gray-200 rounded-lg w-2/3 mb-2"></div>
+              <div class="flex flex-col items-center mb-6 border-b border-neutral-200 pb-6 gap-4">
+                <div class="h-10 bg-neutral-200 rounded-lg w-2/3 mb-2"></div>
                 <div class="flex flex-col items-center gap-2">
-                  <div class="h-5 bg-gray-200 rounded-full w-24"></div>
-                  <div class="h-3 bg-gray-200 rounded w-32"></div>
+                  <div class="h-5 bg-neutral-200 rounded-full w-24"></div>
+                  <div class="h-3 bg-neutral-200 rounded w-32"></div>
                 </div>
               </div>
               <div class="space-y-4 w-full flex flex-col items-center">
-                <div class="h-4 bg-gray-200 rounded w-full"></div>
-                <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+                <div class="h-4 bg-neutral-200 rounded w-full"></div>
+                <div class="h-4 bg-neutral-200 rounded w-5/6"></div>
                 <div class="flex flex-wrap justify-center gap-2 pt-4 w-full">
-                  <div class="h-6 bg-gray-200 rounded-full w-24"></div>
-                  <div class="h-6 bg-gray-200 rounded-full w-16"></div>
+                  <div class="h-6 bg-neutral-200 rounded-full w-24"></div>
+                  <div class="h-6 bg-neutral-200 rounded-full w-16"></div>
                 </div>
               </div>
             </div>
-            <div class="mt-8 pt-6 border-t border-gray-200 border-dashed flex justify-center">
-              <div class="h-4 bg-gray-200 rounded w-32"></div>
+            <div class="mt-8 pt-6 border-t border-neutral-200 border-dashed flex justify-center">
+              <div class="h-4 bg-neutral-200 rounded w-32"></div>
             </div>
           </div>
         </div>
@@ -200,16 +222,15 @@
       <!-- 3. MEMBERSHIP & JOINING -->
       <section id="join"
         class="w-full border-t border-black pt-16 md:pt-24 pb-16 flex flex-col items-center text-center reveal-on-scroll">
-        <h3 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-12">
+        <h3 class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-black mb-12">
           Membership & Joining
         </h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 w-full max-w-5xl mx-auto mb-12">
+        <div class="flex flex-col gap-16 w-full max-w-3xl mx-auto mb-12">
           <div class="flex flex-col items-center text-center">
-            <h4 class="text-xl font-bold uppercase tracking-tight mb-4 flex justify-center items-center gap-2">
-              <span class="w-2.5 h-2.5 bg-black rounded-full"></span>Who
-              Should Join?
+            <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black mb-4 flex justify-center items-center gap-2">
+              <span class="w-2.5 h-2.5 bg-black rounded-full"></span>Who Should Join?
             </h4>
-            <p class="text-base sm:text-lg font-medium leading-relaxed max-w-md text-gray-800">
+            <p class="text-lg sm:text-xl font-normal leading-relaxed max-w-2xl text-neutral-700">
               We welcome anyone passionate about computer architecture who has
               completed or is currently enrolled in
               <strong>EECS 470 or 472+</strong>. Whether you want to gain
@@ -220,14 +241,13 @@
             </p>
           </div>
           <div class="flex flex-col items-center text-center">
-            <h4 class="text-xl font-bold uppercase tracking-tight mb-4 flex justify-center items-center gap-2">
-              <span class="w-2.5 h-2.5 bg-black rounded-full"></span>Our
-              Initiatives
+            <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black mb-4 flex justify-center items-center gap-2">
+              <span class="w-2.5 h-2.5 bg-black rounded-full"></span>Our Initiatives
             </h4>
             <ul
-              class="list-none text-xs sm:text-sm font-bold uppercase tracking-widest space-y-4 inline-flex flex-col items-start text-left">
+              class="list-none text-sm sm:text-base font-bold uppercase tracking-wider text-neutral-800 space-y-4 inline-flex flex-col items-start text-left">
               <li class="flex items-center gap-4">
-                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                <svg class="text-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path
                     d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
@@ -235,7 +255,7 @@
                 Debug Nights & Course Help
               </li>
               <li class="flex items-center gap-4">
-                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                <svg class="text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                   <circle cx="9" cy="7" r="4" />
@@ -245,7 +265,7 @@
                 Recruiting & Career Support
               </li>
               <li class="flex items-center gap-4">
-                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                <svg class="text-yellow-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
                   <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
@@ -253,7 +273,7 @@
                 Resource & Knowledge Sharing
               </li>
               <li class="flex items-center gap-4">
-                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                <svg class="text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="2" />
                   <path d="M4.9 19.1c-3.8-3.8-3.8-10.1 0-14.2" />
@@ -264,7 +284,7 @@
                 Hands-On Hardware Projects
               </li>
               <li class="flex items-center gap-4">
-                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                <svg class="text-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="10" />
                   <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
@@ -278,11 +298,11 @@
 
         <!-- Google Form CTA Integrated -->
         <div class="mt-8 border-t border-black border-dashed pt-8 w-full max-w-3xl flex flex-col items-center mx-auto">
-          <p class="text-base sm:text-lg font-medium mb-6 text-gray-800">
+          <p class="text-lg sm:text-xl font-normal mb-6 text-neutral-700">
             Ready to join? Fill out our form to join the mailing list and receive updates on upcoming projects, debugging sessions, and meetings.
           </p>
           <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer"
-            class="inline-flex items-center gap-3 border-2 border-black bg-black text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 text-xs sm:text-sm">
+            class="inline-flex items-center gap-3 border-2 border-black bg-black text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest transition-all duration-300 text-xs sm:text-sm hover-rainbow-button">
             Join Mailing List
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
@@ -295,10 +315,10 @@
     <section id="team"
       class="w-full border-t border-black pt-16 md:pt-24 pb-16 flex flex-col items-center reveal-on-scroll">
       <div class="text-center mb-12">
-        <h3 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4">
+        <h3 class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-black mb-4">
           Our Team
         </h3>
-        <p class="text-base sm:text-lg font-medium opacity-80">
+        <p class="text-lg sm:text-xl font-normal text-neutral-600">
           Meet the student officers and faculty advisors leading RISC-M.
         </p>
       </div>
@@ -306,91 +326,91 @@
       <div class="flex flex-wrap justify-center gap-y-12 gap-x-6 sm:gap-x-8 w-full max-w-5xl">
         <!-- Officers -->
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-bold uppercase tracking-tight">
+          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
             Shashwat Jaguri
           </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest opacity-60 mt-1">
+          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
             Club President
           </p>
         </div>
 
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-bold uppercase tracking-tight">
+          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
             David Huang
           </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest opacity-60 mt-1">
+          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
             Executive Board
           </p>
         </div>
 
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-bold uppercase tracking-tight">
+          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
             Bangyan Huang
           </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest opacity-60 mt-1">
+          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
             Executive Board
           </p>
         </div>
 
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-bold uppercase tracking-tight">
+          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
             Shreyas Narayanan
           </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest opacity-60 mt-1">
+          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
             Executive Board
           </p>
         </div>
 
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-bold uppercase tracking-tight">
+          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
             Aaron Xiong
           </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest opacity-60 mt-1">
+          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
             Executive Board
           </p>
         </div>
 
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-bold uppercase tracking-tight">
+          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
             Shaun Gupte
           </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest opacity-60 mt-1">
+          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
             Executive Board
           </p>
         </div>
 
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-bold uppercase tracking-tight">
+          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
             Niki Lin
           </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest opacity-60 mt-1">
+          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
             Executive Board
           </p>
         </div>
 
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-bold uppercase tracking-tight">
+          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
             Rohan Satapathy
           </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest opacity-60 mt-1">
+          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
             Executive Board
           </p>
         </div>
 
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-bold uppercase tracking-tight">
+          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
             Sophia Chen
           </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest opacity-60 mt-1">
+          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
             Executive Board
           </p>
         </div>
 
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-bold uppercase tracking-tight">
+          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
             Prof. Krisztián Flautner
           </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest opacity-60 mt-1">
+          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
             Faculty Advisor
           </p>
         </div>
@@ -401,17 +421,17 @@
     <section id="sponsors"
       class="w-full border-t border-black pt-16 md:pt-24 pb-16 flex flex-col items-center reveal-on-scroll">
       <div class="text-center mb-12">
-        <h3 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4">
+        <h3 class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-black mb-4">
           Partner With Us
         </h3>
-        <p class="text-base sm:text-lg font-medium opacity-80 max-w-3xl mx-auto">
+        <p class="text-lg sm:text-xl font-normal text-neutral-600 max-w-3xl mx-auto">
           Support cutting-edge student silicon designs and recruit top
           hardware engineering talent at the University of Michigan.
         </p>
       </div>
 
-      <div class="max-w-4xl text-center mb-16">
-        <p class="text-base sm:text-lg md:text-xl font-medium leading-relaxed text-gray-800">
+      <div class="max-w-4xl text-center mb-16 mx-auto">
+        <p class="text-lg sm:text-xl font-normal leading-relaxed text-neutral-600 max-w-3xl mx-auto">
           By partnering with RISC-M, your company gains direct access to a
           dedicated group of students who are actively building hands-on
           projects, sharing engineering knowledge, and preparing for careers
@@ -423,39 +443,39 @@
 
       <div class="w-full flex flex-col items-center">
         <h4
-          class="text-xl md:text-3xl font-black uppercase tracking-tight mb-12 border-b-2 border-black pb-4 inline-block">
+          class="text-xl md:text-2xl lg:text-3xl font-black uppercase tracking-tighter text-black mb-12 border-b-2 border-black pb-4 inline-block">
           Why Sponsor?
         </h4>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-5xl">
           <div
-            class="p-8 border-2 border-black rounded-3xl flex flex-col items-center bg-white hover:shadow-lg transition-all duration-300">
-            <h5 class="text-lg md:text-xl font-bold uppercase tracking-tight mb-4">
+            class="p-8 border-2 border-black rounded-[2rem] flex flex-col items-center bg-white hover:-translate-y-1 hover-rainbow-card transition-all duration-300">
+            <h5 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black mb-4">
               Community Connections
             </h5>
-            <p class="text-xs sm:text-sm font-medium opacity-80 text-gray-700">
+            <p class="text-sm sm:text-base font-normal text-neutral-600 leading-relaxed">
               Host exclusive tech talks, debugging workshops, and recruiting
               events with students deeply passionate about hardware and
               silicon design.
             </p>
           </div>
           <div
-            class="p-8 border-2 border-black rounded-3xl flex flex-col items-center bg-white hover:shadow-lg transition-all duration-300">
-            <h5 class="text-lg md:text-xl font-bold uppercase tracking-tight mb-4">
+            class="p-8 border-2 border-black rounded-[2rem] flex flex-col items-center bg-white hover:-translate-y-1 hover-rainbow-card transition-all duration-300">
+            <h5 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black mb-4">
               Project Funding
             </h5>
-            <p class="text-xs sm:text-sm font-medium opacity-80 text-gray-700">
+            <p class="text-sm sm:text-base font-normal text-neutral-600 leading-relaxed">
               Support hands-on learning by funding FPGA acquisitions,
               student-led designs, and our overarching mission to provide
               practical engineering experience.
             </p>
           </div>
           <div
-            class="p-8 border-2 border-black rounded-3xl flex flex-col items-center bg-white hover:shadow-lg transition-all duration-300">
-            <h5 class="text-lg md:text-xl font-bold uppercase tracking-tight mb-4">
+            class="p-8 border-2 border-black rounded-[2rem] flex flex-col items-center bg-white hover:-translate-y-1 hover-rainbow-card transition-all duration-300">
+            <h5 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black mb-4">
               Brand Visibility
             </h5>
-            <p class="text-xs sm:text-sm font-medium opacity-80 text-gray-700">
+            <p class="text-sm sm:text-base font-normal text-neutral-600 leading-relaxed">
               Feature your company logo prominently on our website, project
               repositories, and our community apparel.
             </p>
@@ -464,20 +484,20 @@
       </div>
 
       <div
-        class="mt-20 w-full text-center p-8 md:p-12 border-2 border-black rounded-[2.5rem] md:rounded-[3rem] bg-white">
-        <h4 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-4">
+        class="mt-20 w-full text-center p-8 md:p-12 border-2 border-black rounded-[2rem] bg-white">
+        <h4 class="text-2xl md:text-4xl font-black uppercase tracking-tighter text-black mb-4">
           Get in Touch
         </h4>
-        <p class="text-base sm:text-lg font-medium mb-8 max-w-2xl mx-auto opacity-80">
+        <p class="text-lg sm:text-xl font-normal text-neutral-600 mb-8 max-w-2xl mx-auto">
           Contact our executive board to learn more about our sponsorship
           tiers and how we can collaborate.
         </p>
         <a href="mailto:riscm-exec@umich.edu"
-          class="inline-block bg-black text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-gray-800 transition-colors text-xs sm:text-sm">
+          class="inline-block border-2 border-black bg-black text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest transition-all duration-300 text-xs sm:text-sm hover-rainbow-button">
           Email The Board
         </a>
-        <p class="text-xs sm:text-sm font-medium mt-6 opacity-60">
-          <span class="font-bold select-all">riscm-exec@umich.edu</span>
+        <p class="text-xs sm:text-sm font-bold uppercase tracking-wider text-neutral-500 mt-6">
+          <span class="select-all">riscm-exec@umich.edu</span>
         </p>
       </div>
     </section>
@@ -495,7 +515,6 @@
       </div>
     </footer>
   </main>
-
   <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
   <script src="scripts.js" defer></script>
 </body>
