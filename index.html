@@ -69,7 +69,7 @@
 
   <!-- Header / Navbar -->
   <header
-    class="flex justify-between items-center px-4 md:px-8 py-3 md:py-4 border-b border-black text-xs md:text-sm font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc]/90 backdrop-blur-md z-50">
+    class="flex justify-between items-center px-8 py-3 md:py-4 border-b border-black text-xs md:text-sm font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc]/90 backdrop-blur-md z-50">
     <div class="flex items-center gap-4 lg:gap-8">
       <div class="flex items-center gap-2">
         <div class="w-2.5 h-2.5 bg-black rounded-full animate-pulse shadow-[0_0_8px_rgba(0,0,0,0.6)]"></div>
@@ -88,17 +88,20 @@
       <nav class="flex gap-4 lg:gap-6 text-xs md:text-sm" aria-label="Main Navigation">
         <a href="#about" class="anchor-link hidden md:inline hover:text-gray-500 transition-colors">About</a>
         <a href="#projects" class="anchor-link hidden md:inline hover:text-gray-500 transition-colors">Projects</a>
-        <a href="#join" class="anchor-link hover:text-gray-500 transition-colors">Join</a>
+        <a href="#join" class="anchor-link hover:text-gray-500 transition-colors">
+          <span class="md:hidden">Join Us</span>
+          <span class="hidden md:inline">Join</span>
+        </a>
         <a href="#team" class="anchor-link hidden md:inline hover:text-gray-500 transition-colors">Team</a>
         <a href="#sponsors" class="anchor-link hidden md:inline hover:text-gray-500 transition-colors">Sponsors</a>
       </nav>
     </div>
   </header>
 
-  <main class="px-4 md:px-8 pt-20 md:pt-28 max-w-[1400px] mx-auto relative flex flex-col items-center">
+  <main class="px-8 pt-20 md:pt-28 max-w-[1400px] mx-auto relative flex flex-col items-center">
     <!-- 1. ABOUT THE CLUB (Hero and Info) -->
     <section id="about"
-      class="w-full min-h-[75vh] flex flex-col items-center justify-center text-center px-4 py-16 md:py-24">
+      class="w-full min-h-[75vh] flex flex-col items-center justify-center text-center px-8 py-16 md:py-24">
       <div class="max-w-4xl mx-auto flex flex-col items-center float-up-hero">
 
         <!-- Hero Title (Scales dynamically but remains large and bold on mobile) -->
