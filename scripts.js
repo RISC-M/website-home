@@ -146,6 +146,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById('projects-container');
     if (!container) return;
     
+    const startTime = Date.now();
+    const minDelay = 800; // Enforce an 0.8s delay so the loading skeleton pulse animation is visible
+
     // Default fallback repos in case GitHub API fails or rate-limits
     const fallbackRepos = [
       {
@@ -166,21 +169,31 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     ];
 
+    let reposToRender = fallbackRepos;
+
     try {
       const response = await fetch('https://api.github.com/orgs/RISC-M/repos?sort=updated&direction=desc');
       
-      if (!response.ok) {
-        throw new Error(`GitHub API error: ${response.status}`);
+      if (response.ok) {
+        const repos = await response.json();
+        const filteredRepos = repos.filter(repo => repo.name !== 'website-home');
+        if (filteredRepos.length > 0) {
+          reposToRender = filteredRepos;
+        }
+      } else {
+        console.warn(`GitHub API error: ${response.status}`);
       }
-      
-      const repos = await response.json();
-      const filteredRepos = repos.filter(repo => repo.name !== 'website-home');
-      
-      renderRepos(filteredRepos.length > 0 ? filteredRepos : fallbackRepos);
     } catch (error) {
       console.warn("Using fallback repositories due to GitHub API rate limit or network error:", error.message);
-      renderRepos(fallbackRepos);
     }
+
+    // Calculate remaining delay time to ensure animation runs
+    const elapsedTime = Date.now() - startTime;
+    const remainingTime = Math.max(0, minDelay - elapsedTime);
+
+    setTimeout(() => {
+      renderRepos(reposToRender);
+    }, remainingTime);
   }
 
   function renderRepos(repos) {
@@ -203,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const article = document.createElement('article');
-      article.className = 'border-2 border-black p-5 md:p-12 rounded-[2rem] w-full max-w-2xl flex flex-col justify-between transition-all duration-300 bg-white hover:-translate-y-1 hover-rainbow-card';
+      article.className = 'border-2 border-black p-5 md:p-8 rounded-[2rem] w-full max-w-md flex flex-col justify-between bg-white hover-offset-card fade-in-card';
       article.innerHTML = `
         <div>
           <div class="flex flex-col items-center mb-6 border-b border-black pb-6 gap-4">
@@ -328,6 +341,28 @@ document.addEventListener("DOMContentLoaded", () => {
     scrambler.setText(subtitleText, 80); // Fast, energetic scramble duration
   }
 
-  // Run GitHub fetching
-  fetchGitHubProjects();
+  // Trigger project loading on scroll intersection so skeletons are visible first
+  const projectsSection = document.getElementById('projects');
+  if (projectsSection) {
+    const projectsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Ensure it's a real scroll intersection and not a load layout flash
+          const isBelowFold = entry.boundingClientRect.top > 0;
+          if (isBelowFold || window.scrollY > 50) {
+            fetchGitHubProjects();
+            projectsObserver.unobserve(entry.target); // Load only once
+          }
+        }
+      });
+    }, {
+      threshold: 0.15, // Require 15% visibility to trigger
+      rootMargin: "0px 0px -100px 0px" // Trigger when scrolled 100px inside viewport
+    });
+    
+    // Let DOM layout and Lenis scroll restoration settle before observing
+    setTimeout(() => {
+      projectsObserver.observe(projectsSection);
+    }, 100);
+  }
 });
