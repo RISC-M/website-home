@@ -85,7 +85,30 @@ a:focus-visible, button:focus-visible {
 /* Cards - premium floating styling with hover lift & shadow effects */
 #projects-container .hover-offset-card,
 #projects-container > div {
-  min-height: 440px;
+  min-height: 432px;
+}
+
+/* Keep unusually long repository content contained without forcing wider or taller cards. */
+.project-card-title,
+.project-card-description,
+.project-card-link {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.project-card-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.project-card-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+  overflow: hidden;
 }
 
 .hover-offset-card {

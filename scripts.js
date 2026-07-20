@@ -205,42 +205,31 @@ document.addEventListener("DOMContentLoaded", () => {
     repos.forEach((repo, index) => {
       const date = new Date(repo.updated_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
       
-      let tagsHtml = '';
-      if (repo.language) {
-        tagsHtml += `<span class="px-3 py-1 bg-neutral-100 border border-black rounded-full text-xs font-bold uppercase tracking-wider">${repo.language}</span>`;
-      }
-      if (repo.topics && repo.topics.length > 0) {
-        repo.topics.forEach(topic => {
-          tagsHtml += `<span class="px-3 py-1 bg-neutral-100 border border-neutral-300 rounded-full text-xs font-semibold uppercase text-neutral-600 tracking-wider">${topic}</span>`;
-        });
-      }
-
       const article = document.createElement('article');
-      article.className = 'border-2 border-black p-5 md:p-8 rounded-[2rem] w-full max-w-md flex flex-col justify-between bg-white hover-offset-card fade-in-card';
+      article.className = 'border-2 border-black p-4 md:p-5 rounded-[1.5rem] w-full max-w-sm flex flex-col justify-between bg-white hover-offset-card fade-in-card cursor-pointer';
+      article.setAttribute('role', 'link');
+      article.tabIndex = 0;
+      article.setAttribute('aria-label', `View ${repo.name} on GitHub`);
       article.innerHTML = `
         <div>
-          <div class="flex flex-col items-center mb-6 border-b border-black pb-6 gap-4">
+          <div class="flex flex-col items-center mb-4 border-b border-black pb-4 gap-3">
             <div class="text-center w-full">
               <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="hover:opacity-70 transition-opacity">
-                <h2 class="text-2xl md:text-3xl lg:text-4xl font-black uppercase tracking-tighter mt-2 leading-none">${repo.name.replace(/-/g, ' ')}</h2>
+                <h2 class="project-card-title text-2xl md:text-3xl font-black uppercase tracking-tighter mt-1 leading-none">${repo.name.replace(/-/g, ' ')}</h2>
               </a>
             </div>
             <div class="flex flex-col items-center">
-              <div class="px-4 py-1 border border-black bg-black text-white rounded-full text-xs font-bold uppercase tracking-widest mb-2 inline-block">Active Repo</div>
-              <span class="text-xs font-bold uppercase tracking-wider text-neutral-400 block">Updated: ${date}</span>
+              <span class="px-4 py-1 border border-black bg-black text-white rounded-full text-xs font-bold uppercase tracking-widest block">Updated: ${date}</span>
             </div>
           </div>
           <div class="space-y-4 text-center">
-            <p class="text-base md:text-lg font-normal text-neutral-700 leading-relaxed">
+            <p class="project-card-description text-base md:text-lg font-normal text-neutral-700 leading-relaxed">
               ${repo.description || 'No description provided for this repository.'}
             </p>
-            <div class="flex flex-wrap justify-center gap-2 pt-4">
-              ${tagsHtml}
-            </div>
           </div>
         </div>
-        <div class="mt-8 pt-6 border-t border-black border-dashed flex justify-center">
-          <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="text-sm font-bold uppercase tracking-widest hover:underline flex items-center gap-2">
+        <div class="mt-6 pt-5 border-t border-black border-dashed flex justify-center">
+          <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="project-card-link text-sm font-bold uppercase tracking-widest hover:underline flex items-center gap-2">
             View on GitHub 
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
@@ -248,6 +237,17 @@ document.addEventListener("DOMContentLoaded", () => {
           </a>
         </div>
       `;
+      const openRepository = () => window.open(repo.html_url, '_blank', 'noopener,noreferrer');
+      article.addEventListener('click', (event) => {
+        if (!event.target.closest('a')) openRepository();
+      });
+      article.addEventListener('keydown', (event) => {
+        if (event.target.closest('a')) return;
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openRepository();
+        }
+      });
       container.appendChild(article);
     });
 
