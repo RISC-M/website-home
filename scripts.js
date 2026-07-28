@@ -176,7 +176,12 @@ document.addEventListener("DOMContentLoaded", () => {
       
       if (response.ok) {
         const repos = await response.json();
-        const filteredRepos = repos.filter(repo => repo.name !== 'website-home');
+        const hiddenRepos = ['website-home', 'sponsorship-packet', 'sponsorship_packet', 'sponsorship packet'];
+        const filteredRepos = repos.filter(repo => {
+          const lowerName = repo.name.toLowerCase();
+          const normalizedName = lowerName.replace(/[-_]/g, ' ');
+          return !hiddenRepos.includes(lowerName) && !hiddenRepos.includes(normalizedName);
+        });
         if (filteredRepos.length > 0) {
           reposToRender = filteredRepos;
         }
@@ -192,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const remainingTime = Math.max(0, minDelay - elapsedTime);
 
     setTimeout(() => {
-      renderRepos(reposToRender);
+      renderRepos(reposToRender.slice(0, 3));
     }, remainingTime);
   }
 
@@ -202,7 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     container.innerHTML = ''; // Clear loading skeleton
 
-    repos.forEach((repo, index) => {
+    repos.slice(0, 3).forEach((repo, index) => {
       const date = new Date(repo.updated_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
       
       const article = document.createElement('article');
