@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — RISC-M</title>
+  
+  <meta name="description" content="Explore custom silicon architectures, accelerators, simulators, and open-source synthesis tools built by RISC-M at the University of Michigan." />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- Fonts: Inter (Sans) & JetBrains Mono (Monospace) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="bg-[#ededed] text-neutral-900 font-sans antialiased selection:bg-black selection:text-white relative overflow-x-hidden min-h-screen">
+
+  <!-- Interactive Silicon Wafer Matrix Background -->
+  <canvas id="wafer-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+  <!-- Sticky Full-Width Header -->
+  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-[#ededed]/80 backdrop-blur-md border-b border-[rgba(0,0,0,0.06)] px-6 sm:px-10 md:px-12 py-3.5 sm:py-4">
+    <div class="w-full flex items-center justify-between">
+      
+      <!-- Top Left: Logo + RISC-M -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="logo.png" alt="RISC-M Logo" class="w-7 h-7 sm:w-8 sm:h-8 object-contain transition-transform group-hover:scale-105" />
+        <span class="text-base sm:text-lg font-bold tracking-tight text-black uppercase">RISC-M</span>
+      </a>
+
+      <!-- Top Right: Navigation Links + Join Us (No About Us in top bar) -->
+      <nav class="flex items-center gap-6 sm:gap-8 text-xs sm:text-sm font-mono">
+        <a href="projects.html" class="text-black font-semibold border-b border-black pb-0.5">Projects</a>
+        <a href="team.html" class="text-neutral-600 hover:text-black transition-colors">Team</a>
+        <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer" 
+           class="text-neutral-900 font-medium hover:opacity-60 transition-opacity flex items-center gap-1.5">
+          <span>Join Us</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Main Container with Etched Structural Layout Rails -->
+  <main class="max-w-6xl mx-auto min-h-screen border-x border-[rgba(0,0,0,0.08)] bg-[#ededed]/60 backdrop-blur-[2px] pt-24 sm:pt-28 pb-20 relative z-10">
+
+    <!-- Projects Hero Header -->
+    <section class="px-6 sm:px-12 pt-8 pb-12 sm:pb-16 border-b border-[rgba(0,0,0,0.08)]">
+      <div class="max-w-4xl mx-auto text-left">
+        
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-1.5 h-1.5 bg-black rounded-xs"></span>
+          <h2 class="text-xs font-mono uppercase tracking-widest text-neutral-500">// ARCHITECTURE & SILICON REPOSITORIES</h2>
+        </div>
+        
+        <h1 class="text-4xl sm:text-6xl font-semibold tracking-[-0.035em] text-[#0a0a0a] leading-[1.08] mb-4">
+          Projects.
+        </h1>
+        
+        <p class="text-base sm:text-lg text-neutral-600 font-normal max-w-2xl leading-relaxed">
+          Exploring custom hardware architectures, specialized accelerators, cycle-accurate simulators, and open-source ASIC synthesis flows.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="px-6 sm:px-12 py-12 sm:py-16">
+      <div class="max-w-4xl mx-auto space-y-8">
+
+        <!-- Project 1: Inference-M (Flagship Accelerator) -->
+        <article class="p-6 sm:p-8 bg-white/80 border border-[rgba(0,0,0,0.06)] rounded-sm hover:border-black/20 transition-all">
+          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono text-neutral-400">01</span>
+              <h3 class="text-2xl sm:text-3xl font-semibold tracking-tight text-neutral-900">Inference-M</h3>
+            </div>
+            <span class="text-xs font-mono text-neutral-500 bg-neutral-100 px-2.5 py-1 rounded-xs">
+              FLAGSHIP ACCELERATOR
+            </span>
+          </div>
+
+          <p class="text-sm sm:text-base text-neutral-600 leading-relaxed font-normal mb-6">
+            A custom manycore ML accelerator engineered around <strong class="text-neutral-900 font-medium">Direct Compute Access (DCA)</strong> — eliminating inter-core communication bottlenecks in transformer workloads by executing arithmetic reductions directly across the network in flight.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+            <div class="p-4 bg-neutral-50/80 rounded-xs border border-neutral-100">
+              <span class="text-[10px] font-mono text-neutral-400 block mb-1 uppercase">Core Architecture</span>
+              <span class="text-xs font-mono font-medium text-neutral-800">RV32I + Vector Tiles</span>
+            </div>
+            <div class="p-4 bg-neutral-50/80 rounded-xs border border-neutral-100">
+              <span class="text-[10px] font-mono text-neutral-400 block mb-1 uppercase">Interconnect</span>
+              <span class="text-xs font-mono font-medium text-neutral-800">Collective 2D Mesh NoC</span>
+            </div>
+            <div class="p-4 bg-neutral-50/80 rounded-xs border border-neutral-100">
+              <span class="text-[10px] font-mono text-neutral-400 block mb-1 uppercase">Target</span>
+              <span class="text-xs font-mono font-medium text-neutral-800">Physical ASIC Tape-out</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-4 border-t border-neutral-200/60 text-xs font-mono">
+            <span class="text-neutral-500">SystemVerilog &bull; OpenROAD &bull; SystemC</span>
+            <a href="https://github.com/RISC-M" target="_blank" rel="noopener noreferrer" 
+               class="text-neutral-900 font-medium hover:opacity-60 transition-opacity flex items-center gap-1">
+              <span>View Organization</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2: Inference-M-Sim -->
+        <article class="p-6 sm:p-8 bg-white/80 border border-[rgba(0,0,0,0.06)] rounded-sm hover:border-black/20 transition-all">
+          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono text-neutral-400">02</span>
+              <h3 class="text-2xl sm:text-3xl font-semibold tracking-tight text-neutral-900">Inference-M-Sim</h3>
+            </div>
+            <span class="text-xs font-mono text-neutral-500 bg-neutral-100 px-2.5 py-1 rounded-xs">
+              SIMULATOR
+            </span>
+          </div>
+
+          <p class="text-sm sm:text-base text-neutral-600 leading-relaxed font-normal mb-6">
+            A cycle-accurate SystemC / TLM-2.0 multi-core mesh simulator designed to model network-on-chip traffic, wormhole packet routing, and in-transit vector reduction latency with interactive transaction visualizers.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+            <div class="p-4 bg-neutral-50/80 rounded-xs border border-neutral-100">
+              <span class="text-[10px] font-mono text-neutral-400 block mb-1 uppercase">Framework</span>
+              <span class="text-xs font-mono font-medium text-neutral-800">C++20 &bull; SystemC / TLM</span>
+            </div>
+            <div class="p-4 bg-neutral-50/80 rounded-xs border border-neutral-100">
+              <span class="text-[10px] font-mono text-neutral-400 block mb-1 uppercase">Frontend</span>
+              <span class="text-xs font-mono font-medium text-neutral-800">PyTorch Translation</span>
+            </div>
+            <div class="p-4 bg-neutral-50/80 rounded-xs border border-neutral-100">
+              <span class="text-[10px] font-mono text-neutral-400 block mb-1 uppercase">Verification</span>
+              <span class="text-xs font-mono font-medium text-neutral-800">Wormhole & NI Testbenches</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-4 border-t border-neutral-200/60 text-xs font-mono">
+            <span class="text-neutral-500">C++ &bull; SystemC &bull; Python</span>
+            <a href="https://github.com/RISC-M/Inference-M-Sim" target="_blank" rel="noopener noreferrer" 
+               class="text-neutral-900 font-medium hover:opacity-60 transition-opacity flex items-center gap-1">
+              <span>View Repository</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 3: Open-Source-Synthesis -->
+        <article class="p-6 sm:p-8 bg-white/80 border border-[rgba(0,0,0,0.06)] rounded-sm hover:border-black/20 transition-all">
+          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono text-neutral-400">03</span>
+              <h3 class="text-2xl sm:text-3xl font-semibold tracking-tight text-neutral-900">Open-Source-Synthesis</h3>
+            </div>
+            <span class="text-xs font-mono text-neutral-500 bg-neutral-100 px-2.5 py-1 rounded-xs">
+              PHYSICAL DESIGN
+            </span>
+          </div>
+
+          <p class="text-sm sm:text-base text-neutral-600 leading-relaxed font-normal mb-6">
+            Complete open-source synthesis and static timing analysis infrastructure using Yosys and OpenROAD, tailored for computer architecture research and student projects targeting the SkyWater 130nm PDK.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+            <div class="p-4 bg-neutral-50/80 rounded-xs border border-neutral-100">
+              <span class="text-[10px] font-mono text-neutral-400 block mb-1 uppercase">Synthesis Engine</span>
+              <span class="text-xs font-mono font-medium text-neutral-800">Yosys + ABC</span>
+            </div>
+            <div class="p-4 bg-neutral-50/80 rounded-xs border border-neutral-100">
+              <span class="text-[10px] font-mono text-neutral-400 block mb-1 uppercase">Timing & STA</span>
+              <span class="text-xs font-mono font-medium text-neutral-800">OpenSTA &bull; SDC Constraints</span>
+            </div>
+            <div class="p-4 bg-neutral-50/80 rounded-xs border border-neutral-100">
+              <span class="text-[10px] font-mono text-neutral-400 block mb-1 uppercase">Target PDK</span>
+              <span class="text-xs font-mono font-medium text-neutral-800">SkyWater Sky130 HD</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-4 border-t border-neutral-200/60 text-xs font-mono">
+            <span class="text-neutral-500">TCL &bull; Shell &bull; Yosys</span>
+            <a href="https://github.com/RISC-M/Open-Source-Synthesis" target="_blank" rel="noopener noreferrer" 
+               class="text-neutral-900 font-medium hover:opacity-60 transition-opacity flex items-center gap-1">
+              <span>View Repository</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-[rgba(0,0,0,0.08)] px-6 sm:px-12 py-8 mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-500">
+      <div>
+        <span>&copy; 2026 RISC-M &bull; University of Michigan</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="https://github.com/RISC-M" target="_blank" rel="noopener noreferrer" class="hover:text-black transition-colors">GitHub</a>
+        <a href="https://www.linkedin.com/company/risc-m/" target="_blank" rel="noopener noreferrer" class="hover:text-black transition-colors">LinkedIn</a>
+        <a href="mailto:riscm-exec@umich.edu" class="hover:text-black transition-colors">Email</a>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
+  <script src="scripts.js" defer></script>
+</body>
+
+</html>

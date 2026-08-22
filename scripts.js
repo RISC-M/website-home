@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialize Smooth Scrolling (Lenis) - Desktop only for performance
+  // 1. Initialize Smooth Scrolling (Lenis) - Desktop only
   let lenisInstance = null;
   const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   
   if (!isTouchDevice && typeof Lenis !== 'undefined') {
-    // Prevent browser scroll restoration jumps on page reload for desktop Lenis
     if (window.history && 'scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
@@ -24,350 +23,204 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     requestAnimationFrame(raf);
   } else {
-    // Restore default scroll restoration behavior for mobile native scrolling
     if (window.history && 'scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'auto';
     }
   }
-  
-  // Smooth scroll for anchor links
-  document.querySelectorAll('.anchor-link').forEach(anchor => {
+
+  // Smooth scroll handler for anchor links (#projects, #team)
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-      const href = this.getAttribute('href');
-      if (href.startsWith('#')) {
-        const target = document.querySelector(href);
-        if (target) { 
+      const targetId = this.getAttribute('href');
+      if (targetId && targetId !== '#') {
+        const targetElem = document.querySelector(targetId);
+        if (targetElem) {
+          e.preventDefault();
           if (lenisInstance) {
-            e.preventDefault();
-            lenisInstance.scrollTo(target); 
-          }
-        }
-      }
-    });
-  });
-
-  // Scroll Progress Bar
-  window.addEventListener("scroll", () => {
-    const scrollProgress = document.getElementById("scroll-progress");
-    if (scrollProgress) {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrolled = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      scrollProgress.style.width = scrolled + "%";
-    }
-  });
-
-  // Mobile Menu Logic
-  const menuButton = document.getElementById("mobile-menu-button");
-  const closeButton = document.getElementById("close-menu-button");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const mobileLinks = document.querySelectorAll(".mobile-nav-link");
-
-  if (mobileMenu) {
-    if (menuButton) {
-      menuButton.addEventListener("click", () => {
-        mobileMenu.classList.remove("translate-x-full");
-      });
-    }
-
-    if (closeButton) {
-      closeButton.addEventListener("click", () => {
-        mobileMenu.classList.add("translate-x-full");
-      });
-    }
-
-    mobileLinks.forEach(link => {
-      link.addEventListener("click", () => {
-        mobileMenu.classList.add("translate-x-full");
-      });
-    });
-  }
-
-  // Scrollspy: Highlight Active Nav Link
-  const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll("header nav a");
-  const mobileNavLinks = document.querySelectorAll("#mobile-menu a.mobile-nav-link");
-
-  const observerOptions = {
-    root: null,
-    rootMargin: "-25% 0px -55% 0px", // Trigger when section occupies the active view area
-    threshold: 0
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute("id");
-        
-        // Update desktop links
-        navLinks.forEach(link => {
-          const href = link.getAttribute("href");
-          if (href === `#${id}` || (id === "about" && href === "#")) {
-            link.classList.add("underline", "decoration-2", "underline-offset-4");
-            link.classList.remove("text-gray-500");
+            lenisInstance.scrollTo(targetElem, { offset: -70 });
           } else {
-            link.classList.remove("underline", "decoration-2", "underline-offset-4");
-            link.classList.add("text-gray-500");
+            targetElem.scrollIntoView({ behavior: 'smooth' });
           }
-        });
-        
-        // Update mobile links
-        mobileNavLinks.forEach(link => {
-          const href = link.getAttribute("href");
-          if (href === `#${id}`) {
-            link.classList.add("underline", "decoration-2", "underline-offset-4");
-          } else {
-            link.classList.remove("underline", "decoration-2", "underline-offset-4");
-          }
-        });
+        }
       }
     });
-  }, observerOptions);
-
-  sections.forEach(section => observer.observe(section));
-
-  // Scroll Reveal Animation Observer
-  const revealElements = document.querySelectorAll(".reveal-on-scroll");
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("active");
-        revealObserver.unobserve(entry.target); // animate only once
-      }
-    });
-  }, {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px"
   });
-  revealElements.forEach(el => revealObserver.observe(el));
 
-  // Fetch GitHub Projects Logic
-  async function fetchGitHubProjects() {
-    const container = document.getElementById('projects-container');
-    if (!container) return;
-    
-    const startTime = Date.now();
-    const minDelay = 800; // Enforce an 0.8s delay so the loading skeleton pulse animation is visible
+  // 2. Interactive Semiconductor Wafer & Dual-Color Trace Pulse Canvas
+  const canvas = document.getElementById('bg-canvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+    let dpr = window.devicePixelRatio || 1;
 
-    // Default fallback repos in case GitHub API fails or rate-limits
-    const fallbackRepos = [
-      {
-        name: "perception-pipeline",
-        html_url: "https://github.com/RISC-M",
-        description: "An FPGA-accelerated perception pipeline for real-time computer vision applications in hardware design and autonomous vehicles.",
-        language: "SystemVerilog",
-        topics: ["fpga", "computer-vision", "hardware-acceleration", "verilog"],
-        updated_at: new Date().toISOString()
-      },
-      {
-        name: "rv32i-core",
-        html_url: "https://github.com/RISC-M",
-        description: "A custom 5-stage pipelined RISC-V processor implementing the RV32I ISA, fully optimized for FPGA synthesis and computer architecture research.",
-        language: "SystemVerilog",
-        topics: ["processor-design", "risc-v", "computer-architecture", "cpu"],
-        updated_at: new Date().toISOString()
-      }
-    ];
-
-    let reposToRender = fallbackRepos;
-
-    try {
-      const response = await fetch('https://api.github.com/orgs/RISC-M/repos?sort=updated&direction=desc');
-      
-      if (response.ok) {
-        const repos = await response.json();
-        const hiddenRepos = ['website-home', 'sponsorship-packet', 'sponsorship_packet', 'sponsorship packet'];
-        const filteredRepos = repos.filter(repo => {
-          const lowerName = repo.name.toLowerCase();
-          const normalizedName = lowerName.replace(/[-_]/g, ' ');
-          return !hiddenRepos.includes(lowerName) && !hiddenRepos.includes(normalizedName);
-        });
-        if (filteredRepos.length > 0) {
-          reposToRender = filteredRepos;
-        }
-      } else {
-        console.warn(`GitHub API error: ${response.status}`);
-      }
-    } catch (error) {
-      console.warn("Using fallback repositories due to GitHub API rate limit or network error:", error.message);
+    function resize() {
+      dpr = window.devicePixelRatio || 1;
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
     }
+    window.addEventListener('resize', resize);
+    resize();
 
-    // Calculate remaining delay time to ensure animation runs
-    const elapsedTime = Date.now() - startTime;
-    const remainingTime = Math.max(0, minDelay - elapsedTime);
-
-    setTimeout(() => {
-      renderRepos(reposToRender.slice(0, 3));
-    }, remainingTime);
-  }
-
-  function renderRepos(repos) {
-    const container = document.getElementById('projects-container');
-    if (!container) return;
+    let mouse = { x: width * 0.5, y: height * 0.4, targetX: width * 0.5, targetY: height * 0.4, active: false };
     
-    container.innerHTML = ''; // Clear loading skeleton
-
-    repos.slice(0, 3).forEach((repo, index) => {
-      const date = new Date(repo.updated_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
-      
-      const article = document.createElement('article');
-      article.className = 'border-2 border-black p-4 md:p-5 rounded-[1.5rem] w-full max-w-sm flex flex-col justify-between bg-white hover-offset-card fade-in-card cursor-pointer';
-      article.setAttribute('role', 'link');
-      article.tabIndex = 0;
-      article.setAttribute('aria-label', `View ${repo.name} on GitHub`);
-      article.innerHTML = `
-        <div>
-          <div class="flex flex-col items-center mb-4 border-b border-black pb-4 gap-3">
-            <div class="text-center w-full">
-              <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="hover:opacity-70 transition-opacity">
-                <h2 class="project-card-title text-2xl md:text-3xl font-black uppercase tracking-tighter mt-1 leading-none">${repo.name.replace(/-/g, ' ')}</h2>
-              </a>
-            </div>
-            <div class="flex flex-col items-center">
-              <span class="px-4 py-1 border border-black bg-black text-white rounded-full text-xs font-bold uppercase tracking-widest block">Updated: ${date}</span>
-            </div>
-          </div>
-          <div class="space-y-4 text-center">
-            <p class="project-card-description text-base md:text-lg font-normal text-neutral-700 leading-relaxed">
-              ${repo.description || 'No description provided for this repository.'}
-            </p>
-          </div>
-        </div>
-        <div class="mt-6 pt-5 border-t border-black border-dashed flex justify-center">
-          <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="project-card-link text-sm font-bold uppercase tracking-widest hover:underline flex items-center gap-2">
-            View on GitHub 
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-            </svg>
-          </a>
-        </div>
-      `;
-      const openRepository = () => window.open(repo.html_url, '_blank', 'noopener,noreferrer');
-      article.addEventListener('click', (event) => {
-        if (!event.target.closest('a')) openRepository();
-      });
-      article.addEventListener('keydown', (event) => {
-        if (event.target.closest('a')) return;
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          openRepository();
-        }
-      });
-      container.appendChild(article);
+    window.addEventListener('mousemove', (e) => {
+      mouse.targetX = e.clientX;
+      mouse.targetY = e.clientY;
+      mouse.active = true;
     });
 
-    // Recalculate scroll height for Lenis smooth scrolling if active
-    if (lenisInstance) {
-      setTimeout(() => {
-        if (lenisInstance) lenisInstance.resize();
-      }, 120);
-    }
-  }
-
-  // Text Scramble Cryptography Effect
-  class TextScrambler {
-    constructor(el) {
-      this.el = el;
-      this.update = this.update.bind(this);
-    }
-    setText(newText, maxFrames = 150) {
-      const oldText = this.el.innerText;
-      const length = Math.max(oldText.length, newText.length);
-      const promise = new Promise((resolve) => this.resolve = resolve);
-      this.queue = [];
-      for (let i = 0; i < length; i++) {
-        const from = oldText[i] || '';
-        const to = newText[i] || '';
-        const start = 0; // Starts scrambled on frame 0
-        const progress = Math.pow(Math.random(), 2.5); // Slower ease-out curve (decelerates more)
-        const end = Math.floor(progress * maxFrames) + 15; // Set duration
-        this.queue.push({ from, to, start, end });
-      }
-      cancelAnimationFrame(this.frameRequest);
-      this.frame = 0;
-      this.update();
-      return promise;
-    }
-    update() {
-      let output = '';
-      let complete = 0;
-      for (let i = 0, n = this.queue.length; i < n; i++) {
-        let { from, to, start, end, char } = this.queue[i];
-        if (this.frame >= end) {
-          complete++;
-          output += to;
-        } else if (this.frame >= start) {
-          if (!char || Math.random() < 0.12) {
-            char = this.randomChar(to);
-            this.queue[i].char = char;
-          }
-          output += char;
-        } else {
-          output += from;
-        }
-      }
-      this.el.innerHTML = output;
-      if (complete === this.queue.length) {
-        this.resolve();
-      } else {
-        this.frameRequest = requestAnimationFrame(this.update);
-        this.frame++;
-      }
-    }
-    randomChar(targetChar) {
-      if (targetChar === ' ') return ' ';
-      if (targetChar === '-') return '-';
-      
-      // Keep lowercase letters lowercase
-      if (/[a-z]/.test(targetChar)) {
-        const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
-        return lowercaseChars[Math.floor(Math.random() * lowercaseChars.length)];
-      }
-      // Keep uppercase letters uppercase
-      if (/[A-Z]/.test(targetChar)) {
-        const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        return uppercaseChars[Math.floor(Math.random() * uppercaseChars.length)];
-      }
-      // Keep numbers numeric
-      if (/[0-9]/.test(targetChar)) {
-        const digitChars = '0123456789';
-        return digitChars[Math.floor(Math.random() * digitChars.length)];
-      }
-      
-      return targetChar;
-    }
-  }
-
-  // Scramble the Hero subtitle element only, leaving the main title static
-  const subtitleEl = document.getElementById('hero-subtitle');
-  if (subtitleEl) {
-    const subtitleText = subtitleEl.textContent.trim();
-    const scrambler = new TextScrambler(subtitleEl);
-    scrambler.setText(subtitleText, 80); // Fast, energetic scramble duration
-  }
-
-  // Trigger project loading on scroll intersection so skeletons are visible first
-  const projectsSection = document.getElementById('projects');
-  if (projectsSection) {
-    const projectsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Ensure it's a real scroll intersection and not a load layout flash
-          const isBelowFold = entry.boundingClientRect.top > 0;
-          if (isBelowFold || window.scrollY > 50) {
-            fetchGitHubProjects();
-            projectsObserver.unobserve(entry.target); // Load only once
-          }
-        }
-      });
-    }, {
-      threshold: 0.15, // Require 15% visibility to trigger
-      rootMargin: "0px 0px -100px 0px" // Trigger when scrolled 100px inside viewport
+    window.addEventListener('mouseleave', () => {
+      mouse.active = false;
     });
-    
-    // Let DOM layout and Lenis scroll restoration settle before observing
-    setTimeout(() => {
-      projectsObserver.observe(projectsSection);
-    }, 100);
+
+    const GRID_SIZE = 48;
+
+    class SignalPulse {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        const cols = Math.max(1, Math.floor(width / GRID_SIZE));
+        const rows = Math.max(1, Math.floor(height / GRID_SIZE));
+        this.gx = Math.floor(Math.random() * cols) * GRID_SIZE;
+        this.gy = Math.floor(Math.random() * rows) * GRID_SIZE;
+        this.x = this.gx;
+        this.y = this.gy;
+        
+        this.dir = Math.floor(Math.random() * 4);
+        this.speed = (Math.random() * 1.5 + 1.0);
+        this.length = Math.random() * 40 + 25;
+        this.life = Math.random() * 200 + 120;
+        this.maxLife = this.life;
+        this.opacity = Math.random() * 0.45 + 0.35;
+        
+        // Randomly assign UMich Blue or UMich Maize / Yellow
+        this.rgb = Math.random() < 0.5 ? '0, 39, 76' : '220, 150, 0';
+      }
+      update() {
+        this.life--;
+        if (this.life <= 0) {
+          this.reset();
+          return;
+        }
+
+        if (this.dir === 0) this.x += this.speed;
+        else if (this.dir === 1) this.y += this.speed;
+        else if (this.dir === 2) this.x -= this.speed;
+        else if (this.dir === 3) this.y -= this.speed;
+
+        if (Math.abs((this.x % GRID_SIZE)) < this.speed && Math.abs((this.y % GRID_SIZE)) < this.speed) {
+          if (Math.random() < 0.25) {
+            this.dir = (this.dir % 2 === 0) ? (Math.random() < 0.5 ? 1 : 3) : (Math.random() < 0.5 ? 0 : 2);
+          }
+        }
+
+        if (this.x < -100 || this.x > width + 100 || this.y < -100 || this.y > height + 100) {
+          this.reset();
+        }
+      }
+      draw(ctx) {
+        const progress = this.life / this.maxLife;
+        const alpha = Math.sin(progress * Math.PI) * this.opacity;
+        if (alpha <= 0.001) return;
+
+        ctx.save();
+        ctx.beginPath();
+        let tailX = this.x;
+        let tailY = this.y;
+
+        if (this.dir === 0) tailX = this.x - this.length;
+        else if (this.dir === 1) tailY = this.y - this.length;
+        else if (this.dir === 2) tailX = this.x + this.length;
+        else if (this.dir === 3) tailY = this.y + this.length;
+
+        const grad = ctx.createLinearGradient(tailX, tailY, this.x, this.y);
+        grad.addColorStop(0, 'rgba(' + this.rgb + ', 0)');
+        grad.addColorStop(0.7, 'rgba(' + this.rgb + ', ' + (alpha * 0.75) + ')');
+        grad.addColorStop(1, 'rgba(' + this.rgb + ', ' + alpha + ')');
+
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 1.4;
+        ctx.lineCap = 'round';
+        ctx.moveTo(tailX, tailY);
+        ctx.lineTo(this.x, this.y);
+        ctx.stroke();
+
+        ctx.fillStyle = 'rgba(' + this.rgb + ', ' + Math.min(1, alpha * 1.25) + ')';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 1.8, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.restore();
+      }
+    }
+
+    const pulses = Array.from({ length: 18 }, () => new SignalPulse());
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      mouse.x += (mouse.targetX - mouse.x) * 0.08;
+      mouse.y += (mouse.targetY - mouse.y) * 0.08;
+
+      const glowRadius = 240;
+      ctx.lineWidth = 0.5;
+
+      // Draw grid lines
+      for (let x = 0; x <= width; x += GRID_SIZE) {
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.035)';
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      for (let y = 0; y <= height; y += GRID_SIZE) {
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.035)';
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      // Draw dots
+      for (let x = 0; x <= width; x += GRID_SIZE) {
+        for (let y = 0; y <= height; y += GRID_SIZE) {
+          const dx = x - mouse.x;
+          const dy = y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          let dotAlpha = 0.07;
+          let dotRadius = 0.9;
+
+          if (mouse.active && dist < glowRadius) {
+            const proximity = 1 - dist / glowRadius;
+            dotAlpha += proximity * 0.32;
+            dotRadius += proximity * 0.8;
+          }
+
+          ctx.fillStyle = 'rgba(0, 0, 0, ' + dotAlpha + ')';
+          ctx.beginPath();
+          ctx.arc(x, y, dotRadius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // Draw pulses
+      pulses.forEach(pulse => {
+        pulse.update();
+        pulse.draw(ctx);
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
   }
 });

@@ -5,33 +5,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>RISC-M | UMICH Computer Architecture & Silicon Design Team</title>
+  <title>RISC-M | University of Michigan</title>
   <meta name="description"
-    content="RISC-M is the University of Michigan's first student-led club focused on computer hardware, silicon design, and advanced processor architecture." />
+    content="RISC-M is the University of Michigan's student-led computer architecture and silicon design team." />
   <link rel="canonical" href="https://risc-m.github.io/website-home/" />
 
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link rel="icon" href="logo.png" type="image/png" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="RISC-M | UMICH Computer Architecture & Silicon Design Team" />
-  <meta property="og:description"
-    content="A student-led community exploring computer architecture and hardware design beyond the classroom." />
+  <meta property="og:title" content="RISC-M | University of Michigan" />
+  <meta property="og:description" content="University of Michigan Computer Architecture & Silicon Design." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://risc-m.github.io/website-home/" />
   <meta property="og:image" content="https://risc-m.github.io/website-home/logo.png" />
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="RISC-M | UMICH Computer Architecture & Silicon Design Team" />
-  <meta name="twitter:description"
-    content="A student-led community exploring computer architecture and hardware design beyond the classroom." />
-  <meta name="twitter:image" content="https://risc-m.github.io/website-home/logo.png" />
-
-  <!-- Fonts -->
+  <!-- Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -39,495 +31,287 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Outfit', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
           }
         }
       }
     }
   </script>
   <link rel="stylesheet" href="styles.css" />
-  <noscript>
-    <style>
-      .reveal-on-scroll {
-        opacity: 1 !important;
-        transform: none !important;
-        filter: none !important;
-      }
-    </style>
-  </noscript>
 </head>
 
-<body
-  class="relative min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-6 no-scrollbar">
-  <!-- Global Dotted Background Grid -->
-  <div
-    class="absolute inset-0 bg-[radial-gradient(#e5e5e5_1.5px,transparent_1.5px)] [background-size:24px_24px] pointer-events-none -z-10">
-  </div>
-  <!-- Scroll Progress Bar -->
-  <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-black z-50 transition-all duration-100" style="width: 0%">
-  </div>
+<body class="min-h-screen bg-[#ededed] text-[#0a0a0a] font-sans antialiased selection:bg-black selection:text-white no-scrollbar">
 
-  <!-- Header / Navbar -->
-  <header
-    class="flex justify-between items-center px-8 py-3 md:py-4 border-b border-black text-xs md:text-sm font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc]/90 backdrop-blur-md z-50">
-    <div class="flex items-center gap-4 lg:gap-8">
-      <div class="flex items-center gap-2">
-        <div class="w-2.5 h-2.5 bg-black rounded-full animate-pulse shadow-[0_0_8px_rgba(0,0,0,0.6)]"></div>
-        <a href="#about"
-          class="anchor-link whitespace-nowrap hover:opacity-70 transition-opacity text-xl md:text-base font-black tracking-tighter uppercase">RISC-M</a>
-      </div>
-      <div class="hidden lg:block border border-black rounded-full px-3 py-1 text-black whitespace-nowrap text-xs">
-        <span>Est. 2026 &nbsp;&bull;&nbsp; Ann Arbor, MI</span>
-      </div>
-      <div class="lg:hidden border border-black rounded-full px-3 py-1 text-black whitespace-nowrap text-xs">
-        <span>est. 2026</span>
-      </div>
-    </div>
+  <!-- Interactive Semiconductor Grid & Pulse Canvas -->
+  <canvas id="bg-canvas" class="fixed inset-0 pointer-events-none z-0 w-full h-full"></canvas>
 
-    <div class="flex justify-end items-center gap-4 md:gap-6">
-      <nav class="flex gap-4 lg:gap-6 text-xs md:text-sm" aria-label="Main Navigation">
-        <a href="#about" class="anchor-link hidden md:inline hover:text-gray-500 transition-colors">About</a>
-        <a href="#projects" class="anchor-link hidden md:inline hover:text-gray-500 transition-colors">Projects</a>
-        <a href="#join" class="anchor-link hover:text-gray-500 transition-colors">
-          <span class="md:hidden">Join Us</span>
-          <span class="hidden md:inline">Join</span>
+  <!-- Fixed Minimalist Header (Etched Style) -->
+  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-[#ededed]/80 backdrop-blur-md border-b border-[rgba(0,0,0,0.06)] px-6 sm:px-10 md:px-12 py-3.5 sm:py-4">
+    <div class="w-full flex items-center justify-between">
+      
+      <!-- Top Left: Logo + RISC-M (Proportional & Sharp) -->
+      <a href="#" class="flex items-center gap-3 group">
+        <img src="logo.png" alt="RISC-M Logo" class="w-7 h-7 sm:w-8 sm:h-8 object-contain transition-transform group-hover:scale-105" />
+        <span class="text-base sm:text-lg font-bold tracking-tight text-black uppercase">RISC-M</span>
+      </a>
+
+      <!-- Top Right: Navigation Links + Join Us (Clean Monospace) -->
+      <nav class="flex items-center gap-6 sm:gap-8 text-xs sm:text-sm font-mono">
+        <a href="projects.html" class="text-neutral-600 hover:text-black transition-colors">Projects</a>
+        <a href="team.html" class="text-neutral-600 hover:text-black transition-colors">Team</a>
+        <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer" 
+           class="text-neutral-900 font-medium hover:opacity-60 transition-opacity flex items-center gap-1.5">
+          <span>Join Us</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
         </a>
-        <a href="#team" class="anchor-link hidden md:inline hover:text-gray-500 transition-colors">Team</a>
-        <a href="#sponsors" class="anchor-link hidden md:inline hover:text-gray-500 transition-colors">Sponsors</a>
       </nav>
+
     </div>
   </header>
 
-  <main class="px-8 pt-20 md:pt-28 max-w-[1400px] mx-auto relative flex flex-col items-center">
-    <!-- 1. ABOUT THE CLUB (Hero and Info) -->
-    <section id="about"
-      class="w-full min-h-[75vh] flex flex-col items-center justify-center text-center px-8 py-16 md:py-24">
-      <div class="max-w-4xl mx-auto flex flex-col items-center float-up-hero">
+  <!-- Main Container with Etched Structural Layout Rails -->
+  <main class="max-w-6xl mx-auto min-h-screen border-x border-[rgba(0,0,0,0.08)] bg-[#ededed]/60 backdrop-blur-[2px] pt-16 sm:pt-20 pb-20 relative z-10">
 
-        <!-- Hero Title (Scales dynamically but remains large and bold on mobile) -->
-        <h1 id="hero-title"
-          class="text-[clamp(3.75rem,14vw,12rem)] font-black tracking-tighter uppercase leading-none text-black mb-4 w-full select-none">
-          RISC-M
-        </h1>
-
-        <!-- Greyscale Dots under Title -->
-        <div class="flex justify-center gap-4 mb-6">
-          <span
-            class="w-3.5 h-3.5 rounded-full bg-black shadow-[0_0_8px_rgba(0,0,0,0.3)] hover:scale-125 transition-transform cursor-pointer"></span>
-          <span
-            class="w-3.5 h-3.5 rounded-full bg-neutral-600 shadow-[0_0_8px_rgba(82,82,82,0.3)] hover:scale-125 transition-transform cursor-pointer"></span>
-          <span
-            class="w-3.5 h-3.5 rounded-full bg-neutral-400 shadow-[0_0_8px_rgba(163,163,163,0.3)] hover:scale-125 transition-transform cursor-pointer"></span>
-          <span
-            class="w-3.5 h-3.5 rounded-full bg-neutral-200 shadow-[0_0_8px_rgba(229,229,229,0.3)] hover:scale-125 transition-transform cursor-pointer"></span>
-        </div>
-
-        <!-- Subtitle with Scramble Effect
-        <h2 id="hero-subtitle"
-          class="text-xl sm:text-2xl md:text-3xl font-bold leading-relaxed text-neutral-600 max-w-3xl mx-auto mb-8 uppercase tracking-wider">
-          The U-M Computer Architecture Club
-        </h2> -->
-
-        <!-- Core Tagline -->
-        <p class="text-xl sm:text-2xl md:text-3xl font-semibold leading-relaxed text-black max-w-3xl mb-6">
-          The U-M Computer Architecture Club, a student-led community dedicated to computer hardware & silicon design.
-        </p>
-
-        <!-- Description -->
-        <!-- <p class="text-base sm:text-lg text-neutral-600 max-w-3xl leading-relaxed">
-          As Michigan’s first student organization for computer architecture, we provide a collaborative space to
-          explore hardware beyond the classroom. We work on exciting projects, invite industry guest speakers, and host
-          events. Beyond our own projects, we are dedicated to helping our fellow students succeed by sharing knowledge
-          and resources, assisting with debugging, and providing guidance for students interested in the hardware
-          industry.
-        </p> -->
-
+    <!-- Hero Section: Full Screen Height on Load -->
+    <section class="min-h-[calc(100vh-4.5rem)] sm:min-h-[calc(100vh-5rem)] flex flex-col items-center justify-center text-center px-6 sm:px-12 py-12 relative border-b border-[rgba(0,0,0,0.08)]">
+      
+      <!-- Central Silicon Package Visual (Tightly fitted) -->
+      <div class="w-56 sm:w-72 mb-6 sm:mb-8 flex items-center justify-center chip-hero">
+        <img src="logo.png" alt="RISC-M Silicon Architecture" class="w-full h-auto object-contain filter drop-shadow-sm" />
       </div>
+
+      <!-- Monumental Two-Tone Headline -->
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-[-0.035em] text-[#0a0a0a] leading-[1.08] max-w-4xl mb-6">
+        Building the minds behind <span class="text-neutral-500 font-normal">tomorrow’s compute.</span>
+      </h1>
+
+      <!-- Refined Subtitle with subtle typographic weight -->
+      <p class="text-base sm:text-lg text-neutral-600 font-normal max-w-2xl leading-relaxed mb-8">
+        A student-led collective dedicated to <strong class="text-neutral-900 font-medium">purpose-built architectures</strong>, fostering an environment for hardware engineers to thrive, and preparing the next generation of industry leaders.
+      </p>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-4 mb-8 sm:mb-12">
+        <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-3.5 rounded-sm text-xs font-mono tracking-wider hover:bg-neutral-800 transition-all shadow-xs">
+          <span>JOIN THE TEAM</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Subtle Scroll Indicator -->
+      <a href="#about" class="absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-[10px] font-mono text-neutral-400 hover:text-black transition-colors">
+        <span>ABOUT US</span>
+        <svg class="w-3.5 h-3.5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </a>
+
     </section>
 
-    <!-- 2. THE PROJECTS -->
-    <section id="projects"
-      class="w-full border-t border-black pt-16 md:pt-24 pb-12 reveal-on-scroll flex flex-col items-center">
-      <div class="text-center mb-12">
-        <h3 class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-black mb-4">
-          Projects
+    <!-- Section 1: About Us -->
+    <section id="about" class="px-6 sm:px-12 py-16 sm:py-24 border-b border-[rgba(0,0,0,0.08)]">
+      <div class="max-w-4xl mx-auto text-left">
+        
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-1.5 h-1.5 bg-black rounded-xs"></span>
+          <h2 class="text-xs font-mono uppercase tracking-widest text-neutral-500">// 01 ABOUT US</h2>
+        </div>
+        
+        <h3 class="text-3xl sm:text-5xl font-semibold tracking-[-0.03em] text-neutral-900 mb-8">
+          About Us.
         </h3>
-        <p class="text-lg sm:text-xl font-normal text-neutral-600 max-w-2xl mx-auto">
-          Exploring custom hardware architectures, processor designs, and system implementations built by our team.
-        </p>
-      </div>
 
-      <!-- Projects Grid & Loading Skeleton -->
-      <div id="projects-container"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl justify-items-center">
-        <!-- Loading Skeleton Card 1 -->
-        <div
-          class="border-2 border-neutral-500 p-4 md:p-5 rounded-[1.5rem] w-full max-w-sm flex flex-col justify-between animate-pulse">
-          <div>
-            <div class="flex flex-col items-center mb-4 border-b border-neutral-500 pb-4 gap-3">
-              <div class="h-8 bg-neutral-500 rounded-lg w-11/12"></div>
-              <div class="h-6 bg-neutral-500 rounded-full w-36"></div>
-            </div>
-            <div class="space-y-4 w-full flex flex-col items-center">
-              <div class="h-5 bg-neutral-500 rounded w-full"></div>
-              <div class="h-5 bg-neutral-500 rounded w-11/12"></div>
-              <div class="h-5 bg-neutral-500 rounded w-5/6"></div>
-              <div class="h-5 bg-neutral-500 rounded w-3/4"></div>
-              <div class="h-5 bg-neutral-500 rounded w-1/2"></div>
-              <div class="h-5 bg-neutral-500 rounded w-2/3"></div>
+        <!-- Bento Grid for About Us -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          
+          <!-- Card 1: Project Inception & Board Review -->
+          <div class="p-6 sm:p-8 bg-white/70 border border-[rgba(0,0,0,0.06)] rounded-sm">
+            <span class="text-[11px] font-mono text-neutral-400 block mb-2 tracking-wider uppercase">01 / PROPOSAL & REVIEW</span>
+            <h4 class="text-xl font-semibold text-neutral-900 mb-2">Project Inception</h4>
+            <p class="text-sm text-neutral-600 font-normal leading-relaxed">
+              Members pitch architectural ideas with defined timelines and deliverables. Once approved by the executive board, RISC-M connects leads with members and provides tools, compute, and hardware resources.
+            </p>
+          </div>
+
+          <!-- Card 2: End-to-End Roles -->
+          <div class="p-6 sm:p-8 bg-white/70 border border-[rgba(0,0,0,0.06)] rounded-sm">
+            <span class="text-[11px] font-mono text-neutral-400 block mb-2 tracking-wider uppercase">02 / ROLES</span>
+            <h4 class="text-xl font-semibold text-neutral-900 mb-2">Every Step of the Stack</h4>
+            <p class="text-sm text-neutral-600 font-normal leading-relaxed mb-3">
+              Projects build dedicated teams across the entire hardware lifecycle:
+            </p>
+            <div class="flex flex-wrap gap-1.5 text-[11px] font-mono text-neutral-800">
+              <span class="bg-neutral-100 px-2 py-0.5 rounded-xs">Ideation</span>
+              <span class="bg-neutral-100 px-2 py-0.5 rounded-xs">Simulation</span>
+              <span class="bg-neutral-100 px-2 py-0.5 rounded-xs">RTL</span>
+              <span class="bg-neutral-100 px-2 py-0.5 rounded-xs">DV</span>
+              <span class="bg-neutral-100 px-2 py-0.5 rounded-xs">Tape-out</span>
             </div>
           </div>
-          <div class="mt-6 pt-5 border-t border-neutral-500 border-dashed flex justify-center">
-            <div class="h-4 bg-neutral-500 rounded w-48"></div>
+
+          <!-- Card 3: Michigan Architecture Community -->
+          <div class="p-6 sm:p-8 bg-white/70 border border-[rgba(0,0,0,0.06)] rounded-sm">
+            <span class="text-[11px] font-mono text-neutral-400 block mb-2 tracking-wider uppercase">03 / COMMUNITY</span>
+            <h4 class="text-xl font-semibold text-neutral-900 mb-2">Architectural Community</h4>
+            <p class="text-sm text-neutral-600 font-normal leading-relaxed">
+              Uniting undergraduate and graduate engineers with a shared passion for deep hardware. Channeling EECS 470 and EECS 472 into production silicon designs.
+            </p>
           </div>
+
+          <!-- Card 4: Collaborative Culture & Launchpad -->
+          <div class="p-6 sm:p-8 bg-white/70 border border-[rgba(0,0,0,0.06)] rounded-sm">
+            <span class="text-[11px] font-mono text-neutral-400 block mb-2 tracking-wider uppercase">04 / CULTURE</span>
+            <h4 class="text-xl font-semibold text-neutral-900 mb-2">Reviews, Labs & Careers</h4>
+            <p class="text-sm text-neutral-600 font-normal leading-relaxed">
+              Weekly peer RTL design reviews, FPGA bring-up lab nights, and direct mentorship preparing members for top semiconductor and hardware roles.
+            </p>
+          </div>
+
         </div>
 
-        <!-- Loading Skeleton Card 2 -->
-        <div
-          class="border-2 border-neutral-500 p-4 md:p-5 rounded-[1.5rem] w-full max-w-sm flex flex-col justify-between animate-pulse">
-          <div>
-            <div class="flex flex-col items-center mb-4 border-b border-neutral-500 pb-4 gap-3">
-              <div class="h-8 bg-neutral-500 rounded-lg w-5/6"></div>
-              <div class="h-6 bg-neutral-500 rounded-full w-36"></div>
-            </div>
-            <div class="space-y-4 w-full flex flex-col items-center">
-              <div class="h-5 bg-neutral-500 rounded w-full"></div>
-              <div class="h-5 bg-neutral-500 rounded w-11/12"></div>
-              <div class="h-5 bg-neutral-500 rounded w-4/5"></div>
-              <div class="h-5 bg-neutral-500 rounded w-3/4"></div>
-              <div class="h-5 bg-neutral-500 rounded w-3/5"></div>
-              <div class="h-5 bg-neutral-500 rounded w-1/2"></div>
-            </div>
-          </div>
-          <div class="mt-6 pt-5 border-t border-neutral-500 border-dashed flex justify-center">
-            <div class="h-4 bg-neutral-500 rounded w-48"></div>
-          </div>
-        </div>
-
-        <!-- Loading Skeleton Card 3 -->
-        <div
-          class="border-2 border-neutral-500 p-4 md:p-5 rounded-[1.5rem] w-full max-w-sm flex flex-col justify-between animate-pulse">
-          <div>
-            <div class="flex flex-col items-center mb-4 border-b border-neutral-500 pb-4 gap-3">
-              <div class="h-8 bg-neutral-500 rounded-lg w-11/12"></div>
-              <div class="h-6 bg-neutral-500 rounded-full w-36"></div>
-            </div>
-            <div class="space-y-4 w-full flex flex-col items-center">
-              <div class="h-5 bg-neutral-500 rounded w-full"></div>
-              <div class="h-5 bg-neutral-500 rounded w-11/12"></div>
-              <div class="h-5 bg-neutral-500 rounded w-5/6"></div>
-              <div class="h-5 bg-neutral-500 rounded w-4/5"></div>
-              <div class="h-5 bg-neutral-500 rounded w-2/3"></div>
-              <div class="h-5 bg-neutral-500 rounded w-3/5"></div>
-            </div>
-          </div>
-          <div class="mt-6 pt-5 border-t border-neutral-500 border-dashed flex justify-center">
-            <div class="h-4 bg-neutral-500 rounded w-48"></div>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- 3. MEMBERSHIP & JOINING -->
-    <section id="join"
-      class="w-full border-t border-black pt-16 md:pt-24 pb-16 flex flex-col items-center text-center reveal-on-scroll">
-      <h3 class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-black mb-12">
-        Membership & Joining
-      </h3>
-      <div class="flex flex-col gap-16 w-full max-w-3xl mx-auto mb-12">
-        <div class="flex flex-col items-center text-center">
-          <h4
-            class="text-lg md:text-xl font-black uppercase tracking-tighter text-black mb-4 flex justify-center items-center gap-2">
-            <span class="w-2.5 h-2.5 bg-black rounded-full"></span>Who Should Join?
-          </h4>
-          <p class="text-lg sm:text-xl font-normal leading-relaxed max-w-2xl text-neutral-700">
-            We welcome anyone passionate about computer architecture who has
-            completed or is currently enrolled in
-            <strong>EECS 470 or 472+</strong>. Whether you want to gain
-            practical experience building projects in Verilog, need some
-            help debugging a tough lab, want to hear from professionals, or
-            are looking for recruiting advice, you will find a supportive
-            community here.
-          </p>
+    <!-- Section 2: Flagship Project Highlight -->
+    <section id="flagship" class="px-6 sm:px-12 py-16 sm:py-24 border-b border-[rgba(0,0,0,0.08)]">
+      <div class="max-w-4xl mx-auto text-left">
+        
+        <div class="flex items-center justify-between gap-4 mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 bg-black rounded-xs"></span>
+            <h2 class="text-xs font-mono uppercase tracking-widest text-neutral-500">// 02 FLAGSHIP PROJECT</h2>
+          </div>
+          <a href="projects.html" class="text-xs font-mono text-neutral-500 hover:text-black transition-colors flex items-center gap-1">
+            <span>View All Projects</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </a>
         </div>
-        <div class="flex flex-col items-center text-center">
-          <h4
-            class="text-lg md:text-xl font-black uppercase tracking-tighter text-black mb-4 flex justify-center items-center gap-2">
-            <span class="w-2.5 h-2.5 bg-black rounded-full"></span>Our Initiatives
-          </h4>
-          <ul
-            class="list-none text-sm sm:text-base font-bold uppercase tracking-wider text-neutral-800 space-y-4 inline-flex flex-col items-start text-left">
-            <li class="flex items-center gap-4">
-              <svg class="text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path
-                  d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
-              </svg>
-              Debug Nights & Course Help
-            </li>
-            <li class="flex items-center gap-4">
-              <svg class="text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-              Recruiting & Career Support
-            </li>
-            <li class="flex items-center gap-4">
-              <svg class="text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-              </svg>
-              Resource & Knowledge Sharing
-            </li>
-            <li class="flex items-center gap-4">
-              <svg class="text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <circle cx="12" cy="12" r="2" />
-                <path d="M4.9 19.1c-3.8-3.8-3.8-10.1 0-14.2" />
-                <path d="M19.1 4.9c3.8 3.8 3.8 10.1 0 14.2" />
-                <path d="M7.7 16.3c-2.3-2.3-2.3-5.9 0-8.5" />
-                <path d="M16.3 7.7c2.3 2.3 2.3 5.9 0 8.5" />
-              </svg>
-              Hands-On Hardware Projects
-            </li>
-            <li class="flex items-center gap-4">
-              <svg class="text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-                <path d="M2 12h20" />
-              </svg>
-              Industry Guest Speakers
-            </li>
-          </ul>
-        </div>
-      </div>
+        
+        <h3 class="text-3xl sm:text-5xl font-semibold tracking-[-0.03em] text-neutral-900 mb-8">
+          Introducing Inference-M.
+        </h3>
 
-      <!-- Google Form CTA Integrated -->
-      <div class="mt-8 border-t border-black border-dashed pt-8 w-full max-w-3xl flex flex-col items-center mx-auto">
-        <p class="text-lg sm:text-xl font-normal mb-6 text-neutral-700">
-          Ready to join? Fill out our form to join the mailing list and receive updates on upcoming projects, debugging
-          sessions, and meetings.
-        </p>
-        <span class="btn-wrapper inline-block">
+        <!-- Ultra-Clean Bento Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+          
+          <!-- Card 1: Core Mission (2 Columns) -->
+          <div class="md:col-span-2 p-6 sm:p-8 bg-white/70 border border-[rgba(0,0,0,0.06)] rounded-sm flex flex-col justify-between">
+            <div>
+              <span class="text-[11px] font-mono text-neutral-400 block mb-2 tracking-wider uppercase">CORE MISSION</span>
+              <h4 class="text-xl sm:text-2xl font-semibold text-neutral-900 mb-2">Eliminating the Communication Bottleneck</h4>
+              <p class="text-sm sm:text-base text-neutral-600 font-normal leading-relaxed">
+                A manycore ML accelerator built with Direct Compute Access (DCA) to keep compute pipelines saturated on large-scale transformer inference.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-neutral-200/60 flex items-center justify-between text-xs font-mono text-neutral-500">
+              <span>WORKLOAD</span>
+              <span class="text-neutral-900 font-medium">Transformer Inference & GEMM</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Core Innovation (1 Column) -->
+          <div class="p-6 sm:p-8 bg-white/70 border border-[rgba(0,0,0,0.06)] rounded-sm flex flex-col justify-between">
+            <div>
+              <span class="text-[11px] font-mono text-neutral-400 block mb-2 tracking-wider uppercase">INNOVATION</span>
+              <h4 class="text-xl sm:text-2xl font-semibold text-neutral-900 mb-2">Direct Compute Access</h4>
+              <p class="text-sm text-neutral-600 font-normal leading-relaxed">
+                Performs in-flight arithmetic reductions directly inside the network.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-neutral-200/60 flex items-center justify-between text-xs font-mono text-neutral-500">
+              <span>TECH</span>
+              <span class="text-neutral-900 font-medium">In-Network Reductions</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Target (1 Column) -->
+          <div class="p-6 sm:p-8 bg-white/70 border border-[rgba(0,0,0,0.06)] rounded-sm flex flex-col justify-between">
+            <div>
+              <span class="text-[11px] font-mono text-neutral-400 block mb-2 tracking-wider uppercase">TARGET</span>
+              <h4 class="text-xl sm:text-2xl font-semibold text-neutral-900 mb-2">Built for Real Silicon</h4>
+              <p class="text-sm text-neutral-600 font-normal leading-relaxed">
+                Advancing from architecture modeling to SystemVerilog RTL and ASIC tape-out.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-neutral-200/60 flex items-center justify-between text-xs font-mono text-neutral-500">
+              <span>STAGE</span>
+              <span class="text-neutral-900 font-medium">Sim &rarr; RTL &rarr; Tape-out</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Hardware Stack (2 Columns) -->
+          <div class="md:col-span-2 p-6 sm:p-8 bg-white/70 border border-[rgba(0,0,0,0.06)] rounded-sm flex flex-col justify-between">
+            <div>
+              <span class="text-[11px] font-mono text-neutral-400 block mb-2 tracking-wider uppercase">HARDWARE STACK</span>
+              <h4 class="text-xl sm:text-2xl font-semibold text-neutral-900 mb-2">Custom Vector Compute Mesh</h4>
+              <p class="text-sm sm:text-base text-neutral-600 font-normal leading-relaxed">
+                In-order RV32I vector compute tiles coupled with a collective-capable 2D mesh interconnect.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-neutral-200/60 flex items-center justify-between text-xs font-mono text-neutral-500">
+              <span>ARCHITECTURE</span>
+              <span class="text-neutral-900 font-medium">RV32I + Vector &bull; 2D Mesh NoC</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 3: Interested / Get Involved Call-to-Action -->
+    <section class="px-6 sm:px-12 py-20 sm:py-28 text-center">
+      <div class="max-w-xl mx-auto flex flex-col items-center">
+        
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-1.5 h-1.5 bg-black rounded-xs"></span>
+          <span class="text-xs font-mono uppercase tracking-widest text-neutral-500">// 03 GET INVOLVED</span>
+        </div>
+
+        <h3 class="text-3xl sm:text-4xl font-semibold tracking-tight text-neutral-900 mb-8">
+          Ready to build hardware with us?
+        </h3>
+
+        <div class="flex flex-wrap justify-center items-center gap-4">
           <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer"
-            class="inline-flex items-center gap-3 border-2 border-black bg-black text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs sm:text-sm hover-offset-button">
-            Join Mailing List
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
+             class="inline-flex items-center gap-2 bg-black text-white px-7 py-3 rounded-sm text-xs font-mono tracking-wider hover:bg-neutral-800 transition-all shadow-xs">
+            <span>Join Us</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
             </svg>
           </a>
-        </span>
-      </div>
-    </section>
-
-    <!-- 4. LEADS & EXECS -->
-    <section id="team"
-      class="w-full border-t border-black pt-16 md:pt-24 pb-16 flex flex-col items-center reveal-on-scroll">
-      <div class="text-center mb-12">
-        <h3 class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-black mb-4">
-          Our Team
-        </h3>
-        <p class="text-lg sm:text-xl font-normal text-neutral-600">
-          Meet the student officers and faculty advisors leading RISC-M.
-        </p>
-      </div>
-
-      <div class="flex flex-wrap justify-center gap-y-12 gap-x-6 sm:gap-x-8 w-full max-w-5xl">
-        <!-- Officers -->
-        <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
-            Shashwat Jaguri
-          </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
-            Club President
-          </p>
-        </div>
-
-        <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
-            David Huang
-          </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
-            Executive Board
-          </p>
-        </div>
-
-        <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
-            Bangyan Huang
-          </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
-            Executive Board
-          </p>
-        </div>
-
-        <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
-            Shreyas Narayanan
-          </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
-            Executive Board
-          </p>
-        </div>
-
-        <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
-            Aaron Xiong
-          </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
-            Executive Board
-          </p>
-        </div>
-
-        <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
-            Shaun Gupte
-          </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
-            Executive Board
-          </p>
-        </div>
-
-        <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
-            Niki Lin
-          </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
-            Executive Board
-          </p>
-        </div>
-
-        <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
-            Rohan Satapathy
-          </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
-            Executive Board
-          </p>
-        </div>
-
-        <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
-            Sophia Chen
-          </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
-            Executive Board
-          </p>
-        </div>
-
-        <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
-            Dhruv Bahuguna
-          </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
-            Executive Board
-          </p>
-        </div>
-
-        <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black">
-            Prof. Krisztián Flautner
-          </h4>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-500 mt-1">
-            Faculty Advisor
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. SPONSORS -->
-    <section id="sponsors"
-      class="w-full border-t border-black pt-16 md:pt-24 pb-16 flex flex-col items-center reveal-on-scroll">
-      <div class="text-center mb-12">
-        <h3 class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-black mb-4">
-          Partner With Us
-        </h3>
-        <p class="text-lg sm:text-xl font-normal text-neutral-600 max-w-2xl mx-auto">
-          Support student hardware projects and connect with engineering talent at the University of Michigan.
-        </p>
-      </div>
-
-      <div class="w-full flex flex-col items-center max-w-5xl">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center w-full">
-          <div
-            class="p-5 md:p-8 border-2 border-black rounded-[2rem] flex flex-col items-center bg-white hover-offset-card">
-            <h5 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black mb-4">
-              Recruiting
-            </h5>
-            <p class="text-sm sm:text-base font-normal text-neutral-600 leading-relaxed">
-              Host workshops and info sessions to connect directly with students interested in hardware design.
-            </p>
-          </div>
-          <div
-            class="p-5 md:p-8 border-2 border-black rounded-[2rem] flex flex-col items-center bg-white hover-offset-card">
-            <h5 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black mb-4">
-              Project Support
-            </h5>
-            <p class="text-sm sm:text-base font-normal text-neutral-600 leading-relaxed">
-              Fund hardware prototyping, parts, and equipment for hands-on engineering projects.
-            </p>
-          </div>
-          <div
-            class="p-5 md:p-8 border-2 border-black rounded-[2rem] flex flex-col items-center bg-white hover-offset-card">
-            <h5 class="text-lg md:text-xl font-black uppercase tracking-tighter text-black mb-4">
-              Visibility
-            </h5>
-            <p class="text-sm sm:text-base font-normal text-neutral-600 leading-relaxed">
-              Promote your brand on our website, project repositories, and club apparel.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Get in Touch CTA Integrated -->
-      <div
-        class="mt-16 border-t border-black border-dashed pt-8 w-full max-w-3xl flex flex-col items-center mx-auto text-center">
-        <h4 class="text-2xl md:text-4xl font-black uppercase tracking-tighter text-black mb-4">
-          Get in Touch
-        </h4>
-        <p class="text-lg sm:text-xl font-normal text-neutral-600 mb-8 max-w-2xl mx-auto">
-          Contact our executive board to learn more about our sponsorship tiers and how we can collaborate.
-        </p>
-        <span class="btn-wrapper inline-block">
           <a href="mailto:riscm-exec@umich.edu"
-            class="inline-flex items-center gap-3 border-2 border-black bg-black text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs sm:text-sm hover-offset-button">
-            Email The Board
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-            </svg>
+             class="inline-flex items-center gap-2 border border-neutral-300 bg-white/80 text-neutral-800 px-7 py-3 rounded-sm text-xs font-mono tracking-wider hover:border-black transition-all">
+            <span>riscm-exec@umich.edu</span>
           </a>
-        </span>
-        <p class="text-xs sm:text-sm font-bold uppercase tracking-wider text-neutral-500 mt-6">
-          <span class="select-all">riscm-exec@umich.edu</span>
-        </p>
+        </div>
+
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer
-      class="w-full border-t border-black pt-6 pb-2 mt-12 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold uppercase tracking-widest anim-element d-7">
-      <p>&copy; 2026 RISC-M</p>
-      <div class="flex gap-6">
-        <a href="mailto:riscm-exec@umich.edu" class="hover:text-gray-500 transition-colors">email</a>
-        <a href="https://github.com/RISC-M" class="hover:text-gray-500 transition-colors" target="_blank"
-          rel="noopener noreferrer">github</a>
-        <a href="https://www.linkedin.com/company/risc-m/" class="hover:text-gray-500 transition-colors" target="_blank"
-          rel="noopener noreferrer">linkedin</a>
+    <!-- Minimalist Footer -->
+    <footer class="border-t border-[rgba(0,0,0,0.08)] px-6 sm:px-12 py-8 mt-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-500">
+      <div>
+        <span>&copy; 2026 RISC-M &bull; University of Michigan</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="https://github.com/RISC-M" target="_blank" rel="noopener noreferrer" class="hover:text-black transition-colors">GitHub</a>
+        <a href="https://www.linkedin.com/company/risc-m/" target="_blank" rel="noopener noreferrer" class="hover:text-black transition-colors">LinkedIn</a>
+        <a href="mailto:riscm-exec@umich.edu" class="hover:text-black transition-colors">Email</a>
       </div>
     </footer>
+
   </main>
+
   <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
   <script src="scripts.js" defer></script>
 </body>
