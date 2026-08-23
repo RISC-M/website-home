@@ -57,10 +57,10 @@ document.addEventListener("DOMContentLoaded", () => {
         gyroControls: false,
         minHeight: 200.00,
         minWidth: 200.00,
-        highlightColor: 0xffffff, // Pure White
-        midtoneColor: 0x00274c,   // Michigan Navy Blue (#00274C)
-        lowlightColor: 0xffcb05,  // Michigan Maize Yellow (#FFCB05)
-        baseColor: 0xffffff,      // Pure White (#FFFFFF)
+        highlightColor: 0xffffff,
+        midtoneColor: 0x000000,
+        lowlightColor: 0x000000,
+        baseColor: 0xffebeb,
         blurFactor: 0.6,
         speed: 1.00,
         zoom: 1.00,
