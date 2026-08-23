@@ -58,8 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
         minHeight: 200.00,
         minWidth: 200.00,
         highlightColor: 0xffffff,
-        midtoneColor: 0x000000,
-        lowlightColor: 0x000000,
+        midtoneColor: 0x00274c, // Michigan Dark Blue (#00274C)
+        lowlightColor: 0x00274c, // Michigan Dark Blue (#00274C)
         baseColor: 0xffebeb,
         blurFactor: 0.6,
         speed: 1.00,
