@@ -32,10 +32,10 @@
   <header class="fixed top-0 left-0 right-0 w-full z-50 bg-white/75 backdrop-blur-md border-b border-[rgba(0,0,0,0.06)] px-6 sm:px-10 md:px-12 py-3.5 sm:py-4">
     <div class="w-full flex items-center justify-between">
       
-      <!-- Top Left: Logo + RISC-M -->
-      <a href="index.html" class="flex items-center gap-3 group">
+      <!-- Top Left: Logo + RISC-M Wordmark -->
+      <a href="index.html" class="flex items-center gap-2.5 sm:gap-3 group">
         <img src="logo.png" alt="RISC-M Logo" class="h-6 sm:h-7 w-auto object-contain transition-transform group-hover:scale-105" />
-        <span class="text-base sm:text-lg font-bold tracking-tight text-black uppercase">RISC-M</span>
+        <img src="wordmark.png" alt="RISC-M" class="h-4 sm:h-[18px] w-auto object-contain transition-opacity group-hover:opacity-90" />
       </a>
 
       <!-- Top Right: Navigation Links + Join Us (No About Us in top bar) -->
@@ -216,8 +216,9 @@
 
     <!-- Footer -->
     <footer class="border-t border-[rgba(0,0,0,0.08)] px-6 sm:px-12 py-8 mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-500">
-      <div>
-        <span>&copy; 2026 RISC-M &bull; University of Michigan</span>
+      <div class="flex items-center gap-3">
+        <img src="wordmark.png" alt="RISC-M" class="h-3.5 w-auto object-contain opacity-80" />
+        <span>&bull; &copy; 2026 University of Michigan</span>
       </div>
       <div class="flex items-center gap-6">
         <a href="https://github.com/RISC-M" target="_blank" rel="noopener noreferrer" class="hover:text-black transition-colors">GitHub</a>
