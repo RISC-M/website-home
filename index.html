@@ -127,59 +127,104 @@
       <section id="about" class="px-6 sm:px-12 py-16 sm:py-24 border-b border-neutral-200/80">
         <div class="max-w-4xl mx-auto text-left">
           
+          <!-- Section Tag -->
           <div class="flex items-center gap-2 mb-3">
             <span class="w-1.5 h-1.5 bg-black rounded-xs"></span>
-            <h2 class="text-xs font-mono uppercase tracking-widest text-neutral-500">// 01 ABOUT US</h2>
+            <h2 class="text-xs font-mono uppercase tracking-widest text-neutral-500">// 01 ABOUT THE CLUB</h2>
           </div>
           
-          <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-neutral-900 mb-8">
+          <!-- Main Section Title -->
+          <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-neutral-900 mb-6">
             About Us.
           </h3>
 
-          <!-- Bento Grid for About Us -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-            
-            <!-- Card 1: Project Inception & Board Review -->
-            <div class="p-6 sm:p-8 bg-neutral-50/70 border border-neutral-200/80 rounded-sm hover:bg-neutral-50/90 transition-all">
-              <span class="text-[11px] font-mono text-neutral-400 block mb-2 tracking-wider uppercase">01 / PROPOSAL & REVIEW</span>
-              <h4 class="text-xl font-semibold text-neutral-900 mb-2">Project Inception</h4>
-              <p class="text-sm text-neutral-600 font-normal leading-relaxed">
-                Members pitch architectural ideas with defined timelines and deliverables. Once approved by the executive board, RISC-M connects leads with members and provides tools, compute, and hardware resources.
-              </p>
-            </div>
+          <!-- Primary Mission Statement / Lead Paragraph -->
+          <p class="text-base sm:text-lg lg:text-xl text-neutral-800 leading-relaxed font-normal mb-12">
+            As Michigan’s first student organization for computer architecture, we provide a collaborative space to explore computer hardware and silicon design beyond the classroom. We build ambitious processor architectures, invite industry guest speakers, and host technical events. Beyond our own projects, we are dedicated to helping our fellow students succeed by sharing knowledge and resources, assisting with lab debugging, and providing guidance for students interested in the hardware and semiconductor industry.
+          </p>
 
-            <!-- Card 2: End-to-End Roles -->
-            <div class="p-6 sm:p-8 bg-neutral-50/70 border border-neutral-200/80 rounded-sm hover:bg-neutral-50/90 transition-all">
-              <span class="text-[11px] font-mono text-neutral-400 block mb-2 tracking-wider uppercase">02 / ROLES</span>
-              <h4 class="text-xl font-semibold text-neutral-900 mb-2">Every Step of the Stack</h4>
-              <p class="text-sm text-neutral-600 font-normal leading-relaxed mb-3">
-                Projects build dedicated teams across the entire hardware lifecycle:
-              </p>
-              <div class="flex flex-wrap gap-1.5 text-[11px] font-mono text-neutral-800">
-                <span class="bg-neutral-200/70 px-2 py-0.5 rounded-xs">Ideation</span>
-                <span class="bg-neutral-200/70 px-2 py-0.5 rounded-xs">Simulation</span>
-                <span class="bg-neutral-200/70 px-2 py-0.5 rounded-xs">RTL</span>
-                <span class="bg-neutral-200/70 px-2 py-0.5 rounded-xs">DV</span>
-                <span class="bg-neutral-200/70 px-2 py-0.5 rounded-xs">Tape-out</span>
+          <!-- Clean 2-Column Grid: Membership & Initiatives -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            
+            <!-- Column 1: Membership / Who Should Join -->
+            <div class="p-6 sm:p-8 bg-neutral-50/70 border border-neutral-200/80 rounded-sm flex flex-col justify-between hover:bg-neutral-50/90 transition-all">
+              <div>
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="w-1.5 h-1.5 bg-black rounded-xs"></span>
+                  <span class="text-[11px] font-mono text-neutral-500 uppercase tracking-wider">MEMBERSHIP</span>
+                </div>
+                <h4 class="text-xl sm:text-2xl font-semibold text-neutral-900 mb-3">Who Should Join?</h4>
+                <p class="text-sm sm:text-base text-neutral-600 leading-relaxed mb-4 font-normal">
+                  We welcome anyone passionate about computer architecture who has completed or is currently enrolled in <strong class="text-neutral-900 font-semibold">EECS 470 or 472+</strong>.
+                </p>
+                <p class="text-sm sm:text-base text-neutral-600 leading-relaxed mb-6 font-normal">
+                  Whether you want to gain practical experience building projects in SystemVerilog, need help debugging a tough pipeline lab, want to hear from industry professionals, or are looking for recruiting advice, you will find a supportive community here.
+                </p>
+              </div>
+
+              <div class="pt-4 border-t border-neutral-200/60">
+                <span class="text-[11px] font-mono text-neutral-400 block mb-2 uppercase">Prerequisites & Background</span>
+                <div class="flex flex-wrap gap-1.5 text-xs font-mono text-neutral-800">
+                  <span class="bg-neutral-200/70 px-2.5 py-1 rounded-xs">EECS 470</span>
+                  <span class="bg-neutral-200/70 px-2.5 py-1 rounded-xs">EECS 472+</span>
+                  <span class="bg-neutral-200/70 px-2.5 py-1 rounded-xs">SystemVerilog</span>
+                  <span class="bg-neutral-200/70 px-2.5 py-1 rounded-xs">Hardware Labs</span>
+                </div>
               </div>
             </div>
 
-            <!-- Card 3: Michigan Architecture Community -->
-            <div class="p-6 sm:p-8 bg-neutral-50/70 border border-neutral-200/80 rounded-sm hover:bg-neutral-50/90 transition-all">
-              <span class="text-[11px] font-mono text-neutral-400 block mb-2 tracking-wider uppercase">03 / COMMUNITY</span>
-              <h4 class="text-xl font-semibold text-neutral-900 mb-2">Architectural Community</h4>
-              <p class="text-sm text-neutral-600 font-normal leading-relaxed">
-                Uniting undergraduate and graduate engineers with a shared passion for deep hardware. Channeling EECS 470 and EECS 472 into production silicon designs.
-              </p>
-            </div>
+            <!-- Column 2: Our Initiatives -->
+            <div class="p-6 sm:p-8 bg-neutral-50/70 border border-neutral-200/80 rounded-sm flex flex-col justify-between hover:bg-neutral-50/90 transition-all">
+              <div>
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="w-1.5 h-1.5 bg-black rounded-xs"></span>
+                  <span class="text-[11px] font-mono text-neutral-500 uppercase tracking-wider">INITIATIVES</span>
+                </div>
+                <h4 class="text-xl sm:text-2xl font-semibold text-neutral-900 mb-4">Our Core Initiatives</h4>
+                
+                <ul class="space-y-3.5 text-sm sm:text-base text-neutral-700">
+                  <li class="flex items-start gap-3">
+                    <span class="text-neutral-400 font-mono text-xs mt-1 shrink-0">&bull;</span>
+                    <div>
+                      <strong class="text-neutral-900 font-medium">Debug Nights & Course Help:</strong>
+                      <span class="text-neutral-600 block text-xs sm:text-sm mt-0.5">Peer mentorship and collaborative debugging for EECS 470/472 labs and homework.</span>
+                    </div>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span class="text-neutral-400 font-mono text-xs mt-1 shrink-0">&bull;</span>
+                    <div>
+                      <strong class="text-neutral-900 font-medium">Hands-On Hardware Projects:</strong>
+                      <span class="text-neutral-600 block text-xs sm:text-sm mt-0.5">Custom processor architectures, cycle-accurate simulators, and ASIC synthesis.</span>
+                    </div>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span class="text-neutral-400 font-mono text-xs mt-1 shrink-0">&bull;</span>
+                    <div>
+                      <strong class="text-neutral-900 font-medium">Industry Guest Speakers:</strong>
+                      <span class="text-neutral-600 block text-xs sm:text-sm mt-0.5">Technical talks and Q&As with leading architects from top semiconductor companies.</span>
+                    </div>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span class="text-neutral-400 font-mono text-xs mt-1 shrink-0">&bull;</span>
+                    <div>
+                      <strong class="text-neutral-900 font-medium">Recruiting & Career Support:</strong>
+                      <span class="text-neutral-600 block text-xs sm:text-sm mt-0.5">Technical interview prep, resume reviews, and semiconductor alumni networking.</span>
+                    </div>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span class="text-neutral-400 font-mono text-xs mt-1 shrink-0">&bull;</span>
+                    <div>
+                      <strong class="text-neutral-900 font-medium">Resource & Knowledge Sharing:</strong>
+                      <span class="text-neutral-600 block text-xs sm:text-sm mt-0.5">Architecture papers, tool guides, FPGA tutorials, and design resources.</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
 
-            <!-- Card 4: Collaborative Culture & Launchpad -->
-            <div class="p-6 sm:p-8 bg-neutral-50/70 border border-neutral-200/80 rounded-sm hover:bg-neutral-50/90 transition-all">
-              <span class="text-[11px] font-mono text-neutral-400 block mb-2 tracking-wider uppercase">04 / CULTURE</span>
-              <h4 class="text-xl font-semibold text-neutral-900 mb-2">Reviews, Labs & Careers</h4>
-              <p class="text-sm text-neutral-600 font-normal leading-relaxed">
-                Weekly peer RTL design reviews, FPGA bring-up lab nights, and direct mentorship preparing members for top semiconductor and hardware roles.
-              </p>
+              <div class="pt-4 mt-6 border-t border-neutral-200/60 flex items-center justify-between text-xs font-mono text-neutral-500">
+                <span>COMMUNITY</span>
+                <span class="text-neutral-900 font-medium">Ann Arbor, MI &bull; Est. 2026</span>
+              </div>
             </div>
 
           </div>
