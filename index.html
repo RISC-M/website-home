@@ -25,10 +25,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Three.js & Vanta.js Clouds2 (Landing Effect) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds2.min.js"></script>
-
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -45,27 +41,24 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 
-<body class="min-h-screen bg-[#0e1c2b] text-[#0a0a0a] font-sans antialiased selection:bg-black selection:text-white no-scrollbar relative">
-
-  <!-- Single Fixed Unified Cloud Sky (Runs Continuously All the Way Down) -->
-  <div id="vanta-bg" class="fixed inset-0 w-full h-full z-0 pointer-events-none"></div>
+<body class="min-h-screen bg-[#ededed] text-[#0a0a0a] font-sans antialiased selection:bg-black selection:text-white no-scrollbar">
 
   <!-- Fixed Minimalist Header (Etched Style) -->
-  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-white/75 backdrop-blur-md border-b border-[rgba(0,0,0,0.06)] px-6 sm:px-10 md:px-12 py-3.5 sm:py-4">
+  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-[#ededed]/80 backdrop-blur-md border-b border-[rgba(0,0,0,0.06)] px-6 sm:px-10 md:px-12 py-3.5 sm:py-4">
     <div class="w-full flex items-center justify-between">
       
       <!-- Top Left: Logo + RISC-M (Proportional & Sharp) -->
-      <a href="#" class="flex items-center gap-3 group">
-        <img src="logo.png" alt="RISC-M Logo" class="w-7 h-7 sm:w-8 sm:h-8 object-contain transition-transform group-hover:scale-105" />
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="logo.png" alt="RISC-M Logo" class="h-6 sm:h-7 w-auto object-contain transition-transform group-hover:scale-105" />
         <span class="text-base sm:text-lg font-bold tracking-tight text-black uppercase">RISC-M</span>
       </a>
 
       <!-- Top Right: Navigation Links + Join Us (Clean Monospace) -->
       <nav class="flex items-center gap-6 sm:gap-8 text-xs sm:text-sm font-mono">
-        <a href="projects.html" class="text-neutral-700 hover:text-black transition-colors font-medium">Projects</a>
-        <a href="team.html" class="text-neutral-700 hover:text-black transition-colors font-medium">Team</a>
+        <a href="projects.html" class="text-neutral-600 hover:text-black transition-colors">Projects</a>
+        <a href="team.html" class="text-neutral-600 hover:text-black transition-colors">Team</a>
         <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer" 
-           class="text-neutral-900 font-semibold hover:opacity-60 transition-opacity flex items-center gap-1.5">
+           class="text-neutral-900 font-medium hover:opacity-60 transition-opacity flex items-center gap-1.5">
           <span>Join Us</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block">
             <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -77,51 +70,46 @@
     </div>
   </header>
 
-  <!-- Hero Section: Floating on Live Continuous Clouds -->
-  <section class="relative w-full min-h-screen flex flex-col items-center justify-center text-center px-6 sm:px-12 pt-24 sm:pt-28 pb-16 z-10">
+  <!-- Main Container with Etched Structural Layout Rails -->
+  <main class="max-w-6xl mx-auto min-h-screen border-x border-[rgba(0,0,0,0.08)] bg-[#ededed]/60 backdrop-blur-[2px] pt-16 sm:pt-20 pb-20 relative z-10">
 
-    <!-- Centered Hero Content -->
-    <div class="relative z-10 flex flex-col items-center max-w-4xl mx-auto my-auto">
-      
-      <!-- Central Silicon Package Visual -->
-      <div class="w-48 sm:w-60 mb-6 sm:mb-8 flex items-center justify-center chip-hero">
-        <img src="logo.png" alt="RISC-M Silicon Architecture" class="w-full h-auto object-contain filter drop-shadow-lg" />
-      </div>
+    <!-- Hero Section: Clean Headline Landing -->
+    <section class="min-h-[calc(100vh-4.5rem)] sm:min-h-[calc(100vh-5rem)] flex flex-col items-center justify-center text-center px-6 sm:px-12 py-12 relative border-b border-[rgba(0,0,0,0.08)]">
 
-      <!-- Monumental Two-Tone Headline -->
-      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-[-0.035em] text-[#0a0a0a] leading-[1.08] mb-6">
-        Building the minds behind <span class="text-neutral-600 font-normal">tomorrow’s compute.</span>
-      </h1>
+      <!-- Centered Hero Content -->
+      <div class="relative z-10 flex flex-col items-center max-w-4xl mx-auto my-auto">
 
-      <!-- Refined Subtitle with standardized typographic scale -->
-      <p class="text-base sm:text-lg text-neutral-800 font-normal max-w-2xl leading-relaxed mb-8">
-        A student-led collective dedicated to <strong class="text-neutral-900 font-semibold">purpose-built architectures</strong>, fostering an environment for hardware engineers to thrive, and preparing the next generation of industry leaders.
-      </p>
+        <!-- Monumental Two-Tone Headline -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-[-0.035em] text-[#0a0a0a] leading-[1.08] mb-6">
+          Building the minds behind <span class="text-neutral-500 font-normal">tomorrow’s compute.</span>
+        </h1>
 
-      <!-- Action Button -->
-      <div class="flex items-center gap-4 mb-10">
-        <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer"
-           class="inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-3.5 rounded-sm text-xs font-mono tracking-wider hover:bg-neutral-800 transition-all shadow-md">
-          <span>JOIN THE TEAM</span>
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        <!-- Refined Subtitle with standardized typographic scale -->
+        <p class="text-base sm:text-lg text-neutral-600 font-normal max-w-2xl leading-relaxed mb-8">
+          A student-led collective dedicated to <strong class="text-neutral-900 font-medium">purpose-built architectures</strong>, fostering an environment for hardware engineers to thrive, and preparing the next generation of industry leaders.
+        </p>
+
+        <!-- Action Button -->
+        <div class="flex items-center gap-4 mb-10">
+          <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-3.5 rounded-sm text-xs font-mono tracking-wider hover:bg-neutral-800 transition-all shadow-xs">
+            <span>JOIN THE TEAM</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Scroll Indicator (cleanly spaced) -->
+        <a href="#about" class="inline-flex flex-col items-center gap-1.5 text-[10px] font-mono text-neutral-400 hover:text-black transition-colors">
+          <span>ABOUT US</span>
+          <svg class="w-3.5 h-3.5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
         </a>
       </div>
 
-      <!-- Scroll Indicator (cleanly spaced) -->
-      <a href="#about" class="inline-flex flex-col items-center gap-1.5 text-[10px] font-mono text-neutral-600 hover:text-black transition-colors">
-        <span>ABOUT US</span>
-        <svg class="w-3.5 h-3.5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-        </svg>
-      </a>
-    </div>
-
-  </section>
-
-  <!-- Main Container with Etched Structural Layout Rails for Content -->
-  <main class="max-w-6xl mx-auto border-x border-[rgba(0,0,0,0.08)] bg-white/75 backdrop-blur-md pb-20 relative z-10 shadow-2xl rounded-t-sm">
+    </section>
 
     <!-- Section 1: About Us -->
     <section id="about" class="px-6 sm:px-12 py-16 sm:py-24 border-b border-[rgba(0,0,0,0.08)]">
