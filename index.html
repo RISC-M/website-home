@@ -77,55 +77,57 @@
     </div>
   </header>
 
-  <!-- Main Container with Etched Structural Layout Rails -->
-  <main class="max-w-6xl mx-auto min-h-screen border-x border-[rgba(0,0,0,0.08)] bg-[#ededed]/60 backdrop-blur-[2px] pt-16 sm:pt-20 pb-20 relative z-10">
+  <!-- Full-Width Hero Section: Edge-to-Edge Vanta Clouds2 (100vw) -->
+  <section class="relative w-full min-h-screen flex flex-col items-center justify-center text-center px-6 sm:px-12 pt-24 sm:pt-28 pb-16 overflow-hidden z-10 border-b border-[rgba(0,0,0,0.08)]">
+    
+    <!-- Vanta Clouds2: 100% Full Viewport Edge-to-Edge -->
+    <div id="hero-vanta" class="absolute inset-0 w-full h-full z-0 pointer-events-auto"></div>
 
-    <!-- Hero Section: Full Screen Height on Load with Vanta Clouds2 -->
-    <section class="min-h-[calc(100vh-4.5rem)] sm:min-h-[calc(100vh-5rem)] flex flex-col items-center justify-center text-center px-6 sm:px-12 py-12 relative border-b border-[rgba(0,0,0,0.08)] overflow-hidden">
+    <!-- Soft Contrast & Bottom Fade Gradient -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#ededed]/20 via-transparent to-[#ededed]/90 pointer-events-none z-1"></div>
+
+    <!-- Centered Hero Content -->
+    <div class="relative z-10 flex flex-col items-center max-w-4xl mx-auto my-auto">
       
-      <!-- Vanta Clouds2 Interactive Background -->
-      <div id="hero-vanta" class="absolute inset-0 z-0 pointer-events-auto opacity-85"></div>
+      <!-- Central Silicon Package Visual -->
+      <div class="w-48 sm:w-60 mb-6 sm:mb-8 flex items-center justify-center chip-hero">
+        <img src="logo.png" alt="RISC-M Silicon Architecture" class="w-full h-auto object-contain filter drop-shadow-md" />
+      </div>
 
-      <!-- Subtle Gradient Overlay for Crisp Text Contrast -->
-      <div class="absolute inset-0 bg-gradient-to-b from-[#ededed]/30 via-transparent to-[#ededed]/70 pointer-events-none z-1"></div>
+      <!-- Monumental Two-Tone Headline -->
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-[-0.035em] text-[#0a0a0a] leading-[1.08] mb-6">
+        Building the minds behind <span class="text-neutral-500 font-normal">tomorrow’s compute.</span>
+      </h1>
 
-      <div class="relative z-10 flex flex-col items-center max-w-4xl">
-        <!-- Central Silicon Package Visual (Tightly fitted) -->
-        <div class="w-52 sm:w-64 mb-6 sm:mb-8 flex items-center justify-center chip-hero">
-          <img src="logo.png" alt="RISC-M Silicon Architecture" class="w-full h-auto object-contain filter drop-shadow-sm" />
-        </div>
+      <!-- Refined Subtitle with standardized typographic scale -->
+      <p class="text-base sm:text-lg text-neutral-700 font-normal max-w-2xl leading-relaxed mb-8">
+        A student-led collective dedicated to <strong class="text-neutral-900 font-medium">purpose-built architectures</strong>, fostering an environment for hardware engineers to thrive, and preparing the next generation of industry leaders.
+      </p>
 
-        <!-- Monumental Two-Tone Headline -->
-        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-[-0.035em] text-[#0a0a0a] leading-[1.08] mb-6">
-          Building the minds behind <span class="text-neutral-500 font-normal">tomorrow’s compute.</span>
-        </h1>
-
-        <!-- Refined Subtitle with standardized typographic scale -->
-        <p class="text-base sm:text-lg text-neutral-600 font-normal max-w-2xl leading-relaxed mb-8">
-          A student-led collective dedicated to <strong class="text-neutral-900 font-medium">purpose-built architectures</strong>, fostering an environment for hardware engineers to thrive, and preparing the next generation of industry leaders.
-        </p>
-
-        <!-- Action Button -->
-        <div class="flex items-center gap-4 mb-8 sm:mb-12">
-          <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer"
-             class="inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-3.5 rounded-sm text-xs font-mono tracking-wider hover:bg-neutral-800 transition-all shadow-xs">
-            <span>JOIN THE TEAM</span>
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-            </svg>
-          </a>
-        </div>
-
-        <!-- Subtle Scroll Indicator -->
-        <a href="#about" class="absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-[10px] font-mono text-neutral-400 hover:text-black transition-colors">
-          <span>ABOUT US</span>
-          <svg class="w-3.5 h-3.5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+      <!-- Action Button -->
+      <div class="flex items-center gap-4 mb-10">
+        <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-3.5 rounded-sm text-xs font-mono tracking-wider hover:bg-neutral-800 transition-all shadow-md">
+          <span>JOIN THE TEAM</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
           </svg>
         </a>
       </div>
 
-    </section>
+      <!-- Scroll Indicator (cleanly spaced, non-overlapping) -->
+      <a href="#about" class="inline-flex flex-col items-center gap-1.5 text-[10px] font-mono text-neutral-500 hover:text-black transition-colors">
+        <span>ABOUT US</span>
+        <svg class="w-3.5 h-3.5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </a>
+    </div>
+
+  </section>
+
+  <!-- Main Container with Etched Structural Layout Rails for Content -->
+  <main class="max-w-6xl mx-auto border-x border-[rgba(0,0,0,0.08)] bg-[#ededed]/75 backdrop-blur-[3px] pb-20 relative z-10">
 
     <!-- Section 1: About Us -->
     <section id="about" class="px-6 sm:px-12 py-16 sm:py-24 border-b border-[rgba(0,0,0,0.08)]">
