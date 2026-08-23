@@ -25,6 +25,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
+  <!-- Three.js & Vanta.js Clouds2 (Landing Effect) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds2.min.js"></script>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -43,8 +47,8 @@
 
 <body class="min-h-screen bg-[#ededed] text-[#0a0a0a] font-sans antialiased selection:bg-black selection:text-white no-scrollbar">
 
-  <!-- Interactive Semiconductor Grid & Pulse Canvas -->
-  <canvas id="bg-canvas" class="fixed inset-0 pointer-events-none z-0 w-full h-full"></canvas>
+  <!-- Ambient Shifting Canvas Background (Cloud Palette) -->
+  <div id="ambient-canvas-container" class="fixed inset-0 pointer-events-none z-0"></div>
 
   <!-- Fixed Minimalist Header (Etched Style) -->
   <header class="fixed top-0 left-0 right-0 w-full z-50 bg-[#ededed]/80 backdrop-blur-md border-b border-[rgba(0,0,0,0.06)] px-6 sm:px-10 md:px-12 py-3.5 sm:py-4">
@@ -76,42 +80,50 @@
   <!-- Main Container with Etched Structural Layout Rails -->
   <main class="max-w-6xl mx-auto min-h-screen border-x border-[rgba(0,0,0,0.08)] bg-[#ededed]/60 backdrop-blur-[2px] pt-16 sm:pt-20 pb-20 relative z-10">
 
-    <!-- Hero Section: Full Screen Height on Load -->
-    <section class="min-h-[calc(100vh-4.5rem)] sm:min-h-[calc(100vh-5rem)] flex flex-col items-center justify-center text-center px-6 sm:px-12 py-12 relative border-b border-[rgba(0,0,0,0.08)]">
+    <!-- Hero Section: Full Screen Height on Load with Vanta Clouds2 -->
+    <section class="min-h-[calc(100vh-4.5rem)] sm:min-h-[calc(100vh-5rem)] flex flex-col items-center justify-center text-center px-6 sm:px-12 py-12 relative border-b border-[rgba(0,0,0,0.08)] overflow-hidden">
       
-      <!-- Central Silicon Package Visual (Tightly fitted) -->
-      <div class="w-56 sm:w-72 mb-6 sm:mb-8 flex items-center justify-center chip-hero">
-        <img src="logo.png" alt="RISC-M Silicon Architecture" class="w-full h-auto object-contain filter drop-shadow-sm" />
-      </div>
+      <!-- Vanta Clouds2 Interactive Background -->
+      <div id="hero-vanta" class="absolute inset-0 z-0 pointer-events-auto opacity-85"></div>
 
-      <!-- Monumental Two-Tone Headline -->
-      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-[-0.035em] text-[#0a0a0a] leading-[1.08] max-w-4xl mb-6">
-        Building the minds behind <span class="text-neutral-500 font-normal">tomorrow’s compute.</span>
-      </h1>
+      <!-- Subtle Gradient Overlay for Crisp Text Contrast -->
+      <div class="absolute inset-0 bg-gradient-to-b from-[#ededed]/30 via-transparent to-[#ededed]/70 pointer-events-none z-1"></div>
 
-      <!-- Refined Subtitle with subtle typographic weight -->
-      <p class="text-base sm:text-lg text-neutral-600 font-normal max-w-2xl leading-relaxed mb-8">
-        A student-led collective dedicated to <strong class="text-neutral-900 font-medium">purpose-built architectures</strong>, fostering an environment for hardware engineers to thrive, and preparing the next generation of industry leaders.
-      </p>
+      <div class="relative z-10 flex flex-col items-center max-w-4xl">
+        <!-- Central Silicon Package Visual (Tightly fitted) -->
+        <div class="w-52 sm:w-64 mb-6 sm:mb-8 flex items-center justify-center chip-hero">
+          <img src="logo.png" alt="RISC-M Silicon Architecture" class="w-full h-auto object-contain filter drop-shadow-sm" />
+        </div>
 
-      <!-- Action Button -->
-      <div class="flex items-center gap-4 mb-8 sm:mb-12">
-        <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer"
-           class="inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-3.5 rounded-sm text-xs font-mono tracking-wider hover:bg-neutral-800 transition-all shadow-xs">
-          <span>JOIN THE TEAM</span>
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        <!-- Monumental Two-Tone Headline -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-[-0.035em] text-[#0a0a0a] leading-[1.08] mb-6">
+          Building the minds behind <span class="text-neutral-500 font-normal">tomorrow’s compute.</span>
+        </h1>
+
+        <!-- Refined Subtitle with standardized typographic scale -->
+        <p class="text-base sm:text-lg text-neutral-600 font-normal max-w-2xl leading-relaxed mb-8">
+          A student-led collective dedicated to <strong class="text-neutral-900 font-medium">purpose-built architectures</strong>, fostering an environment for hardware engineers to thrive, and preparing the next generation of industry leaders.
+        </p>
+
+        <!-- Action Button -->
+        <div class="flex items-center gap-4 mb-8 sm:mb-12">
+          <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-3.5 rounded-sm text-xs font-mono tracking-wider hover:bg-neutral-800 transition-all shadow-xs">
+            <span>JOIN THE TEAM</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Subtle Scroll Indicator -->
+        <a href="#about" class="absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-[10px] font-mono text-neutral-400 hover:text-black transition-colors">
+          <span>ABOUT US</span>
+          <svg class="w-3.5 h-3.5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
         </a>
       </div>
-
-      <!-- Subtle Scroll Indicator -->
-      <a href="#about" class="absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-[10px] font-mono text-neutral-400 hover:text-black transition-colors">
-        <span>ABOUT US</span>
-        <svg class="w-3.5 h-3.5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-        </svg>
-      </a>
 
     </section>
 
@@ -124,7 +136,7 @@
           <h2 class="text-xs font-mono uppercase tracking-widest text-neutral-500">// 01 ABOUT US</h2>
         </div>
         
-        <h3 class="text-3xl sm:text-5xl font-semibold tracking-[-0.03em] text-neutral-900 mb-8">
+        <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-neutral-900 mb-8">
           About Us.
         </h3>
 
@@ -196,7 +208,7 @@
           </a>
         </div>
         
-        <h3 class="text-3xl sm:text-5xl font-semibold tracking-[-0.03em] text-neutral-900 mb-8">
+        <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-neutral-900 mb-8">
           Introducing Inference-M.
         </h3>
 
