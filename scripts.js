@@ -58,9 +58,9 @@ document.addEventListener("DOMContentLoaded", () => {
         minHeight: 200.00,
         minWidth: 200.00,
         highlightColor: 0xffffff, // Pure White
-        midtoneColor: 0xffcb05,   // UMich Maize Yellow (#FFCB05)
-        lowlightColor: 0x00274c,  // UMich Deep Blue (#00274C)
-        baseColor: 0xffffff,      // Main White (#FFFFFF)
+        midtoneColor: 0x00274c,   // Michigan Navy Blue (#00274C)
+        lowlightColor: 0xffcb05,  // Michigan Maize Yellow (#FFCB05)
+        baseColor: 0xffffff,      // Pure White (#FFFFFF)
         blurFactor: 0.6,
         speed: 1.00,
         zoom: 1.00,
