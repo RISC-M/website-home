@@ -4,7 +4,7 @@ html {
 }
 
 body, button, input, select, textarea {
-  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background-color: #fcfcfc;
   color: #000000;
   -webkit-font-smoothing: antialiased;
@@ -12,8 +12,12 @@ body, button, input, select, textarea {
 }
 
 h1, h2, h3, h4, h5, h6, .font-display {
-  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   letter-spacing: -0.025em;
+}
+
+.font-outfit {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .line-clamp-1 {
@@ -116,6 +120,7 @@ a:focus-visible, button:focus-visible {
 #projects-container .hover-offset-card,
 #projects-container > div {
   min-height: 220px;
+  border-radius: 4px;
 }
 
 /* Keep unusually long repository content contained without forcing wider or taller cards. */
@@ -147,7 +152,7 @@ a:focus-visible, button:focus-visible {
   position: relative;
   z-index: 1;
   background-color: #ffffff;
-  border-radius: 16px;
+  border-radius: 4px;
   
   /* Natural floating base state: a bold neo-brutalist shadow offset 
      plus a modern soft ambient shadow to give a premium floating depth */

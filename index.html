@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -41,8 +41,9 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Plus Jakarta Sans', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-            display: ['Plus Jakarta Sans', 'Inter', '-apple-system', 'sans-serif'],
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            display: ['Inter', '-apple-system', 'sans-serif'],
+            outfit: ['Outfit', 'sans-serif'],
           }
         }
       }
@@ -72,19 +73,19 @@
 
   <!-- Header / Navbar -->
   <header
-    class="flex justify-between items-center px-8 py-3 md:py-4 border-b border-black text-xs md:text-sm font-bold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc]/90 backdrop-blur-md z-50">
+    class="flex justify-between items-center px-8 py-3 md:py-4 border-b border-black text-xs md:text-sm font-semibold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc]/90 backdrop-blur-md z-50">
     <div class="flex items-center gap-4 lg:gap-8">
       <div class="flex items-center gap-2">
         <div class="w-2.5 h-2.5 bg-black rounded-full animate-pulse shadow-[0_0_8px_rgba(0,0,0,0.6)]"></div>
         <a href="#about"
-          class="anchor-link whitespace-nowrap hover:opacity-70 transition-opacity text-xl md:text-base font-black tracking-tighter uppercase font-display">RISC-M</a>
+          class="anchor-link whitespace-nowrap hover:opacity-70 transition-opacity text-xl md:text-base font-bold tracking-tighter uppercase font-outfit">RISC-M</a>
       </div>
       <div
-        class="hidden lg:block border border-black rounded-md px-3 py-1 text-black whitespace-nowrap text-xs font-medium tracking-tight">
+        class="hidden lg:block border border-black rounded-full px-3.5 py-1 text-black whitespace-nowrap text-xs font-medium tracking-tight">
         <span>Est. 2026 &nbsp;&bull;&nbsp; Ann Arbor, MI</span>
       </div>
       <div
-        class="lg:hidden border border-black rounded-md px-3 py-1 text-black whitespace-nowrap text-xs font-medium tracking-tight">
+        class="lg:hidden border border-black rounded-full px-3.5 py-1 text-black whitespace-nowrap text-xs font-medium tracking-tight">
         <span>Est. 2026</span>
       </div>
     </div>
@@ -116,7 +117,7 @@
 
         <!-- Hero Title (Scales dynamically but remains large and bold on mobile) -->
         <h1 id="hero-title"
-          class="text-[clamp(3.75rem,14vw,12rem)] font-black tracking-tighter uppercase leading-none text-black mb-4 w-full select-none font-display">
+          class="text-[clamp(3.75rem,14vw,12rem)] font-bold tracking-tighter uppercase leading-none text-black mb-4 w-full select-none font-outfit">
           RISC-M
         </h1>
 
@@ -144,7 +145,7 @@
     <section id="inference-m"
       class="w-full border-t border-black pt-16 md:pt-24 pb-16 reveal-on-scroll flex flex-col items-center">
       <div class="text-center mb-12">
-        <h3 class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-black mb-4 font-display">
+        <h3 class="text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tighter text-black mb-4 font-display">
           Inference-M
         </h3>
         <p class="text-lg sm:text-xl font-normal text-neutral-600 max-w-2xl mx-auto">
@@ -157,22 +158,22 @@
 
           <!-- Left Column: Flagship Description Card -->
           <div
-            class="lg:col-span-5 border border-black rounded-lg p-6 sm:p-8 md:p-10 bg-white hover-offset-card flex flex-col justify-between h-full">
+            class="lg:col-span-5 border border-black p-6 sm:p-8 md:p-10 bg-white hover-offset-card flex flex-col justify-between h-full">
             <div>
               <div class="border-b border-black pb-4 mb-6">
                 <span
-                  class="text-xs sm:text-sm font-bold uppercase tracking-wider bg-black text-white px-3 py-1 rounded-md inline-block mb-3">
+                  class="text-xs sm:text-sm font-semibold uppercase tracking-wider bg-black text-white px-3 py-1 rounded-[4px] inline-block mb-3">
                   OVERVIEW
                 </span>
-                <h4 class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-black font-display">
-                  Network on a Chip
+                <h4 class="text-2xl sm:text-3xl font-bold uppercase tracking-tight text-black font-display">
+                  Starting with a Network on a Chip
                 </h4>
               </div>
 
               <div class="space-y-5 text-base sm:text-lg font-normal text-neutral-700 leading-relaxed">
                 <p>
                   Inference-M is a custom manycore ML accelerator built around a novel paradigm called <strong
-                    class="font-bold text-black">Direct Compute Access (DCA)</strong>, in which the on-chip network
+                    class="font-semibold text-black">Direct Compute Access (DCA)</strong>, in which the on-chip network
                   borrows adjacent cluster ALUs to perform arithmetic reductions on data in-flight.
                 </p>
                 <p>
@@ -189,8 +190,7 @@
 
           <!-- Right Column: Visually Large Roadmap & Milestones (Open Timeline, No Card) -->
           <div class="lg:col-span-7 flex flex-col text-left pl-0 lg:pl-6 py-2">
-            <h3
-              class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-black font-display mb-8">
+            <h3 class="text-2xl sm:text-3xl font-bold uppercase tracking-tight text-black font-display mb-8">
               Roadmap &amp; Milestones
             </h3>
 
@@ -204,16 +204,14 @@
                 <!-- Milestone 1 -->
                 <div class="flex items-start gap-5 sm:gap-6">
                   <div
-                    class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black text-white flex items-center justify-center font-black text-lg sm:text-xl shrink-0 relative z-10 shadow-sm">
+                    class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black text-white flex items-center justify-center font-bold text-lg sm:text-xl shrink-0 relative z-10 shadow-sm">
                     1
                   </div>
                   <div class="pt-1">
-                    <span
-                      class="text-xs sm:text-sm font-bold uppercase tracking-wider text-neutral-500 block mb-1">
+                    <span class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-neutral-500 block mb-1">
                       SUMMER 2026
                     </span>
-                    <h4
-                      class="text-xl sm:text-2xl font-black uppercase tracking-tight text-black font-display mb-1.5">
+                    <h4 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-black font-display mb-1.5">
                       Sim &amp; Architecture
                     </h4>
                     <p class="text-base sm:text-lg font-normal text-neutral-700 leading-relaxed">
@@ -226,16 +224,14 @@
                 <!-- Milestone 2 -->
                 <div class="flex items-start gap-5 sm:gap-6">
                   <div
-                    class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black text-white flex items-center justify-center font-black text-lg sm:text-xl shrink-0 relative z-10 shadow-sm">
+                    class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black text-white flex items-center justify-center font-bold text-lg sm:text-xl shrink-0 relative z-10 shadow-sm">
                     2
                   </div>
                   <div class="pt-1">
-                    <span
-                      class="text-xs sm:text-sm font-bold uppercase tracking-wider text-neutral-500 block mb-1">
+                    <span class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-neutral-500 block mb-1">
                       FALL 2026
                     </span>
-                    <h4
-                      class="text-xl sm:text-2xl font-black uppercase tracking-tight text-black font-display mb-1.5">
+                    <h4 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-black font-display mb-1.5">
                       RTL Implementation
                     </h4>
                     <p class="text-base sm:text-lg font-normal text-neutral-700 leading-relaxed">
@@ -247,16 +243,14 @@
                 <!-- Milestone 3 -->
                 <div class="flex items-start gap-5 sm:gap-6">
                   <div
-                    class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black text-white flex items-center justify-center font-black text-lg sm:text-xl shrink-0 relative z-10 shadow-sm">
+                    class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black text-white flex items-center justify-center font-bold text-lg sm:text-xl shrink-0 relative z-10 shadow-sm">
                     3
                   </div>
                   <div class="pt-1">
-                    <span
-                      class="text-xs sm:text-sm font-bold uppercase tracking-wider text-neutral-500 block mb-1">
+                    <span class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-neutral-500 block mb-1">
                       WINTER 2026
                     </span>
-                    <h4
-                      class="text-xl sm:text-2xl font-black uppercase tracking-tight text-black font-display mb-1.5">
+                    <h4 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-black font-display mb-1.5">
                       Integration &amp; Verification
                     </h4>
                     <p class="text-base sm:text-lg font-normal text-neutral-700 leading-relaxed">
@@ -269,16 +263,14 @@
                 <!-- Milestone 4 -->
                 <div class="flex items-start gap-5 sm:gap-6">
                   <div
-                    class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black text-white flex items-center justify-center font-black text-lg sm:text-xl shrink-0 relative z-10 shadow-sm">
+                    class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black text-white flex items-center justify-center font-bold text-lg sm:text-xl shrink-0 relative z-10 shadow-sm">
                     4
                   </div>
                   <div class="pt-1">
-                    <span
-                      class="text-xs sm:text-sm font-bold uppercase tracking-wider text-neutral-500 block mb-1">
+                    <span class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-neutral-500 block mb-1">
                       SPRING 2027
                     </span>
-                    <h4
-                      class="text-xl sm:text-2xl font-black uppercase tracking-tight text-black font-display mb-1.5">
+                    <h4 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-black font-display mb-1.5">
                       Tapeout &amp; Testing
                     </h4>
                     <p class="text-base sm:text-lg font-normal text-neutral-700 leading-relaxed">
@@ -297,7 +289,7 @@
         <div class="mt-12 pt-8 border-t border-black/20 w-full">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 text-left">
             <div>
-              <h3 class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-black font-display">
+              <h3 class="text-2xl sm:text-3xl font-bold uppercase tracking-tight text-black font-display">
                 Projects on GitHub
               </h3>
               <p class="text-sm sm:text-base font-normal text-neutral-600">
@@ -305,7 +297,7 @@
               </p>
             </div>
             <a href="https://github.com/RISC-M" target="_blank" rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-black hover-underline shrink-0">
+              class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold uppercase tracking-wider text-black hover-underline shrink-0">
               View all on GitHub &nearr;
             </a>
           </div>
@@ -314,58 +306,58 @@
           <div id="projects-container" class="grid grid-cols-1 md:grid-cols-3 gap-5 w-full">
             <!-- Loading Skeleton Card 1 -->
             <div
-              class="border border-neutral-300 p-5 sm:p-6 rounded-lg w-full flex flex-col justify-between animate-pulse">
+              class="border border-neutral-300 p-5 sm:p-6 rounded-[4px] w-full flex flex-col justify-between animate-pulse">
               <div>
                 <div class="flex items-center justify-between gap-3 mb-3">
-                  <div class="h-7 bg-neutral-400 rounded-md w-1/2"></div>
-                  <div class="h-5 bg-neutral-400 rounded-md w-20"></div>
+                  <div class="h-7 bg-neutral-400 rounded-[3px] w-1/2"></div>
+                  <div class="h-5 bg-neutral-400 rounded-[3px] w-20"></div>
                 </div>
                 <div class="space-y-2 mb-4">
-                  <div class="h-4 bg-neutral-300 rounded w-full"></div>
-                  <div class="h-4 bg-neutral-300 rounded w-4/5"></div>
+                  <div class="h-4 bg-neutral-300 rounded-[2px] w-full"></div>
+                  <div class="h-4 bg-neutral-300 rounded-[2px] w-4/5"></div>
                 </div>
               </div>
               <div class="pt-3 border-t border-neutral-300 flex justify-between">
-                <div class="h-3.5 bg-neutral-400 rounded w-24"></div>
-                <div class="h-3.5 bg-neutral-400 rounded w-16"></div>
+                <div class="h-3.5 bg-neutral-400 rounded-[2px] w-24"></div>
+                <div class="h-3.5 bg-neutral-400 rounded-[2px] w-16"></div>
               </div>
             </div>
 
             <!-- Loading Skeleton Card 2 -->
             <div
-              class="border border-neutral-300 p-5 sm:p-6 rounded-lg w-full flex flex-col justify-between animate-pulse">
+              class="border border-neutral-300 p-5 sm:p-6 rounded-[4px] w-full flex flex-col justify-between animate-pulse">
               <div>
                 <div class="flex items-center justify-between gap-3 mb-3">
-                  <div class="h-7 bg-neutral-400 rounded-md w-1/2"></div>
-                  <div class="h-5 bg-neutral-400 rounded-md w-20"></div>
+                  <div class="h-7 bg-neutral-400 rounded-[3px] w-1/2"></div>
+                  <div class="h-5 bg-neutral-400 rounded-[3px] w-20"></div>
                 </div>
                 <div class="space-y-2 mb-4">
-                  <div class="h-4 bg-neutral-300 rounded w-full"></div>
-                  <div class="h-4 bg-neutral-300 rounded w-3/4"></div>
+                  <div class="h-4 bg-neutral-300 rounded-[2px] w-full"></div>
+                  <div class="h-4 bg-neutral-300 rounded-[2px] w-3/4"></div>
                 </div>
               </div>
               <div class="pt-3 border-t border-neutral-300 flex justify-between">
-                <div class="h-3.5 bg-neutral-400 rounded w-24"></div>
-                <div class="h-3.5 bg-neutral-400 rounded w-16"></div>
+                <div class="h-3.5 bg-neutral-400 rounded-[2px] w-24"></div>
+                <div class="h-3.5 bg-neutral-400 rounded-[2px] w-16"></div>
               </div>
             </div>
 
             <!-- Loading Skeleton Card 3 -->
             <div
-              class="border border-neutral-300 p-5 sm:p-6 rounded-lg w-full flex flex-col justify-between animate-pulse">
+              class="border border-neutral-300 p-5 sm:p-6 rounded-[4px] w-full flex flex-col justify-between animate-pulse">
               <div>
                 <div class="flex items-center justify-between gap-3 mb-3">
-                  <div class="h-7 bg-neutral-400 rounded-md w-1/2"></div>
-                  <div class="h-5 bg-neutral-400 rounded-md w-20"></div>
+                  <div class="h-7 bg-neutral-400 rounded-[3px] w-1/2"></div>
+                  <div class="h-5 bg-neutral-400 rounded-[3px] w-20"></div>
                 </div>
                 <div class="space-y-2 mb-4">
-                  <div class="h-4 bg-neutral-300 rounded w-full"></div>
-                  <div class="h-4 bg-neutral-300 rounded w-4/5"></div>
+                  <div class="h-4 bg-neutral-300 rounded-[2px] w-full"></div>
+                  <div class="h-4 bg-neutral-300 rounded-[2px] w-4/5"></div>
                 </div>
               </div>
               <div class="pt-3 border-t border-neutral-300 flex justify-between">
-                <div class="h-3.5 bg-neutral-400 rounded w-24"></div>
-                <div class="h-3.5 bg-neutral-400 rounded w-16"></div>
+                <div class="h-3.5 bg-neutral-400 rounded-[2px] w-24"></div>
+                <div class="h-3.5 bg-neutral-400 rounded-[2px] w-16"></div>
               </div>
             </div>
           </div>
@@ -378,7 +370,7 @@
     <section id="join"
       class="w-full border-t border-black pt-16 md:pt-24 pb-16 flex flex-col items-center text-center reveal-on-scroll">
       <div class="text-center mb-12">
-        <h3 class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-black mb-4 font-display">
+        <h3 class="text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tighter text-black mb-4 font-display">
           Join Us
         </h3>
         <p class="text-lg sm:text-xl font-normal text-neutral-600 max-w-2xl mx-auto">
@@ -390,14 +382,13 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full max-w-7xl text-left mb-12">
         <!-- Step 1 (Top Left - 7 cols) -->
         <div
-          class="lg:col-span-7 lg:row-start-1 lg:col-start-1 border border-black rounded-lg p-6 sm:p-8 md:p-10 bg-white hover-offset-card flex flex-col justify-between relative">
+          class="lg:col-span-7 lg:row-start-1 lg:col-start-1 border border-black p-6 sm:p-8 md:p-10 bg-white hover-offset-card flex flex-col justify-between relative">
           <div>
             <div class="flex items-start sm:items-center gap-3 sm:gap-4 mb-4">
               <span
-                class="text-sm sm:text-base font-black uppercase bg-black text-white px-3.5 sm:px-4 py-1.5 rounded-md tracking-wide whitespace-nowrap shrink-0 mt-0.5 sm:mt-0">STEP
+                class="text-sm sm:text-base font-bold uppercase bg-black text-white px-3.5 sm:px-4 py-1.5 tracking-wide whitespace-nowrap shrink-0 mt-0.5 sm:mt-0">STEP
                 1.</span>
-              <h4
-                class="text-xl sm:text-2xl font-black uppercase tracking-tight text-black font-display leading-tight">
+              <h4 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-black font-display leading-tight">
                 Join the Mailing List
               </h4>
             </div>
@@ -407,12 +398,14 @@
           </div>
 
           <!-- Edge Connector to Step 2: Right on Desktop, Down on Mobile -->
-          <div class="hidden lg:flex absolute -right-5 sm:-right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-black bg-black text-white items-center justify-center shadow-lg">
+          <div
+            class="hidden lg:flex absolute -right-5 sm:-right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-black bg-black text-white items-center justify-center shadow-lg">
             <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
             </svg>
           </div>
-          <div class="lg:hidden flex absolute -bottom-5 left-1/2 -translate-x-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-black bg-black text-white items-center justify-center shadow-lg">
+          <div
+            class="lg:hidden flex absolute -bottom-5 left-1/2 -translate-x-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-black bg-black text-white items-center justify-center shadow-lg">
             <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
@@ -421,14 +414,13 @@
 
         <!-- Step 2 (Top Right - 5 cols, directly above Step 3) -->
         <div
-          class="lg:col-span-5 lg:row-start-1 lg:col-start-8 border border-black rounded-lg p-6 sm:p-8 md:p-10 bg-white hover-offset-card flex flex-col justify-between relative">
+          class="lg:col-span-5 lg:row-start-1 lg:col-start-8 border border-black p-6 sm:p-8 md:p-10 bg-white hover-offset-card flex flex-col justify-between relative">
           <div>
             <div class="flex items-start sm:items-center gap-3 sm:gap-4 mb-4">
               <span
-                class="text-sm sm:text-base font-black uppercase bg-black text-white px-3.5 sm:px-4 py-1.5 rounded-md tracking-wide whitespace-nowrap shrink-0 mt-0.5 sm:mt-0">STEP
+                class="text-sm sm:text-base font-bold uppercase bg-black text-white px-3.5 sm:px-4 py-1.5 tracking-wide whitespace-nowrap shrink-0 mt-0.5 sm:mt-0">STEP
                 2.</span>
-              <h4
-                class="text-xl sm:text-2xl font-black uppercase tracking-tight text-black font-display leading-tight">
+              <h4 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-black font-display leading-tight">
                 Attend the Mass Meeting
               </h4>
             </div>
@@ -442,7 +434,8 @@
           </div>
 
           <!-- Edge Connector to Step 3: Directly Down to Step 3 below -->
-          <div class="flex absolute -bottom-5 sm:-bottom-6 left-1/2 -translate-x-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-black bg-black text-white items-center justify-center shadow-lg">
+          <div
+            class="flex absolute -bottom-5 sm:-bottom-6 left-1/2 -translate-x-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-black bg-black text-white items-center justify-center shadow-lg">
             <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
@@ -451,14 +444,13 @@
 
         <!-- Step 3 (Middle Right - 7 cols, alternating wider) -->
         <div
-          class="lg:col-span-7 lg:row-start-2 lg:col-start-6 border border-black rounded-lg p-6 sm:p-8 md:p-10 bg-white hover-offset-card flex flex-col justify-between relative">
+          class="lg:col-span-7 lg:row-start-2 lg:col-start-6 border border-black p-6 sm:p-8 md:p-10 bg-white hover-offset-card flex flex-col justify-between relative">
           <div>
             <div class="flex items-start sm:items-center gap-3 sm:gap-4 mb-4">
               <span
-                class="text-sm sm:text-base font-black uppercase bg-black text-white px-3.5 sm:px-4 py-1.5 rounded-md tracking-wide whitespace-nowrap shrink-0 mt-0.5 sm:mt-0">STEP
+                class="text-sm sm:text-base font-bold uppercase bg-black text-white px-3.5 sm:px-4 py-1.5 tracking-wide whitespace-nowrap shrink-0 mt-0.5 sm:mt-0">STEP
                 3.</span>
-              <h4
-                class="text-xl sm:text-2xl font-black uppercase tracking-tight text-black font-display leading-tight">
+              <h4 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-black font-display leading-tight">
                 Apply to a Subteam
               </h4>
             </div>
@@ -469,18 +461,20 @@
           </div>
           <div class="pt-2">
             <button disabled
-              class="w-full sm:w-auto inline-flex items-center justify-center border border-neutral-300 bg-neutral-100 text-neutral-500 px-4 py-2.5 rounded-md font-bold uppercase tracking-wider text-xs cursor-not-allowed select-none">
+              class="w-full sm:w-auto inline-flex items-center justify-center border border-neutral-300 bg-neutral-100 text-neutral-500 px-4 py-2.5 rounded-md font-semibold uppercase tracking-wider text-xs cursor-not-allowed select-none">
               Subteam Applications Coming Soon
             </button>
           </div>
 
           <!-- Edge Connector to Step 4: Left on Desktop into Step 4, Down on Mobile -->
-          <div class="hidden lg:flex absolute -left-5 sm:-left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-black bg-black text-white items-center justify-center shadow-lg">
+          <div
+            class="hidden lg:flex absolute -left-5 sm:-left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-black bg-black text-white items-center justify-center shadow-lg">
             <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
             </svg>
           </div>
-          <div class="lg:hidden flex absolute -bottom-5 left-1/2 -translate-x-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-black bg-black text-white items-center justify-center shadow-lg">
+          <div
+            class="lg:hidden flex absolute -bottom-5 left-1/2 -translate-x-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-black bg-black text-white items-center justify-center shadow-lg">
             <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
@@ -489,14 +483,13 @@
 
         <!-- Step 4 (Middle Left - 5 cols, alternating narrower) -->
         <div
-          class="lg:col-span-5 lg:row-start-2 lg:col-start-1 border border-black rounded-lg p-6 sm:p-8 md:p-10 bg-white hover-offset-card flex flex-col justify-between relative">
+          class="lg:col-span-5 lg:row-start-2 lg:col-start-1 border border-black p-6 sm:p-8 md:p-10 bg-white hover-offset-card flex flex-col justify-between relative">
           <div>
             <div class="flex items-start sm:items-center gap-3 sm:gap-4 mb-4">
               <span
-                class="text-sm sm:text-base font-black uppercase bg-black text-white px-3.5 sm:px-4 py-1.5 rounded-md tracking-wide whitespace-nowrap shrink-0 mt-0.5 sm:mt-0">STEP
+                class="text-sm sm:text-base font-bold uppercase bg-black text-white px-3.5 sm:px-4 py-1.5 tracking-wide whitespace-nowrap shrink-0 mt-0.5 sm:mt-0">STEP
                 4.</span>
-              <h4
-                class="text-xl sm:text-2xl font-black uppercase tracking-tight text-black font-display leading-tight">
+              <h4 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-black font-display leading-tight">
                 Finish an Onboarding Project
               </h4>
             </div>
@@ -507,7 +500,8 @@
           </div>
 
           <!-- Edge Connector to Step 5: Down into Step 5 below -->
-          <div class="flex absolute -bottom-5 sm:-bottom-6 left-1/2 -translate-x-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-black bg-black text-white items-center justify-center shadow-lg">
+          <div
+            class="flex absolute -bottom-5 sm:-bottom-6 left-1/2 -translate-x-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-black bg-black text-white items-center justify-center shadow-lg">
             <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
@@ -516,14 +510,13 @@
 
         <!-- Step 5 (Bottom Full Width - 12 cols) -->
         <div
-          class="lg:col-span-12 lg:row-start-3 lg:col-start-1 border border-black rounded-lg p-6 sm:p-8 md:p-10 bg-white hover-offset-card flex flex-col justify-between">
+          class="lg:col-span-12 lg:row-start-3 lg:col-start-1 border border-black p-6 sm:p-8 md:p-10 bg-white hover-offset-card flex flex-col justify-between">
           <div>
             <div class="flex items-start sm:items-center gap-3 sm:gap-4 mb-4">
               <span
-                class="text-sm sm:text-base font-black uppercase bg-black text-white px-3.5 sm:px-4 py-1.5 rounded-md tracking-wide whitespace-nowrap shrink-0 mt-0.5 sm:mt-0">STEP
+                class="text-sm sm:text-base font-bold uppercase bg-black text-white px-3.5 sm:px-4 py-1.5 tracking-wide whitespace-nowrap shrink-0 mt-0.5 sm:mt-0">STEP
                 5.</span>
-              <h4
-                class="text-xl sm:text-2xl font-black uppercase tracking-tight text-black font-display leading-tight">
+              <h4 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-black font-display leading-tight">
                 Contribute to Inference-M
               </h4>
             </div>
@@ -536,14 +529,16 @@
       </div>
 
       <!-- Google Form CTA Integrated -->
-      <div class="border-t border-black border-dashed pt-8 w-full max-w-3xl flex flex-col items-center mx-auto text-center">
+      <div
+        class="border-t border-black border-dashed pt-8 w-full max-w-3xl flex flex-col items-center mx-auto text-center">
         <p class="text-lg sm:text-xl font-normal mb-6 text-neutral-700">
-          Ready to get started? Fill out our interest form to join the mailing list and get notified about our upcoming mass meeting.
+          Ready to get started? Fill out our interest form to join the mailing list and get notified about our upcoming
+          mass meeting.
         </p>
 
         <span class="btn-wrapper inline-block">
           <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer"
-            class="inline-flex items-center gap-3 border border-black bg-black text-white px-8 py-4 rounded-lg font-bold uppercase tracking-widest text-xs sm:text-sm hover-offset-button">
+            class="inline-flex items-center gap-3 border border-black bg-black text-white px-8 py-4 rounded-lg font-semibold uppercase tracking-widest text-xs sm:text-sm hover-offset-button">
             Join Mailing List
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg">
@@ -553,7 +548,10 @@
         </span>
 
         <p class="text-xs sm:text-sm font-normal text-neutral-500 mt-6 max-w-xl leading-relaxed">
-          Regardless of the recruiting cycle, we welcome new members at any point during the year. Feel free to reach out directly to any of our executive board members or email us anytime at <a href="mailto:riscm-exec@umich.edu" class="font-medium text-black underline hover:text-neutral-600 transition-colors">riscm-exec@umich.edu</a>.
+          Regardless of the recruiting cycle, we welcome new members at any point during the year. Feel free to reach
+          out directly to any of our executive board members or email us anytime at <a
+            href="mailto:riscm-exec@umich.edu"
+            class="font-medium text-black underline hover:text-neutral-600 transition-colors">riscm-exec@umich.edu</a>.
         </p>
       </div>
     </section>
@@ -562,7 +560,7 @@
     <section id="team"
       class="w-full border-t border-black pt-16 md:pt-24 pb-16 flex flex-col items-center reveal-on-scroll">
       <div class="text-center mb-12">
-        <h3 class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-black mb-4 font-display">
+        <h3 class="text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tighter text-black mb-4 font-display">
           Our Team
         </h3>
         <p class="text-lg sm:text-xl font-normal text-neutral-600 max-w-2xl mx-auto">
@@ -573,7 +571,7 @@
       <div class="flex flex-wrap justify-center gap-y-12 gap-x-6 sm:gap-x-8 w-full max-w-5xl">
         <!-- Officers -->
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight text-black font-display">
+          <h4 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-black font-display">
             Shashwat Jaguri
           </h4>
           <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-500 mt-1">
@@ -582,7 +580,7 @@
         </div>
 
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight text-black font-display">
+          <h4 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-black font-display">
             David Huang
           </h4>
           <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-500 mt-1">
@@ -591,7 +589,7 @@
         </div>
 
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight text-black font-display">
+          <h4 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-black font-display">
             Bangyan Huang
           </h4>
           <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-500 mt-1">
@@ -600,7 +598,7 @@
         </div>
 
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight text-black font-display">
+          <h4 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-black font-display">
             Shreyas Narayanan
           </h4>
           <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-500 mt-1">
@@ -609,7 +607,7 @@
         </div>
 
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight text-black font-display">
+          <h4 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-black font-display">
             Aaron Xiong
           </h4>
           <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-500 mt-1">
@@ -618,7 +616,7 @@
         </div>
 
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight text-black font-display">
+          <h4 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-black font-display">
             Shaun Gupte
           </h4>
           <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-500 mt-1">
@@ -627,7 +625,7 @@
         </div>
 
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight text-black font-display">
+          <h4 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-black font-display">
             Niki Lin
           </h4>
           <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-500 mt-1">
@@ -636,7 +634,7 @@
         </div>
 
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight text-black font-display">
+          <h4 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-black font-display">
             Rohan Satapathy
           </h4>
           <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-500 mt-1">
@@ -645,7 +643,7 @@
         </div>
 
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight text-black font-display">
+          <h4 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-black font-display">
             Sophia Chen
           </h4>
           <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-500 mt-1">
@@ -654,7 +652,7 @@
         </div>
 
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight text-black font-display">
+          <h4 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-black font-display">
             Dhruv Bahuguna
           </h4>
           <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-500 mt-1">
@@ -663,7 +661,7 @@
         </div>
 
         <div class="flex flex-col items-center w-[45%] sm:w-[45%] md:w-[30%] text-center">
-          <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight text-black font-display">
+          <h4 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-black font-display">
             Prof. Krisztián Flautner
           </h4>
           <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-500 mt-1">
@@ -677,7 +675,7 @@
     <section id="sponsors"
       class="w-full border-t border-black pt-16 md:pt-24 pb-16 flex flex-col items-center reveal-on-scroll">
       <div class="text-center mb-12">
-        <h3 class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-black mb-4 font-display">
+        <h3 class="text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tighter text-black mb-4 font-display">
           Partner With Us
         </h3>
         <p class="text-lg sm:text-xl font-normal text-neutral-600 max-w-2xl mx-auto">
@@ -688,9 +686,9 @@
       <div class="w-full flex flex-col items-center max-w-5xl">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center w-full">
           <div
-            class="p-6 md:p-8 border border-black rounded-lg flex flex-col items-center bg-white hover-offset-card justify-between">
+            class="p-6 md:p-8 border border-black flex flex-col items-center bg-white hover-offset-card justify-between">
             <div>
-              <h5 class="text-xl sm:text-2xl font-black uppercase tracking-tight text-black mb-3 font-display">
+              <h5 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-black mb-3 font-display">
                 Recruiting
               </h5>
               <p class="text-base sm:text-lg font-normal text-neutral-700 leading-relaxed">
@@ -699,9 +697,9 @@
             </div>
           </div>
           <div
-            class="p-6 md:p-8 border border-black rounded-lg flex flex-col items-center bg-white hover-offset-card justify-between">
+            class="p-6 md:p-8 border border-black flex flex-col items-center bg-white hover-offset-card justify-between">
             <div>
-              <h5 class="text-xl sm:text-2xl font-black uppercase tracking-tight text-black mb-3 font-display">
+              <h5 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-black mb-3 font-display">
                 Project Support
               </h5>
               <p class="text-base sm:text-lg font-normal text-neutral-700 leading-relaxed">
@@ -710,9 +708,9 @@
             </div>
           </div>
           <div
-            class="p-6 md:p-8 border border-black rounded-lg flex flex-col items-center bg-white hover-offset-card justify-between">
+            class="p-6 md:p-8 border border-black flex flex-col items-center bg-white hover-offset-card justify-between">
             <div>
-              <h5 class="text-xl sm:text-2xl font-black uppercase tracking-tight text-black mb-3 font-display">
+              <h5 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-black mb-3 font-display">
                 Visibility
               </h5>
               <p class="text-base sm:text-lg font-normal text-neutral-700 leading-relaxed">
@@ -726,7 +724,7 @@
       <!-- Get in Touch CTA Integrated -->
       <div
         class="mt-16 border-t border-black border-dashed pt-8 w-full max-w-3xl flex flex-col items-center mx-auto text-center">
-        <h4 class="text-3xl md:text-4xl font-black uppercase tracking-tighter text-black mb-4 font-display">
+        <h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter text-black mb-4 font-display">
           Get in Touch
         </h4>
         <p class="text-lg sm:text-xl font-normal text-neutral-600 mb-8 max-w-2xl mx-auto">
@@ -734,7 +732,7 @@
         </p>
         <span class="btn-wrapper inline-block">
           <a href="mailto:riscm-exec@umich.edu"
-            class="inline-flex items-center gap-3 border border-black bg-black text-white px-8 py-4 rounded-lg font-bold uppercase tracking-widest text-xs sm:text-sm hover-offset-button">
+            class="inline-flex items-center gap-3 border border-black bg-black text-white px-8 py-4 rounded-lg font-semibold uppercase tracking-widest text-xs sm:text-sm hover-offset-button">
             Email The Board
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg">
@@ -744,16 +742,16 @@
         </span>
         <p class="text-xs sm:text-sm font-semibold tracking-wider text-neutral-500 mt-6">
           <span
-            class="select-all text-xs sm:text-sm font-semibold tracking-wider bg-neutral-100 border border-neutral-300 px-3 py-1 rounded-md text-black">riscm-exec@umich.edu</span>
+            class="select-all text-xs sm:text-sm font-semibold tracking-wider bg-neutral-100 border border-neutral-300 px-3 py-1 text-black">riscm-exec@umich.edu</span>
         </p>
       </div>
     </section>
 
     <!-- Footer -->
     <footer
-      class="w-full border-t border-black pt-6 pb-2 mt-12 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold uppercase tracking-widest anim-element d-7">
-      <p class="text-xs font-bold uppercase tracking-widest">&copy; 2026 RISC-M</p>
-      <div class="flex gap-6 text-xs font-bold uppercase tracking-widest">
+      class="w-full border-t border-black pt-6 pb-2 mt-12 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-semibold uppercase tracking-widest anim-element d-7">
+      <p class="text-xs font-semibold uppercase tracking-widest">&copy; 2026 <span class="font-outfit">RISC-M</span></p>
+      <div class="flex gap-6 text-xs font-semibold uppercase tracking-widest">
         <a href="mailto:riscm-exec@umich.edu" class="hover:text-gray-500 transition-colors">email</a>
         <a href="https://github.com/RISC-M" class="hover:text-gray-500 transition-colors" target="_blank"
           rel="noopener noreferrer">github</a>

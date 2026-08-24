@@ -211,17 +211,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const date = new Date(repo.updated_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
       
       const article = document.createElement('article');
-      article.className = 'group border border-black p-5 sm:p-6 rounded-lg w-full bg-white hover-offset-card fade-in-card cursor-pointer flex flex-col justify-between';
+      article.className = 'group border border-black p-5 sm:p-6 w-full bg-white hover-offset-card fade-in-card cursor-pointer flex flex-col justify-between';
       article.setAttribute('role', 'link');
       article.tabIndex = 0;
       article.setAttribute('aria-label', `View ${repo.name} on GitHub`);
       article.innerHTML = `
         <div>
           <div class="flex items-center justify-between gap-3 mb-3">
-            <h4 class="project-card-title text-xl sm:text-2xl font-black uppercase tracking-tight text-black font-display">
+            <h4 class="project-card-title text-xl sm:text-2xl font-bold uppercase tracking-tight text-black font-display">
               ${repo.name.replace(/-/g, ' ')}
             </h4>
-            <span class="px-2.5 py-0.5 border border-black bg-black text-white rounded text-xs font-bold tracking-tight shrink-0">
+            <span class="px-2.5 py-0.5 border border-black bg-black text-white rounded-[3px] text-xs font-semibold tracking-tight shrink-0">
               ${date}
             </span>
           </div>
@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <div class="pt-3 border-t border-black/15 flex items-center justify-between text-xs sm:text-sm font-semibold">
           <span class="text-neutral-500">${repo.language || 'SystemVerilog'}</span>
-          <span class="font-bold text-black group-hover:underline flex items-center gap-1">
+          <span class="font-semibold text-black group-hover:underline flex items-center gap-1">
             View on GitHub &nearr;
           </span>
         </div>
