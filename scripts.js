@@ -211,35 +211,29 @@ document.addEventListener("DOMContentLoaded", () => {
       const date = new Date(repo.updated_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
       
       const article = document.createElement('article');
-      article.className = 'border-2 border-black p-4 md:p-5 rounded-[1.5rem] w-full max-w-sm flex flex-col justify-between bg-white hover-offset-card fade-in-card cursor-pointer';
+      article.className = 'group border border-black p-5 sm:p-6 rounded-lg w-full bg-white hover-offset-card fade-in-card cursor-pointer flex flex-col justify-between';
       article.setAttribute('role', 'link');
       article.tabIndex = 0;
       article.setAttribute('aria-label', `View ${repo.name} on GitHub`);
       article.innerHTML = `
         <div>
-          <div class="flex flex-col items-center mb-4 border-b border-black pb-4 gap-3">
-            <div class="text-center w-full">
-              <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="hover:opacity-70 transition-opacity">
-                <h2 class="project-card-title text-2xl md:text-3xl font-black uppercase tracking-tighter mt-1 leading-none">${repo.name.replace(/-/g, ' ')}</h2>
-              </a>
-            </div>
-            <div class="flex flex-col items-center">
-              <span class="px-4 py-1 border border-black bg-black text-white rounded-full text-xs font-bold uppercase tracking-widest block">Updated: ${date}</span>
-            </div>
+          <div class="flex items-center justify-between gap-3 mb-3">
+            <h4 class="project-card-title text-xl sm:text-2xl font-black uppercase tracking-tight text-black font-display">
+              ${repo.name.replace(/-/g, ' ')}
+            </h4>
+            <span class="px-2.5 py-0.5 border border-black bg-black text-white rounded text-xs font-bold tracking-tight shrink-0">
+              ${date}
+            </span>
           </div>
-          <div class="space-y-4 text-center">
-            <p class="project-card-description text-base md:text-lg font-normal text-neutral-700 leading-relaxed">
-              ${repo.description || 'No description provided for this repository.'}
-            </p>
-          </div>
+          <p class="project-card-description text-sm sm:text-base font-normal text-neutral-700 leading-relaxed mb-4">
+            ${repo.description || 'Open-source hardware repository and architecture implementation.'}
+          </p>
         </div>
-        <div class="mt-6 pt-5 border-t border-black border-dashed flex justify-center">
-          <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="project-card-link text-sm font-bold uppercase tracking-widest hover:underline flex items-center gap-2">
-            View on GitHub 
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-            </svg>
-          </a>
+        <div class="pt-3 border-t border-black/15 flex items-center justify-between text-xs sm:text-sm font-semibold">
+          <span class="text-neutral-500">${repo.language || 'SystemVerilog'}</span>
+          <span class="font-bold text-black group-hover:underline flex items-center gap-1">
+            View on GitHub &nearr;
+          </span>
         </div>
       `;
       const openRepository = () => window.open(repo.html_url, '_blank', 'noopener,noreferrer');
@@ -347,27 +341,36 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Trigger project loading on scroll intersection so skeletons are visible first
-  const projectsSection = document.getElementById('projects');
-  if (projectsSection) {
+  const projectsContainer = document.getElementById('projects-container');
+  if (projectsContainer) {
+    let triggered = false;
+    const triggerFetch = () => {
+      if (!triggered) {
+        triggered = true;
+        fetchGitHubProjects();
+      }
+    };
+
     const projectsObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Ensure it's a real scroll intersection and not a load layout flash
-          const isBelowFold = entry.boundingClientRect.top > 0;
-          if (isBelowFold || window.scrollY > 50) {
-            fetchGitHubProjects();
-            projectsObserver.unobserve(entry.target); // Load only once
-          }
+          triggerFetch();
+          projectsObserver.unobserve(entry.target);
         }
       });
     }, {
-      threshold: 0.15, // Require 15% visibility to trigger
-      rootMargin: "0px 0px -100px 0px" // Trigger when scrolled 100px inside viewport
+      threshold: 0.05,
+      rootMargin: "0px 0px 150px 0px"
     });
     
-    // Let DOM layout and Lenis scroll restoration settle before observing
     setTimeout(() => {
-      projectsObserver.observe(projectsSection);
+      projectsObserver.observe(projectsContainer);
+      const rect = projectsContainer.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 150 && rect.bottom > 0) {
+        triggerFetch();
+      }
     }, 100);
+  } else {
+    fetchGitHubProjects();
   }
 });

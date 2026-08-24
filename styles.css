@@ -1,5 +1,35 @@
 html {
   scroll-behavior: smooth;
+  background-color: #fcfcfc;
+}
+
+body, button, input, select, textarea {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #fcfcfc;
+  color: #000000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.025em;
+}
+
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* Smooth Scrolling via Lenis */
@@ -85,7 +115,7 @@ a:focus-visible, button:focus-visible {
 /* Cards - premium floating styling with hover lift & shadow effects */
 #projects-container .hover-offset-card,
 #projects-container > div {
-  min-height: 432px;
+  min-height: 220px;
 }
 
 /* Keep unusually long repository content contained without forcing wider or taller cards. */
@@ -101,13 +131,15 @@ a:focus-visible, button:focus-visible {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
 }
 
 .project-card-description {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
   overflow: hidden;
 }
 
@@ -115,6 +147,7 @@ a:focus-visible, button:focus-visible {
   position: relative;
   z-index: 1;
   background-color: #ffffff;
+  border-radius: 16px;
   
   /* Natural floating base state: a bold neo-brutalist shadow offset 
      plus a modern soft ambient shadow to give a premium floating depth */
@@ -157,6 +190,7 @@ a:focus-visible, button:focus-visible {
 .hover-offset-button {
   background-color: #ffffff !important;
   color: #000000 !important;
+  border-radius: 8px;
   box-shadow: 3px 3px 0px 0px #000000;
   transform: translate(0, 0);
   transition: background-color 0.2s ease, 
