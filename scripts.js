@@ -94,37 +94,41 @@ document.addEventListener("DOMContentLoaded", () => {
     threshold: 0
   };
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute("id");
-        
-        // Update desktop links
-        navLinks.forEach(link => {
-          const href = link.getAttribute("href");
-          if (href === `#${id}` || (id === "about" && href === "#")) {
-            link.classList.add("underline", "decoration-2", "underline-offset-4");
-            link.classList.remove("text-gray-500");
-          } else {
-            link.classList.remove("underline", "decoration-2", "underline-offset-4");
-            link.classList.add("text-gray-500");
-          }
-        });
-        
-        // Update mobile links
-        mobileNavLinks.forEach(link => {
-          const href = link.getAttribute("href");
-          if (href === `#${id}`) {
-            link.classList.add("underline", "decoration-2", "underline-offset-4");
-          } else {
-            link.classList.remove("underline", "decoration-2", "underline-offset-4");
-          }
-        });
-      }
-    });
-  }, observerOptions);
+  if (sections.length > 0 && Array.from(navLinks).some(link => link.getAttribute('href')?.startsWith('#'))) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute("id");
+          
+          // Update desktop links
+          navLinks.forEach(link => {
+            const href = link.getAttribute("href");
+            if (href === `#${id}` || (id === "about" && (href === "#" || href === "#about"))) {
+              link.classList.add("underline", "decoration-2", "underline-offset-4");
+              link.classList.remove("text-gray-500");
+            } else {
+              link.classList.remove("underline", "decoration-2", "underline-offset-4");
+              link.classList.add("text-gray-500");
+            }
+          });
+          
+          // Update mobile links
+          mobileNavLinks.forEach(link => {
+            const href = link.getAttribute("href");
+            if (href === `#${id}` || (id === "about" && (href === "#" || href === "#about"))) {
+              link.classList.add("underline", "decoration-2", "underline-offset-4");
+              link.classList.remove("text-gray-500");
+            } else {
+              link.classList.remove("underline", "decoration-2", "underline-offset-4");
+              link.classList.add("text-gray-500");
+            }
+          });
+        }
+      });
+    }, observerOptions);
 
-  sections.forEach(section => observer.observe(section));
+    sections.forEach(section => observer.observe(section));
+  }
 
   // Scroll Reveal Animation Observer
   const revealElements = document.querySelectorAll(".reveal-on-scroll");
@@ -137,8 +141,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, {
     threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px"
+    rootMargin: "0px 0px -40px 0px"
   });
+
   revealElements.forEach(el => revealObserver.observe(el));
 
   // Fetch GitHub Projects Logic
