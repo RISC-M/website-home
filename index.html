@@ -92,14 +92,6 @@
         <a href="#about"
           class="anchor-link whitespace-nowrap hover:opacity-70 transition-opacity text-xl md:text-base font-bold tracking-tighter uppercase font-outfit">RISC-M</a>
       </div>
-      <div
-        class="hidden lg:block border border-black rounded-full px-3.5 py-1 text-black whitespace-nowrap text-xs font-medium tracking-tight">
-        <span>Est. 2026 &nbsp;&bull;&nbsp; Ann Arbor, MI</span>
-      </div>
-      <div
-        class="lg:hidden border border-black rounded-full px-3.5 py-1 text-black whitespace-nowrap text-xs font-medium tracking-tight">
-        <span>Est. 2026</span>
-      </div>
     </div>
 
     <div class="flex justify-end items-center gap-4 md:gap-6">
@@ -436,7 +428,7 @@
               </h4>
             </div>
             <p class="text-base sm:text-lg font-normal text-neutral-700 leading-relaxed">
-              Sign up through our <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer" class="font-medium text-black underline hover:text-neutral-600 transition-colors">interest form</a> to receive announcements, project updates, and meeting schedules.
+              Sign up through our <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer" class="font-medium text-black underline hover:text-neutral-600 transition-colors">mailing list</a> to receive announcements, project updates, and meeting schedules.
             </p>
           </div>
 
@@ -505,10 +497,18 @@
             </p>
           </div>
           <div class="mt-2">
-            <span
-              class="inline-flex items-center justify-center border border-black bg-neutral-100 text-black px-4 py-2 rounded-md font-bold uppercase tracking-wider text-xs sm:text-sm shadow-sm select-none">
-              Applications: Coming Soon
+            <span class="btn-wrapper inline-block">
+              <a href="https://forms.gle/8XYYaa2zpvACxici8" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 border border-black bg-black text-white px-4 py-2 rounded-md font-semibold uppercase tracking-wider text-xs sm:text-sm hover-offset-button">
+                Apply to a Project
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </a>
             </span>
+            <p class="text-xs text-neutral-500 font-medium mt-2">* @umich.edu email required</p>
+            <p class="text-xs sm:text-sm text-neutral-500 font-normal mt-2">A @umich.edu email is needed for the Google Form.</p>
           </div>
 
           <!-- Edge Connector to Step 4: Left on Desktop into Step 4, Down on Mobile -->
@@ -577,20 +577,38 @@
       <div
         class="border-t border-black border-dashed pt-8 w-full max-w-3xl flex flex-col items-center mx-auto text-center">
         <p class="text-lg sm:text-xl font-normal mb-6 text-neutral-700">
-          Ready to get started? Fill out our interest form to join the mailing list and get notified about our upcoming
-          mass meeting.
+          Ready to get started? Join our mailing list for updates, or apply directly to join a project team.
         </p>
 
-        <span class="btn-wrapper inline-block">
-          <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer"
-            class="inline-flex items-center gap-3 border border-black bg-black text-white px-8 py-4 rounded-lg font-semibold uppercase tracking-widest text-xs sm:text-sm hover-offset-button">
-            Interest Form
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-            </svg>
-          </a>
-        </span>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <span class="btn-wrapper inline-block">
+            <a href="https://forms.gle/8XYYaa2zpvACxici8" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-3 border border-black bg-black text-white px-8 py-4 rounded-lg font-semibold uppercase tracking-widest text-xs sm:text-sm hover-offset-button">
+              Apply to a Project
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </a>
+          </span>
+
+          <span class="btn-wrapper inline-block">
+            <a href="https://forms.gle/cFrikohNdQu2sLo69" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-3 border border-black bg-black text-white px-8 py-4 rounded-lg font-semibold uppercase tracking-widest text-xs sm:text-sm hover-offset-button">
+              Mailing List
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </a>
+          </span>
+        </div>
+
+        <p class="text-xs sm:text-sm font-semibold tracking-wider text-neutral-500 mt-4">
+          * A <span class="text-black font-bold">@umich.edu</span> email is required to access the Google Form.
+        <p class="text-lg sm:text-xl font-normal text-neutral-700 mt-6">
+          A @umich.edu email is needed for the Google Form.
+        </p>
 
         <p class="text-xs sm:text-sm font-normal text-neutral-500 mt-6 max-w-xl leading-relaxed">
           Regardless of the recruiting cycle, we welcome new members at any point during the year. Feel free to reach
