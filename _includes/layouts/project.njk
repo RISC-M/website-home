@@ -3,13 +3,31 @@ layout: layouts/base.njk
 projectPage: true
 ---
 <article class="project-detail">
-  <a href="/showcase/" class="project-back">← Back to Showcase</a>
+  <nav class="project-breadcrumb" aria-label="Showcase navigation">
+    <a href="/showcase/" class="showcase-button project-back" data-showcase-return><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6 6-6-6 6-6"/></svg>Back to showcase</a>
+  </nav>
   <header class="project-heading">
-    <div class="project-detail-meta"><span class="project-status status-{{ status }}"><span aria-hidden="true"></span>{% if status == 'completed' %}Completed{% else %}In Progress{% endif %}</span><span>Published <time datetime="{{ published | isoDate }}">{{ published | displayDate }}</time></span>{% if updated %}<span>Updated <time datetime="{{ updated | isoDate }}">{{ updated | displayDate }}</time></span>{% endif %}</div>
     <h1>{{ title | escape }}</h1>
     <p class="project-lede">{{ blurb | escape }}</p>
-    <div class="project-byline"><div>{% for person in contributors %}<p><strong>{{ person.name | escape }}</strong><a href="{{ person.linkedin | escape }}" target="_blank" rel="noopener noreferrer" aria-label="{{ person.name | escape }} on LinkedIn (opens in a new tab)">LinkedIn ↗</a></p>{% endfor %}</div><a class="project-repository hover-offset-button" href="{{ github | escape }}" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a></div>
+    <div class="project-detail-meta">
+      <span class="project-status status-{{ status }}"><span aria-hidden="true">{% if status == 'completed' %}✓{% endif %}</span>{% if status == 'completed' %}Completed{% else %}In progress{% endif %}</span>
+      <span>Published <time datetime="{{ published | isoDate }}">{{ published | displayDate }}</time></span>
+      {% if updated %}<span>Updated <time datetime="{{ updated | isoDate }}">{{ updated | displayDate }}</time></span>{% endif %}
+    </div>
+    <div class="project-byline">
+      <div class="project-authors">
+        <p class="showcase-author-label">{% if contributors | length == 1 %}Contributor{% else %}Contributors{% endif %}</p>
+        <ul class="showcase-author-list">
+          {% for person in contributors %}
+          <li><a class="showcase-author" href="{{ person.linkedin | escape }}" target="_blank" rel="noopener noreferrer" aria-label="{{ person.name | escape }} on LinkedIn (opens in a new tab)">{{ person.name | escape }} <span aria-hidden="true">↗</span></a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <a class="showcase-button showcase-button-primary project-repository" href="{{ github | escape }}" target="_blank" rel="noopener noreferrer" aria-label="View {{ title | escape }} on GitHub (opens in a new tab)">View on GitHub <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+    </div>
   </header>
   <div class="project-prose">{{ content | safe }}</div>
-  <a href="/showcase/" class="project-back project-back-bottom">← Explore more projects</a>
+  <nav class="project-next" aria-label="Continue exploring">
+    <a href="/showcase/" class="project-explore" data-showcase-return><span>Explore more projects</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+  </nav>
 </article>

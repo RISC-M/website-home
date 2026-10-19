@@ -25,7 +25,7 @@ test('build generates escaped project cards, detail routes, sitemap, and exclude
   const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'risc-m-showcase-test-'));
   try {
     fs.cpSync(root, temporary, {recursive:true,filter: file => !['.git','node_modules','_site'].includes(path.basename(file))});
-    const write = (name, data) => fs.writeFileSync(path.join(temporary,'content/projects',name), `---\n${JSON.stringify(data,null,2)}\n---\n\n## Overview\n\nProject detail with **formatting**.\n`);
+    const write = (name, data) => fs.writeFileSync(path.join(temporary,'content/projects',name), `---\n${JSON.stringify(data,null,2)}\n---\n\n## Overview\n\nProject detail with **formatting**.\n\n\`\`\`verilog\nmodule example;\n\`\`\`\n\n| Parameter | Value |\n| --- | --- |\n| Width | 32 |\n`);
     write('test-older.md',project({title:'Test <Project>',slug:'test-older'}));
     write('test-newer.md',project({slug:'test-newer',status:'completed',published:'2026-10-10',contributors:[...project().contributors,{name:'Second Member',linkedin:'https://linkedin.com/in/second'}]}));
     const Eleventy = (await import('@11ty/eleventy')).default;
@@ -42,6 +42,8 @@ test('build generates escaped project cards, detail routes, sitemap, and exclude
     assert.match(listing,/target="_blank" rel="noopener noreferrer"/);
     const detail = fs.readFileSync(path.join(temporary,'_site/showcase/test-older/index.html'),'utf8');
     assert.match(detail,/<strong>formatting<\/strong>/);
+    assert.match(detail,/<pre tabindex="0" role="region" aria-label="Code example"><code class="language-verilog">module example;/);
+    assert.match(detail,/<div class="project-table" tabindex="0" role="region" aria-label="Project data table"><table>/);
     assert.match(detail,/https:\/\/www.risc-m.com\/showcase\/test-older\//);
     assert.ok(!fs.existsSync(path.join(temporary,'_site/showcase/your-project-title')));
     assert.match(fs.readFileSync(path.join(temporary,'_site/sitemap.xml'),'utf8'),/showcase\/test-newer/);
@@ -50,28 +52,31 @@ test('build generates escaped project cards, detail routes, sitemap, and exclude
 
 test('browser controls combine filtering, date order, empty states, and shareable URLs', () => {
   const vm = require('node:vm');
-  const element = (dataset = {}) => ({ dataset, hidden:false, style:{}, attributes:{}, handlers:{}, classList:{add(){},remove(){}}, setAttribute(key,value){this.attributes[key]=value;}, addEventListener(event,handler){this.handlers[event]=handler;} });
+  const element = (dataset = {}) => ({ dataset, hidden:false, style:{}, attributes:{}, handlers:{}, focus(){this.focused=true;}, setAttribute(key,value){this.attributes[key]=value;}, addEventListener(event,handler){this.handlers[event]=handler;} });
   const cards = [element({status:'completed',published:'2026-10-01',title:'Earlier'}),element({status:'in-progress',published:'2026-10-15',title:'Later'})];
   const grid = element();
   grid.children = [...cards];
-  grid.querySelectorAll = () => cards;
+  const projectLinks = [{href:'https://www.risc-m.com/showcase/earlier/'},{href:'https://www.risc-m.com/showcase/later/'}];
+  grid.querySelectorAll = selector => selector === '[data-project]' ? cards : projectLinks;
   grid.append = card => { grid.children = grid.children.filter(item => item !== card); grid.children.push(card); };
   const filters = ['all','in-progress','completed'].map(statusFilter => element({statusFilter}));
   const sort = element();
   const count = element();
   const empty = element();
+  const reset = element();
   const controls = element();
   controls.hidden = true;
-  const elements = {'showcase-grid':grid,'showcase-sort':sort,'showcase-count':count,'showcase-empty':empty};
+  const elements = {'showcase-grid':grid,'showcase-sort':sort,'showcase-count':count,'showcase-empty':empty,'showcase-reset':reset};
   const location = {href:'https://www.risc-m.com/showcase/?status=completed&sort=oldest',search:'?status=completed&sort=oldest'};
   vm.runInNewContext(fs.readFileSync(path.resolve(__dirname,'../showcase.js'),'utf8'), {
-    document:{getElementById:id => elements[id],querySelectorAll:() => filters,querySelector:() => controls},
+    document:{getElementById:id => elements[id],querySelectorAll:selector => selector === '[data-status-filter]' ? filters : [],querySelector:() => controls},
     window:{location,history:{replaceState(_state,_title,url){location.href=String(url);}}}, URL,URLSearchParams
   });
   assert.equal(controls.hidden,false);
   assert.equal(cards[1].hidden,true);
   assert.equal(count.textContent,'1 project');
   assert.equal(filters[2].attributes['aria-pressed'],'true');
+  assert.equal(projectLinks[0].href,'/showcase/earlier/?status=completed&sort=oldest');
   filters[0].handlers.click();
   assert.equal(count.textContent,'2 projects');
   assert.deepEqual(grid.children.map(card => card.dataset.title),['Earlier','Later']);
@@ -84,4 +89,25 @@ test('browser controls combine filtering, date order, empty states, and shareabl
   filters[1].handlers.click();
   assert.equal(empty.hidden,false);
   assert.equal(count.textContent,'0 projects');
+  reset.handlers.click();
+  assert.equal(count.textContent,'2 projects');
+  assert.equal(empty.hidden,true);
+  assert.equal(filters[0].focused,true);
+  assert.equal(projectLinks[0].href,'/showcase/earlier/');
+});
+
+test('detail return links retain valid filter context and discard unrecognized values', () => {
+  const vm = require('node:vm');
+  for (const [search, expected] of [
+    ['?status=completed&sort=oldest','/showcase/?status=completed&sort=oldest'],
+    ['?status=invalid&sort=invalid','/showcase/'],
+    ['?status=in-progress&unrelated=ignore','/showcase/?status=in-progress']
+  ]) {
+    const links = [{href:'/showcase/'},{href:'/showcase/'}];
+    vm.runInNewContext(fs.readFileSync(path.resolve(__dirname,'../showcase.js'),'utf8'), {
+      document:{getElementById:() => null,querySelectorAll:() => links},
+      window:{location:{search}}, URL,URLSearchParams
+    });
+    assert.ok(links.every(link => link.href === expected));
+  }
 });
