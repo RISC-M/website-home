@@ -36,9 +36,29 @@ when editing progress, and switch status when the project is complete. Status
 changes do not change its publication order. Dates use calendar dates in UTC.
 Projects can be authored and committed entirely through GitHub's browser editor.
 
-## Cloudflare Pages
+## Cloudflare Workers
 
-For the existing Git-connected Pages project, set:
+The existing site uses a Git-connected Worker named `website-home`.
+`wrangler.json` declares that name, its compatibility date, and the generated
+static asset directory (`./_site`). Keep this file in the repository root.
+
+In the Worker's build settings, set:
+
+- **Build command:** `npm run build`
+- **Deploy command:** `npx wrangler deploy --assets ./_site`
+- **Version command:** `npx wrangler versions upload --assets ./_site`
+- **Root directory:** `/` (repository root)
+
+Keep the existing custom domain and production branch. Commit and push the
+configuration, then trigger a new build. The site and `/showcase/` are served
+from `_site/`; a local build does not change the live website.
+
+The asset directory is also declared in `wrangler.json`, so `npx wrangler deploy`
+and `npx wrangler versions upload` work without repeating `--assets ./_site`.
+
+## Alternative: Cloudflare Pages
+
+If deploying this repo as a Pages project instead, set:
 
 - **Build command:** `npm run build`
 - **Build output directory:** `_site`
@@ -49,9 +69,6 @@ Keep the existing custom domain and production branch. Once these settings are
 saved, commits to that branch rebuild the site, including `/showcase/`, project
 pages, and the generated sitemap. Publishing still requires your normal GitHub
 push/deployment workflow; a local build does not change the live website.
-
-If the site uses Workers rather than Pages, point its static asset directory to
-`./_site` and run the same build command in the existing deployment pipeline.
 
 ## Optional browser CMS
 
