@@ -1,0 +1,15 @@
+{
+  "name": "risc-m-website",
+  "private": true,
+  "scripts": {
+    "build": "node tools/build.cjs",
+    "dev": "eleventy --serve",
+    "test": "node tools/showcase.test.cjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.7"
+  }
+}

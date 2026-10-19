@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" class="no-scrollbar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>{{ title | escape }} | RISC-M</title>
+  <meta name="description"
+    content="{{ description | default(blurb, true) | escape }}" />
+  <link rel="canonical" href="https://www.risc-m.com{{ page.url }}" />
+
+
+
+  <link rel="icon" href="/logo-white.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/logo-white.png" />
+
+  <meta property="og:site_name" content="RISC-M" />
+  <meta property="og:title" content="{{ title | escape }} | RISC-M" />
+  <meta property="og:description" content="{{ description | default(blurb, true) | escape }}" />
+  <meta property="og:type" content="{% if projectPage %}article{% else %}website{% endif %}" />
+  <meta property="og:url" content="https://www.risc-m.com{{ page.url }}" />
+  <meta property="og:image" content="https://www.risc-m.com/logo-black.png" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            display: ['Inter', '-apple-system', 'sans-serif'],
+            outfit: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="/styles.css" />
+  <noscript>
+    <style>
+      .reveal-on-scroll {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+      }
+    </style>
+  </noscript>
+
+  <link rel="stylesheet" href="/showcase.css" />
+</head>
+<body class="relative min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white no-scrollbar">
+  <div class="fixed inset-0 bg-[radial-gradient(#e5e5e5_1.5px,transparent_1.5px)] [background-size:24px_24px] pointer-events-none -z-10"></div>
+  <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-black z-50" style="width:0%"></div>
+  <header
+    class="flex flex-wrap gap-3 justify-center sm:justify-between items-center px-4 sm:px-8 py-3 md:py-4 border-b border-black text-xs md:text-sm font-semibold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc]/90 backdrop-blur-md z-50">
+    <div class="flex items-center gap-4 lg:gap-8">
+      <div class="flex items-center gap-2">
+        <div class="w-2.5 h-2.5 bg-black rounded-full animate-pulse shadow-[0_0_8px_rgba(0,0,0,0.6)]"></div>
+        <a href="/"
+          class="anchor-link whitespace-nowrap hover:opacity-70 transition-opacity text-xl md:text-base font-bold tracking-tighter uppercase font-outfit">RISC-M</a>
+      </div>
+    </div>
+
+    <div class="flex justify-end items-center gap-4 md:gap-6">
+      <nav class="flex gap-3 lg:gap-6 text-xs md:text-sm" aria-label="Main Navigation">
+        <a href="/" class="anchor-link hover:text-gray-500 transition-colors">Home</a>
+        <a href="/about.html" class="text-gray-500 hover:text-black transition-colors">About</a>
+        <a href="/sponsorship.html" class="text-gray-500 hover:text-black transition-colors">Sponsorship</a>
+        <a href="/showcase/" aria-current="{% if projectPage %}location{% else %}page{% endif %}" class="underline decoration-2 underline-offset-4 font-bold text-black">Showcase</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content" class="showcase-main">
+    {{ content | safe }}
+    <footer
+      class="w-full border-t border-black pt-6 pb-2 mt-12 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-semibold uppercase tracking-widest anim-element d-7">
+      <p class="text-xs font-semibold uppercase tracking-widest">&copy; 2026 <span class="font-outfit">RISC-M</span></p>
+      <div class="flex gap-6 text-xs font-semibold uppercase tracking-widest">
+        <a href="mailto:riscm-exec@umich.edu" class="hover:text-gray-500 transition-colors">email</a>
+        <a href="https://www.linkedin.com/company/risc-m/" class="hover:text-gray-500 transition-colors" target="_blank"
+          rel="noopener noreferrer">linkedin</a>
+      </div>
+    </footer>
+  </main>
+  <script src="/scripts.js" defer></script>
+  {% if not projectPage %}<script src="/showcase.js" defer></script>{% endif %}
+</body>
+</html>

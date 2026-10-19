@@ -1,0 +1,11 @@
+---
+permalink: /sitemap.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.risc-m.com/</loc></url>
+  <url><loc>https://www.risc-m.com/about.html</loc></url>
+  <url><loc>https://www.risc-m.com/sponsorship.html</loc></url>
+  <url><loc>https://www.risc-m.com/showcase/</loc></url>
+  {% for project in collections.projects %}<url><loc>https://www.risc-m.com{{ project.url }}</loc>{% if project.data.updated %}<lastmod>{{ project.data.updated | isoDate }}</lastmod>{% else %}<lastmod>{{ project.data.published | isoDate }}</lastmod>{% endif %}</url>{% endfor %}
+</urlset>

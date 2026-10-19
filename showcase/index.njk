@@ -1,0 +1,41 @@
+---
+layout: layouts/base.njk
+title: Project Showcase
+description: Explore what RISC-M members are building, from first prototypes to completed projects.
+---
+<section class="showcase-hero float-up-hero" aria-labelledby="showcase-title">
+  <p class="showcase-eyebrow">Built by our members</p>
+  <h1 id="showcase-title">Project<br>Showcase<span class="showcase-period">.</span></h1>
+  <p class="showcase-intro">Explore what RISC-M members are building.<br class="hidden sm:block"> The ideas, the experiments, and the work along the way.</p>
+</section>
+<section class="showcase-projects" aria-label="Member projects">
+  <div class="showcase-controls" hidden>
+    <div class="showcase-filters" role="group" aria-label="Filter by project status">
+      <button type="button" data-status-filter="all" aria-pressed="true">All projects</button>
+      <button type="button" data-status-filter="in-progress" aria-pressed="false">In Progress</button>
+      <button type="button" data-status-filter="completed" aria-pressed="false">Completed</button>
+    </div>
+    <div class="showcase-sort"><label for="showcase-sort">Published</label><select id="showcase-sort"><option value="newest">Newest first</option><option value="oldest">Oldest first</option></select></div>
+  </div>
+  <div class="showcase-grid-heading"><h2>The work</h2><p id="showcase-count" role="status" aria-live="polite" aria-atomic="true">{{ collections.projects | length }} projects</p></div>
+  <div id="showcase-grid" class="showcase-grid">
+    {% for project in collections.projects %}
+    <article class="showcase-card hover-offset-card fade-in-card" data-project data-status="{{ project.data.status }}" data-published="{{ project.data.published | isoDate }}" data-title="{{ project.data.title | escape }}">
+      <div class="showcase-card-meta">
+        <span class="project-status status-{{ project.data.status }}"><span aria-hidden="true"></span>{% if project.data.status == 'completed' %}Completed{% else %}In Progress{% endif %}</span>
+        <time datetime="{{ project.data.published | isoDate }}">{{ project.data.published | displayDate }}</time>
+      </div>
+      <h3 class="project-card-title"><a class="showcase-card-primary" href="{{ project.url }}">{{ project.data.title | escape }}</a></h3>
+      <p class="project-card-description">{{ project.data.blurb | escape }}</p>
+      <div class="showcase-contributors">
+        {% for person in project.data.contributors %}<p><span>{{ person.name | escape }}</span><a href="{{ person.linkedin | escape }}" target="_blank" rel="noopener noreferrer" aria-label="{{ person.name | escape }} on LinkedIn (opens in a new tab)">LinkedIn <span aria-hidden="true">↗</span></a></p>{% endfor %}
+      </div>
+      <div class="showcase-card-footer"><a href="{{ project.data.github | escape }}" target="_blank" rel="noopener noreferrer" aria-label="{{ project.data.title | escape }} on GitHub (opens in a new tab)">GitHub ↗</a><span class="showcase-read" aria-hidden="true">View Project →</span></div>
+    </article>
+    {% endfor %}
+  </div>
+  <div id="showcase-empty" class="showcase-empty" {% if collections.projects | length %}hidden{% endif %}>
+    {% if collections.projects | length %}<h3>No projects here yet.</h3><p>Try another status to explore more member projects.</p>{% else %}<span class="showcase-empty-symbol" aria-hidden="true">[ + ]</span><h3>Good things are being built.</h3><p>Our first member showcases are on the way. Check back soon to see what’s taking shape.</p>{% endif %}
+  </div>
+  <noscript><p class="showcase-noscript">All published projects are shown newest first. Enable JavaScript to filter and change the sort order.</p></noscript>
+</section>

@@ -1,0 +1,15 @@
+---
+layout: layouts/base.njk
+projectPage: true
+---
+<article class="project-detail">
+  <a href="/showcase/" class="project-back">← Back to Showcase</a>
+  <header class="project-heading">
+    <div class="project-detail-meta"><span class="project-status status-{{ status }}"><span aria-hidden="true"></span>{% if status == 'completed' %}Completed{% else %}In Progress{% endif %}</span><span>Published <time datetime="{{ published | isoDate }}">{{ published | displayDate }}</time></span>{% if updated %}<span>Updated <time datetime="{{ updated | isoDate }}">{{ updated | displayDate }}</time></span>{% endif %}</div>
+    <h1>{{ title | escape }}</h1>
+    <p class="project-lede">{{ blurb | escape }}</p>
+    <div class="project-byline"><div>{% for person in contributors %}<p><strong>{{ person.name | escape }}</strong><a href="{{ person.linkedin | escape }}" target="_blank" rel="noopener noreferrer" aria-label="{{ person.name | escape }} on LinkedIn (opens in a new tab)">LinkedIn ↗</a></p>{% endfor %}</div><a class="project-repository hover-offset-button" href="{{ github | escape }}" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a></div>
+  </header>
+  <div class="project-prose">{{ content | safe }}</div>
+  <a href="/showcase/" class="project-back project-back-bottom">← Explore more projects</a>
+</article>

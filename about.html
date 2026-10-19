@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en" class="no-scrollbar">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>About | RISC-M</title>
+  <meta name="description"
+    content="Our vision and the student leadership behind RISC-M at the University of Michigan." />
+  <link rel="canonical" href="https://www.risc-m.com/about.html" />
+
+  <link rel="icon" href="logo-white.png" type="image/png" />
+  <link rel="apple-touch-icon" href="logo-white.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="RISC-M Computer Architecture Club" />
+  <meta property="og:title" content="About | RISC-M" />
+  <meta property="og:description"
+    content="Our vision and the student leadership behind RISC-M at the University of Michigan." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.risc-m.com/about.html" />
+  <meta property="og:image" content="https://risc-m.github.io/website-home/logo-black.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About | RISC-M" />
+  <meta name="twitter:description"
+    content="Our vision and the student leadership behind RISC-M at the University of Michigan." />
+  <meta name="twitter:image" content="https://risc-m.github.io/website-home/logo-black.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            display: ['Inter', '-apple-system', 'sans-serif'],
+            outfit: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css" />
+  <noscript>
+    <style>
+      .reveal-on-scroll {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+      }
+    </style>
+  </noscript>
+</head>
+
+<body
+  class="relative min-h-screen bg-[#fcfcfc] text-black font-sans overflow-x-hidden selection:bg-black selection:text-white pb-6 no-scrollbar">
+  <!-- Global Dotted Background Grid -->
+  <div
+    class="absolute inset-0 bg-[radial-gradient(#e5e5e5_1.5px,transparent_1.5px)] [background-size:24px_24px] pointer-events-none -z-10">
+  </div>
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-black z-50 transition-all duration-100" style="width: 0%">
+  </div>
+
+  <!-- Header / Navbar -->
+  <header
+    class="flex flex-wrap gap-3 justify-center sm:justify-between items-center px-4 sm:px-8 py-3 md:py-4 border-b border-black text-xs md:text-sm font-semibold uppercase tracking-widest fixed top-0 left-0 w-full bg-[#fcfcfc]/90 backdrop-blur-md z-50">
+    <div class="flex items-center gap-4 lg:gap-8">
+      <div class="flex items-center gap-2">
+        <div class="w-2.5 h-2.5 bg-black rounded-full animate-pulse shadow-[0_0_8px_rgba(0,0,0,0.6)]"></div>
+        <a href="index.html"
+          class="whitespace-nowrap hover:opacity-70 transition-opacity text-xl md:text-base font-bold tracking-tighter uppercase font-outfit">RISC-M</a>
+      </div>
+    </div>
+
+    <div class="flex justify-end items-center gap-4 md:gap-6">
+      <nav class="flex gap-3 lg:gap-6 text-xs md:text-sm" aria-label="Main Navigation">
+        <a href="index.html" class="text-gray-500 hover:text-black transition-colors">Home</a>
+        <a href="about.html" class="underline decoration-2 underline-offset-4 font-bold text-black">About</a>
+        <a href="sponsorship.html" class="text-gray-500 hover:text-black transition-colors">Sponsorship</a>
+        <a href="/showcase/" class="text-gray-500 hover:text-black transition-colors">Showcase</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="px-8 pt-20 md:pt-28 max-w-[1400px] mx-auto relative flex flex-col items-center">
+    <!-- 1. OUR VISION (First) -->
+    <section class="w-full min-h-[50vh] flex flex-col items-center justify-center text-center px-4 py-16 md:py-24 float-up-hero">
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-black mb-8 font-display">
+          Our Vision
+        </h1>
+        <div class="space-y-6 text-base sm:text-lg md:text-xl font-normal text-neutral-700 leading-relaxed text-left sm:text-center">
+          <p>
+            As sophomores, we noticed the lack of a dedicated computer architecture club on campus, and we realized how much students needed a community like this during their time at Michigan.
+          </p>
+          <p>
+            After completing EECS 470, the computer architecture course and building our foundational knowledge, our vision became clear: to build a space where students interested in computer architecture can come together, collaborate, receive feedback, and work on real, interesting projects outside of coursework.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. OUR LEADERSHIP (Second) -->
+    <section class="w-full border-t border-black pt-16 md:pt-24 pb-16 flex flex-col items-center text-center reveal-on-scroll">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tighter text-black mb-4 font-display">
+          Our Leadership
+        </h2>
+        <p class="text-lg sm:text-xl font-normal text-neutral-600 max-w-2xl mx-auto">
+          Meet the student officers and faculty advisors leading RISC-M.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-x-6 gap-y-10 sm:gap-x-8 sm:gap-y-12 w-full max-w-5xl">
+        <!-- Shashwat Jaguri -->
+        <div class="flex flex-col items-center text-center w-[calc(50%-12px)] md:w-[calc(25%-24px)] max-w-[200px]">
+          <div class="w-full aspect-square mb-4 rounded-[4px] overflow-hidden bg-neutral-100">
+            <img src="board_photos/shashwat.jpeg" alt="Shashwat Jaguri" class="w-full h-full object-cover rounded-[4px]" loading="lazy" />
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-black font-display">
+            Shashwat Jaguri
+          </h3>
+          <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-500 mt-1">
+            President
+          </p>
+        </div>
+
+        <!-- David Huang -->
+        <div class="flex flex-col items-center text-center w-[calc(50%-12px)] md:w-[calc(25%-24px)] max-w-[200px]">
+          <div class="w-full aspect-square mb-4 rounded-[4px] overflow-hidden bg-neutral-100">
+            <img src="board_photos/david.jpeg" alt="David Huang" class="w-full h-full object-cover rounded-[4px]" loading="lazy" />
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-black font-display">
+            David Huang
+          </h3>
+          <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-500 mt-1">
+            Vice President
+          </p>
+        </div>
+
+        <!-- Shreyas Narayanan -->
+        <div class="flex flex-col items-center text-center w-[calc(50%-12px)] md:w-[calc(25%-24px)] max-w-[200px]">
+          <div class="w-full aspect-square mb-4 rounded-[4px] overflow-hidden bg-neutral-100">
+            <img src="board_photos/shreyas.png" alt="Shreyas Narayanan" class="w-full h-full object-cover rounded-[4px]" loading="lazy" />
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-black font-display">
+            Shreyas Narayanan
+          </h3>
+          <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-500 mt-1">
+            Vice President
+          </p>
+        </div>
+
+        <!-- Bangyan Huang -->
+        <div class="flex flex-col items-center text-center w-[calc(50%-12px)] md:w-[calc(25%-24px)] max-w-[200px]">
+          <div class="w-full aspect-square mb-4 rounded-[4px] overflow-hidden bg-neutral-100">
+            <img src="board_photos/Bany.jpg" alt="Bangyan Huang" class="w-full h-full object-cover rounded-[4px]" loading="lazy" />
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-black font-display">
+            Bangyan Huang
+          </h3>
+          <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-500 mt-1">
+            Lead Engineer
+          </p>
+        </div>
+
+        <!-- Aaron Xiong -->
+        <div class="flex flex-col items-center text-center w-[calc(50%-12px)] md:w-[calc(25%-24px)] max-w-[200px]">
+          <div class="w-full aspect-square mb-4 rounded-[4px] overflow-hidden bg-neutral-100">
+            <img src="board_photos/aaron.jpeg" alt="Aaron Xiong" class="w-full h-full object-cover rounded-[4px]" loading="lazy" />
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-black font-display">
+            Aaron Xiong
+          </h3>
+          <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-500 mt-1">
+            Lead Engineer
+          </p>
+        </div>
+
+        <!-- Shaun Gupte -->
+        <div class="flex flex-col items-center text-center w-[calc(50%-12px)] md:w-[calc(25%-24px)] max-w-[200px]">
+          <div class="w-full aspect-square mb-4 rounded-[4px] overflow-hidden bg-neutral-100">
+            <img src="board_photos/shaun.jpeg" alt="Shaun Gupte" class="w-full h-full object-cover rounded-[4px]" loading="lazy" />
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-black font-display">
+            Shaun Gupte
+          </h3>
+          <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-500 mt-1">
+            Lead Engineer
+          </p>
+        </div>
+
+        <!-- Dhruv Bahuguna -->
+        <div class="flex flex-col items-center text-center w-[calc(50%-12px)] md:w-[calc(25%-24px)] max-w-[200px]">
+          <div class="w-full aspect-square mb-4 rounded-[4px] overflow-hidden bg-neutral-100">
+            <img src="board_photos/dhruv.jpg" alt="Dhruv Bahuguna" class="w-full h-full object-cover rounded-[4px]" loading="lazy" />
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-black font-display">
+            Dhruv Bahuguna
+          </h3>
+          <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-500 mt-1">
+            Lead Engineer
+          </p>
+        </div>
+
+        <!-- Prof. Krisztián Flautner -->
+        <div class="flex flex-col items-center text-center w-[calc(50%-12px)] md:w-[calc(25%-24px)] max-w-[200px]">
+          <div class="w-full aspect-square mb-4 rounded-[4px] overflow-hidden bg-neutral-100">
+            <img src="board_photos/KFlautner_square2.webp" alt="Prof. Krisztián Flautner" class="w-full h-full object-cover rounded-[4px]" loading="lazy" />
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-black font-display">
+            Prof. Krisztián Flautner
+          </h3>
+          <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-500 mt-1">
+            Faculty Advisor
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="w-full border-t border-black pt-6 pb-2 mt-12 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-semibold uppercase tracking-widest anim-element d-7">
+      <p class="text-xs font-semibold uppercase tracking-widest">&copy; 2026 <span class="font-outfit">RISC-M</span></p>
+      <div class="flex gap-6 text-xs font-semibold uppercase tracking-widest">
+        <a href="mailto:riscm-exec@umich.edu" class="hover:text-gray-500 transition-colors">email</a>
+        <a href="https://www.linkedin.com/company/risc-m/" class="hover:text-gray-500 transition-colors" target="_blank"
+          rel="noopener noreferrer">linkedin</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
+  <script src="scripts.js" defer></script>
+</body>
+
+</html>
