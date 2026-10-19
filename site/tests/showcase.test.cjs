@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { validateProject, publishedProjects } = require('./projects.cjs');
+const { validateProject, publishedProjects } = require('../tools/projects.cjs');
 const project = (overrides = {}) => ({ title:'A real project', slug:'a-real-project', blurb:'A short description.', published:'2026-10-01', status:'in-progress', github:'https://github.com/RISC-M/example', contributors:[{name:'Example Member', linkedin:'https://www.linkedin.com/in/example/'}], ...overrides });
 
 test('validates required fields, actual dates, statuses, and safe external links', () => {
@@ -20,17 +20,24 @@ test('excludes drafts, sorts by publication date, and rejects duplicate URLs', (
 });
 
 test('build generates escaped project cards, detail routes, sitemap, and excludes draft pages', async () => {
-  const root = path.resolve(__dirname, '..');
+  const root = path.resolve(__dirname, '../..');
   const previousDirectory = process.cwd();
   const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'risc-m-showcase-test-'));
   try {
     fs.cpSync(root, temporary, {recursive:true,filter: file => !['.git','node_modules','_site'].includes(path.basename(file))});
-    const write = (name, data) => fs.writeFileSync(path.join(temporary,'content/projects',name), `---\n${JSON.stringify(data,null,2)}\n---\n\n## Overview\n\nProject detail with **formatting**.\n\n\`\`\`verilog\nmodule example;\n\`\`\`\n\n| Parameter | Value |\n| --- | --- |\n| Width | 32 |\n`);
+    const write = (name, data) => fs.writeFileSync(path.join(temporary,'posts',name), `---\n${JSON.stringify(data,null,2)}\n---\n\n## Overview\n\nProject detail with **formatting**.\n\n\`\`\`verilog\nmodule example;\n\`\`\`\n\n| Parameter | Value |\n| --- | --- |\n| Width | 32 |\n`);
     write('test-older.md',project({title:'Test <Project>',slug:'test-older'}));
     write('test-newer.md',project({slug:'test-newer',status:'completed',published:'2026-10-10',contributors:[...project().contributors,{name:'Second Member',linkedin:'https://linkedin.com/in/second'}]}));
+    const template = fs.readFileSync(path.join(temporary,'posts/example.md'),'utf8');
+    fs.writeFileSync(path.join(temporary,'posts/test-draft.md'),template);
+    fs.writeFileSync(path.join(temporary,'posts/from-template.md'),template
+      .replace('slug: "your-project-title"','slug: "from-template"')
+      .replace('draft: true','draft: false'));
+    fs.mkdirSync(path.join(temporary,'posts/media/from-template'),{recursive:true});
+    fs.writeFileSync(path.join(temporary,'posts/media/from-template/diagram.svg'),'<svg xmlns="http://www.w3.org/2000/svg"/>');
     const Eleventy = (await import('@11ty/eleventy')).default;
     process.chdir(temporary);
-    const builder = new Eleventy('.', '_site', {configPath:path.join(temporary, '.eleventy.js')});
+    const builder = new Eleventy('.', '_site', {configPath:path.join(temporary, 'site/eleventy.config.cjs')});
     builder.setIsVerbose(false);
     await builder.write();
     const listing = fs.readFileSync(path.join(temporary,'_site/showcase/index.html'),'utf8');
@@ -40,13 +47,33 @@ test('build generates escaped project cards, detail routes, sitemap, and exclude
     assert.ok(listing.indexOf('href="/showcase/test-newer/"') < listing.indexOf('href="/showcase/test-older/"'));
     assert.match(listing,/showcase-card-primary/);
     assert.match(listing,/target="_blank" rel="noopener noreferrer"/);
+    assert.match(listing,/href="\/showcase\/from-template\/"/);
     const detail = fs.readFileSync(path.join(temporary,'_site/showcase/test-older/index.html'),'utf8');
     assert.match(detail,/<strong>formatting<\/strong>/);
+    assert.match(detail,/<meta property="og:type" content="article"/);
+    assert.match(detail,/href="\/showcase\/" aria-current="location"/);
     assert.match(detail,/<pre tabindex="0" role="region" aria-label="Code example"><code class="language-verilog">module example;/);
     assert.match(detail,/<div class="project-table" tabindex="0" role="region" aria-label="Project data table"><table>/);
     assert.match(detail,/https:\/\/www.risc-m.com\/showcase\/test-older\//);
     assert.ok(!fs.existsSync(path.join(temporary,'_site/showcase/your-project-title')));
-    assert.match(fs.readFileSync(path.join(temporary,'_site/sitemap.xml'),'utf8'),/showcase\/test-newer/);
+    const sitemap = fs.readFileSync(path.join(temporary,'_site/sitemap.xml'),'utf8');
+    assert.match(sitemap,/showcase\/test-newer/);
+    assert.doesNotMatch(sitemap,/your-project-title/);
+    assert.ok(fs.existsSync(path.join(temporary,'_site/showcase/from-template/index.html')));
+    assert.ok(fs.existsSync(path.join(temporary,'_site/media/from-template/diagram.svg')));
+    for (const nonPublic of ['README','site','posts']) {
+      assert.ok(!fs.existsSync(path.join(temporary,'_site',nonPublic)),`${nonPublic} must not be published`);
+    }
+    // Moving the source and assets must preserve every internal page reference.
+    for (const page of ['index.html','about.html','sponsorship.html','showcase/index.html','showcase/from-template/index.html']) {
+      const markup = fs.readFileSync(path.join(temporary,'_site',page),'utf8');
+      for (const [, reference] of markup.matchAll(/(?:src|href)="([^"]+)"/g)) {
+        const url = new URL(reference,`https://www.risc-m.com/${page}`);
+        if (url.origin !== 'https://www.risc-m.com') continue;
+        const target = url.pathname.endsWith('/') ? `${url.pathname}index.html` : url.pathname;
+        assert.ok(fs.existsSync(path.join(temporary,'_site',target)),`${page} links to missing ${target}`);
+      }
+    }
   } finally { process.chdir(previousDirectory); fs.rmSync(temporary,{recursive:true,force:true}); }
 });
 
@@ -68,7 +95,7 @@ test('browser controls combine filtering, date order, empty states, and shareabl
   controls.hidden = true;
   const elements = {'showcase-grid':grid,'showcase-sort':sort,'showcase-count':count,'showcase-empty':empty,'showcase-reset':reset};
   const location = {href:'https://www.risc-m.com/showcase/?status=completed&sort=oldest',search:'?status=completed&sort=oldest'};
-  vm.runInNewContext(fs.readFileSync(path.resolve(__dirname,'../showcase.js'),'utf8'), {
+  vm.runInNewContext(fs.readFileSync(path.resolve(__dirname,'../public/scripts/showcase.js'),'utf8'), {
     document:{getElementById:id => elements[id],querySelectorAll:selector => selector === '[data-status-filter]' ? filters : [],querySelector:() => controls},
     window:{location,history:{replaceState(_state,_title,url){location.href=String(url);}}}, URL,URLSearchParams
   });
@@ -104,7 +131,7 @@ test('detail return links retain valid filter context and discard unrecognized v
     ['?status=in-progress&unrelated=ignore','/showcase/?status=in-progress']
   ]) {
     const links = [{href:'/showcase/'},{href:'/showcase/'}];
-    vm.runInNewContext(fs.readFileSync(path.resolve(__dirname,'../showcase.js'),'utf8'), {
+    vm.runInNewContext(fs.readFileSync(path.resolve(__dirname,'../public/scripts/showcase.js'),'utf8'), {
       document:{getElementById:() => null,querySelectorAll:() => links},
       window:{location:{search}}, URL,URLSearchParams
     });

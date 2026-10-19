@@ -2,9 +2,9 @@
   "name": "risc-m-website",
   "private": true,
   "scripts": {
-    "build": "node tools/build.cjs",
-    "dev": "eleventy --serve",
-    "test": "node tools/showcase.test.cjs"
+    "build": "node site/tools/build.cjs",
+    "dev": "eleventy --config=site/eleventy.config.cjs --serve",
+    "test": "node site/tests/showcase.test.cjs"
   },
   "engines": {
     "node": ">=18"

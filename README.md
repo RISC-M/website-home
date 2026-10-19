@@ -1,83 +1,96 @@
-# RISC-M website
+# RISC-M Project Showcase
 
-The existing HTML pages are preserved. [Eleventy](https://www.11ty.dev/) builds the
-Project Showcase from Markdown and copies the site's existing assets into `_site/`.
+Share what you are building with the club. Projects can be in progress or complete;
+a few clear paragraphs are enough to get started. Each post gets its own page,
+project links, and credit for the people involved.
 
-## Development
+## Add a project post
 
-Use Node.js 18 or newer:
+You can do this entirely on GitHub, without installing anything.
 
-```sh
-npm ci
-npm run dev
+1. Open the [example post](posts/example.md) and copy its contents.
+2. Open [posts](posts), choose **Add file → Create new file**, and
+   name your file after the project, such as `branch-predictor.md`. Paste in the template.
+3. Replace the details between the two `---` lines using the guide below. List
+   everyone who contributed to the project.
+4. Write your post below the second `---`. Explain what you are building, how it
+   works, and what you have learned. Use the suggested headings or choose your own.
+5. Set `draft: false` when the post is ready. Commit your file to a new branch and
+   open a pull request. Once it is merged into the production branch and the site
+   build finishes, your post will appear in the [showcase](https://www.risc-m.com/showcase/).
+
+For a filled-out example, see [What is RISC-M?](posts/what-is-risc-m.md).
+
+### Fill in the project details
+
+Keep the field names as they appear in the template. Replace the example values;
+keep quotes around text and dates, and use spaces for indentation.
+
+| Field | What to enter |
+| --- | --- |
+| `title` | The project name readers will see. |
+| `slug` | A unique, permanent URL name: lowercase words separated by hyphens, such as `branch-predictor`. Your page will be `/showcase/branch-predictor/`. |
+| `blurb` | One or two sentences explaining the project. This appears on the showcase card. |
+| `published` | The date you first publish the post, in `YYYY-MM-DD` format. |
+| `status` | `in-progress` or `completed`. Both belong in the showcase. |
+| `draft` | `true` while you are writing; `false` when ready to publish. Drafts have no public post or showcase card. |
+| `github` | The project's full HTTPS GitHub URL. |
+| `contributors` | Each contributor's name and full HTTPS LinkedIn URL. Repeat the name/link pair for each teammate, as shown below. |
+| `updated` | Optional. The date of a later update, in `YYYY-MM-DD` format. |
+
+For a team project, list each person separately:
+
+```yaml
+contributors:
+  - name: "First contributor"
+    linkedin: "https://www.linkedin.com/in/first-contributor/"
+  - name: "Second contributor"
+    linkedin: "https://www.linkedin.com/in/second-contributor/"
 ```
 
-Open the local address printed by Eleventy. `npm run build` generates `_site/`;
-`npm test` checks project validation and builds temporary projects to verify cards,
-detail pages, draft exclusion, publication ordering, and the sitemap.
+You can also explain each person's contribution in the post itself, especially
+when teammates worked on different parts of the design.
 
-## Publish a project
+### Add images, diagrams, or a demo
 
-1. Copy `content/projects/project-template.md` to a new `.md` file in the same folder.
-2. Fill in its title, unique slug, one or two sentence blurb, publication date,
-   GitHub repository URL, and each contributor's name and LinkedIn URL.
-3. Set `status` to `in-progress` or `completed`.
-4. Write the project details below the front matter. Markdown supports headings,
-   lists, code blocks, and images: `![Description](/uploads/project-name/image.png)`.
-   Put media in `uploads/`. Use HTML for video embeds when needed.
-5. Set `draft: false`, commit, and push to the production branch.
+Create a folder for your project in [posts/media](posts/media), for example
+`posts/media/branch-predictor/`. On GitHub, use **Add file → Upload files** to add
+your media there. Keep filenames simple, such as `architecture.png`.
 
-The project appears at `/showcase/your-slug/`. Drafts have no public page and do
-not appear in the listing or sitemap. The included template is a draft, so the
-showcase initially displays an honest empty state until a real project is added.
+In your post, reference it with `/media/<project-slug>/<filename>`:
 
-Keep `published` fixed after publication. Add an optional `updated: "YYYY-MM-DD"`
-when editing progress, and switch status when the project is complete. Status
-changes do not change its publication order. Dates use calendar dates in UTC.
-Projects can be authored and committed entirely through GitHub's browser editor.
+```markdown
+![Diagram of the branch prediction pipeline](/media/branch-predictor/architecture.png)
+```
 
-## Cloudflare Workers
+Use descriptive image text so readers can understand the image's purpose. For a
+demo hosted elsewhere, add a normal link:
 
-The existing site uses a Git-connected Worker named `website-home`.
-`wrangler.json` declares that name, its compatibility date, and the generated
-static asset directory (`./_site`). Keep this file in the repository root.
+```markdown
+[Watch the project demo](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
+```
 
-In the Worker's build settings, set:
+Markdown also supports `## Headings`, **bold text**, lists, links, tables, and fenced
+code blocks. Media is optional; publish a useful explanation first and add more later.
 
-- **Build command:** `npm run build`
-- **Deploy command:** `npx wrangler deploy --assets ./_site`
-- **Version command:** `npx wrangler versions upload --assets ./_site`
-- **Root directory:** `/` (repository root)
+## Update an existing post
 
-Keep the existing custom domain and production branch. Commit and push the
-configuration, then trigger a new build. The site and `/showcase/` are served
-from `_site/`; a local build does not change the live website.
+Edit your project's file in [posts](posts) and submit the change in
+a pull request. Keep the original `slug` so shared links continue to work, and keep
+`published` unchanged so the post retains its place in the publication order.
 
-The asset directory is also declared in `wrangler.json`, so `npx wrangler deploy`
-and `npx wrangler versions upload` work without repeating `--assets ./_site`.
+Add or change `updated` to the date of your update. Change `status` to `completed`
+when the project is finished, and update the contributor list as teammates join.
 
-## Alternative: Cloudflare Pages
+## Find your way around
 
-If deploying this repo as a Pages project instead, set:
+```text
+posts/                Add and edit your Markdown posts here
+  media/              Images and diagrams, grouped by project slug
+site/                 Website code, styles, layouts, tools, and tests
+README.md             This posting guide
+```
 
-- **Build command:** `npm run build`
-- **Build output directory:** `_site`
-- **Root directory:** repository root
-- **Node.js version:** 22 (set `NODE_VERSION=22` if needed)
-
-Keep the existing custom domain and production branch. Once these settings are
-saved, commits to that branch rebuild the site, including `/showcase/`, project
-pages, and the generated sitemap. Publishing still requires your normal GitHub
-push/deployment workflow; a local build does not change the live website.
-
-## Optional browser CMS
-
-Markdown publishing through GitHub works immediately. A Decap `/admin/` editor
-requires the GitHub repository identity and an OAuth service (for example, a
-Cloudflare Worker with a GitHub OAuth application's secrets). Those account
-settings are not stored in this repo. Configure authentication before exposing
-an admin editor; never place OAuth client secrets in public files.
-
-The content fields are already structured for that future editor: `title`,
-`slug`, `blurb`, `published`, `updated`, `status`, `draft`, `github`, and the
-`contributors` list (`name`, `linkedin`).
+The [example post](posts/example.md) includes image and video snippets to copy.
+For development and hosting instructions, see the
+[website maintenance guide](site/docs/maintaining.md).

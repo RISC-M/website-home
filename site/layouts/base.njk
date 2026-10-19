@@ -11,15 +11,15 @@
 
 
 
-  <link rel="icon" href="/logo-white.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/logo-white.png" />
+  <link rel="icon" href="/images/logo-white.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/images/logo-white.png" />
 
   <meta property="og:site_name" content="RISC-M" />
   <meta property="og:title" content="{{ title | escape }} | RISC-M" />
   <meta property="og:description" content="{{ description | default(blurb, true) | escape }}" />
   <meta property="og:type" content="{% if projectPage %}article{% else %}website{% endif %}" />
   <meta property="og:url" content="https://www.risc-m.com{{ page.url }}" />
-  <meta property="og:image" content="https://www.risc-m.com/logo-black.png" />
+  <meta property="og:image" content="https://www.risc-m.com/images/logo-black.png" />
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,8 +27,8 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet">
 
-  <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="/showcase.css" />
+  <link rel="stylesheet" href="/styles/site.css" />
+  <link rel="stylesheet" href="/styles/showcase.css" />
 </head>
 <body class="showcase-site">
   <a class="showcase-skip" href="#main-content">Skip to content</a>
@@ -51,6 +51,6 @@
       <a href="https://www.linkedin.com/company/risc-m/" target="_blank" rel="noopener noreferrer" aria-label="RISC-M on LinkedIn (opens in a new tab)">LinkedIn <span aria-hidden="true">↗</span></a>
     </nav>
   </footer>
-  <script src="/showcase.js" defer></script>
+  <script src="/scripts/showcase.js" defer></script>
 </body>
 </html>
